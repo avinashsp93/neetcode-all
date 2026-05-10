@@ -7,17 +7,17 @@ class Solution:
             validEmail = ""
             local,domain = "",""
             i = 0
-            # keep going
-            # ignore once if .
-            # keep ignoring if + 
-            # hardstop at @
+            # keep going , ignore once if . , keep ignoring if + , hardstop at @
 
+            # keep going until @ or +
             while(email[i] != "@" and email[i] != "+"):
                 if(email[i] == "."):
                     i+=1
                     continue
                 local += email[i]
                 i+=1
+            
+            # ignore everything after + until @
             while(email[i] != "@"):
                 i+=1
 
