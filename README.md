@@ -10,6 +10,6 @@ This repository contains all the solutions to the problems on [neetcode.io](http
 
 ## Links to README files for each topic
 
-- [Arrays and Hashing](arrays_and_hashing/README.md)
-- [Two Pointers](two_pointers/README.md)
-- [Stack](stack/README.md)
+- [Arrays and Hashing](python/l1_arrays_and_hashing/README.md)
+- [Two Pointers](python/l2_two_pointers/README.md)
+- [Stack](python/l2_stack/README.md)
