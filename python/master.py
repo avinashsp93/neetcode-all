@@ -7,14 +7,15 @@ from typing import List
 # from arrays_and_hashing.p2678_number_of_senior_citizens import Solution
 # from arrays_and_hashing.p0485_max_consecutive_ones import Solution
 # from arrays_and_hashing.p0929_unique_email_addresses import Solution
-from arrays_and_hashing.p0014_longest_common_prefix import Solution
-
+# from arrays_and_hashing.p0014_longest_common_prefix import Solution
+# from arrays_and_hashing.p0205_isomorphic_strings import Solution
+from arrays_and_hashing.p0605_can_place_flowers import Solution
 
 def main() -> None:
     # Input
-    strs = ["dog","racecar","car"]
+    flowerBed = [1,0,0,1]
 
-    result = Solution().longestCommonPrefix(strs)
+    result = Solution().canPlaceFlowers(flowerBed, 1)
     print("result:", result)
 
 if __name__ == "__main__":
