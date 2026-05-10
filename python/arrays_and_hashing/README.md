@@ -1,5 +1,23 @@
 # Arrays & Hashing
 
+## Table of Contents
+
+- [0001 - Two Sum](#0001---two-sum)
+- [0014 - Longest Common Prefix](#0014---longest-common-prefix)
+- [0027 - Remove Element](#0027---remove-element)
+- [0058 - Length of Last Word](#0058---length-of-last-word)
+- [0205 - Isomorphic Strings](#0205---isomorphic-strings)
+- [0217 - Contains Duplicate](#0217---contains-duplicate)
+- [0242 - Valid Anagram](#0242---valid-anagram)
+- [0392 - Is Subsequence](#0392---is-subsequence)
+- [0485 - Max Consecutive Ones](#0485---max-consecutive-ones)
+- [0605 - Can Place Flowers](#0605---can-place-flowers)
+- [0929 - Unique Email Addresses](#0929---unique-email-addresses)
+- [1299 - Replace Elements with Greatest Element on Right Side](#1299---replace-elements-with-greatest-element-on-right-side)
+- [1408 - String Matching in an Array](#1408---string-matching-in-an-array)
+- [2678 - Number of Senior Citizens](#2678---number-of-senior-citizens)
+- [3110 - Score of a String](#3110---score-of-a-string)
+
 ## 0001 - Two Sum
 
 - **Problem**: Given an array of integers and a target sum, find the indices of the two numbers that add up to the target.
