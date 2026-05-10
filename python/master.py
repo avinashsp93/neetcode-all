@@ -1,5 +1,5 @@
 from typing import List
-from stack.p0020_valid_parentheses import Solution
+from l2_stack.p0020_valid_parentheses import Solution
 
 def main() -> None:
     # Input
