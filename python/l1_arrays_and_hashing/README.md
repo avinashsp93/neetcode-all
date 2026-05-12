@@ -1,0 +1,611 @@
+# Arrays & Hashing
+
+## Table of Contents
+
+- [0001 - Two Sum](#0001---two-sum)
+- [0014 - Longest Common Prefix](#0014---longest-common-prefix)
+- [0027 - Remove Element](#0027---remove-element)
+- [0058 - Length of Last Word](#0058---length-of-last-word)
+- [0205 - Isomorphic Strings](#0205---isomorphic-strings)
+- [0217 - Contains Duplicate](#0217---contains-duplicate)
+- [0242 - Valid Anagram](#0242---valid-anagram)
+- [0392 - Is Subsequence](#0392---is-subsequence)
+- [0485 - Max Consecutive Ones](#0485---max-consecutive-ones)
+- [0605 - Can Place Flowers](#0605---can-place-flowers)
+- [0929 - Unique Email Addresses](#0929---unique-email-addresses)
+- [1299 - Replace Elements with Greatest Element on Right Side](#1299---replace-elements-with-greatest-element-on-right-side)
+- [1408 - String Matching in an Array](#1408---string-matching-in-an-array)
+- [2678 - Number of Senior Citizens](#2678---number-of-senior-citizens)
+- [3110 - Score of a String](#3110---score-of-a-string)
+
+## 0001 - Two Sum
+
+- **Problem**: Given an array of integers and a target sum, find the indices of the two numbers that add up to the target.
+- **Pattern**: Hash Map
+- **Key Insight**:
+  - Use a hash map to store the number as key and its index as value.
+  - Instead of checking every pair, store previously seen numbers and check whether the required complement already exists.
+- **Time Complexity**: O(n)
+- **Space Complexity**: O(n)
+- **Example**:
+
+  ```Text
+    Input: nums = [2, 7, 11, 15], target = 9
+
+  Dictionary after processing:
+  {
+    2: 0,  # number: index
+    7: 1,
+    11: 2,
+    15: 3
+  }
+  ```
+
+## 0014 - Longest Common Prefix
+
+- **Problem:** Find the longest common prefix string among an array of strings.
+- **Pattern:** `Horizontal Scanning`
+- **Recognition:** Need to compare characters position-by-position across multiple strings.
+- **Key Insight:**
+  - The common prefix can only be as long as the shortest string.
+  - Compare characters at the same index across all strings.
+  - Stop immediately when a mismatch is found.
+- **Time Complexity:** `O(n * m)`
+  - `n` = number of strings
+  - `m` = length of shortest string
+- **Space Complexity:** `O(1)` (excluding output string)
+
+### Example
+
+```text
+Input:
+["flower", "flow", "flight"]
+
+Comparison:
+
+Index 0 → all have 'f'
+Index 1 → all have 'l'
+Index 2 → mismatch ('o' vs 'i')
+
+Output:
+"fl"
+```
+
+## 0027 - Remove Element
+
+- **Problem:** Remove all occurrences of a given value in-place and return the number of remaining elements.
+- **Pattern:** `Two Pointers`
+- **Recognition:** Need in-place modification while preserving remaining elements.
+- **Key Insight:**
+  - Use one pointer to traverse the array.
+  - Use another pointer (`k`) to track the next valid insertion position.
+  - Whenever a non-target value is found, place it at index `k` and increment `k`.
+  - `k` will be the slow moving pointer and i will be the fast moving pointer. Both be moving forward, but `k` only moves when we find a non-target value.
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [3, 2, 2, 3]
+val = 3
+
+Traversal:
+
+3 → skip
+2 → place at nums[0]
+2 → place at nums[1]
+3 → skip
+
+Modified array:
+[2, 2, _, _]
+
+Output:
+k = 2
+```
+
+## 0058 - Length of Last Word
+
+- **Problem:** Given a string `s`, return the length of the last word in the string.
+- **Pattern:** `Backward Traversal / Two Pointers`
+- **Recognition:** Need to ignore trailing spaces and then count characters until the first space.
+- **Key Insight:**
+  - Start from the end of the string.
+  - Skip all trailing spaces first.
+  - Then count characters until a space or beginning of string is reached.
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+s = "Hello World   "
+
+Traversal from end:
+
+Skip spaces → reach 'd'
+Count until space:
+"World" → length = 5
+
+Output:
+5
+```
+
+## 0205 - Isomorphic Strings
+
+- **Problem:** Given two strings `s` and `t`, determine if they are isomorphic (each character in `s` can map to a unique character in `t` preserving order).
+- **Pattern:** `Hash Map / Bi-directional Mapping`
+- **Recognition:** Need a one-to-one character mapping between two strings (bijection).
+- **Key Insight:**
+  - A valid mapping must be consistent in both directions:
+    - `s → t`
+    - `t → s`
+  - If either mapping conflicts at any point, the strings are not isomorphic.
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)` (since there are at most 256 ASCII characters or 26 lowercase letters)
+
+### Example
+
+```text
+Input:
+s = "egg"
+t = "add"
+
+Mapping:
+e → a
+g → d
+
+Both directions are consistent → True
+```
+
+```text
+Input:
+s = "foo"
+t = "bar"
+
+f → b
+o → a (first time), but later o → r (conflict)
+
+Output:
+False
+```
+
+## 0217 - Contains Duplicate
+
+- **Problem:** Given an integer array `nums`, return `True` if any value appears at least twice in the array, otherwise return `False`.
+- **Pattern:** `Hash Set / Hash Map`
+- **Recognition:** Need to detect repeated elements efficiently while iterating.
+- **Key Insight:**
+  - A duplicate exists if an element is seen more than once during traversal.
+  - Either track seen elements in a hash set/map or compare sizes after removing duplicates.
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+nums = [1, 2, 3, 1]
+
+Traversal:
+1 → seen
+2 → seen
+3 → seen
+1 → already seen → duplicate found
+
+Output:
+True
+```
+
+---
+
+### Alternative Approach
+
+```python
+return len(nums) != len(set(nums))
+```
+
+- Converts array to a set (removes duplicates)
+- If sizes differ → duplicates exist
+
+## 0242 - Valid Anagram
+
+- **Problem:** Given two strings `s` and `t`, return `True` if `t` is an anagram of `s`, otherwise return `False`.
+- **Pattern:** `Frequency Counting (Hash Map)`
+- **Recognition:** Need to compare character frequencies between two strings.
+- **Key Insight:**
+  - Two strings are anagrams if and only if they have identical character counts.
+  - Count characters from one string and cancel them out using the second string.
+  - Final verification ensures all counts return to zero.
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)` (bounded alphabet) / `O(n)` (general case)
+
+### Example
+
+```text
+Input:
+s = "anagram"
+t = "nagaram"
+
+Frequency build:
+a: 3, n: 1, g: 1, r: 1, m: 1
+
+After processing t:
+all counts return to 0 → True
+```
+
+---
+
+### Key Implementation Idea
+
+```python
+return all(v == 0 for v in my_dict_letter_to_word.values())
+```
+
+- Ensures no leftover unmatched characters exist
+
+## 0392 - Is Subsequence
+
+- **Problem:** Given two strings `s` and `t`, return `True` if `s` is a subsequence of `t`, otherwise return `False`.
+- **Pattern:** `Two Pointers`
+- **Recognition:** Need to verify ordered matching of characters while scanning a larger string.
+- **Key Insight:**
+  - Traverse both strings using two pointers.
+  - Advance the subsequence pointer only when characters match.
+  - If all characters in `s` are matched in order, it is a valid subsequence.
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+s = "abc"
+t = "ahbgdc"
+
+Matching process:
+a → match
+b → match
+c → match
+
+All characters found in order → True
+```
+
+```text
+Input:
+s = "axc"
+t = "ahbgdc"
+
+a → match
+x → not found in order
+c → not matched
+
+Output:
+False
+```
+
+## 0485 - Max Consecutive Ones
+
+- **Problem:** Given a binary array `nums`, return the maximum number of consecutive `1`s in the array.
+- **Pattern:** `Linear Scan / Sliding Window (implicit)`
+- **Recognition:** Need to track continuous streaks while resetting on breaks.
+- **Key Insight:**
+  - Maintain a running count of consecutive `1`s.
+  - Reset the count whenever a `0` is encountered.
+  - Keep track of the maximum streak seen so far.
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [1,1,0,1,1,1]
+
+Traversal:
+1 → streak = 1
+1 → streak = 2
+0 → reset
+1 → streak = 1
+1 → streak = 2
+1 → streak = 3
+
+Output:
+3
+```
+
+## 0605 - Can Place Flowers
+
+- **Problem:** Given a flowerbed (array of 0s and 1s), determine if `n` new flowers can be planted without violating the rule that no two flowers can be adjacent.
+- **Pattern:** `Greedy / Array Scanning`
+- **Recognition:** Need to make locally optimal placements while respecting adjacency constraints.
+- **Key Insight:**
+  - A flower can be planted only if the current plot and both adjacent plots are empty.
+  - Greedily place a flower whenever a valid position is found.
+  - Each placement reduces future constraints immediately.
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)` (can be optimized to `O(1)`)
+
+### Example
+
+```text
+Input:
+flowerbed = [1,0,0,0,1], n = 1
+
+Check positions:
+Index 1 → cannot plant (left occupied)
+Index 2 → can plant → place flower
+Result:
+[1,0,1,0,1]
+
+Output:
+True
+```
+
+---
+
+### Note
+
+- Padding with `0` simplifies boundary handling.
+- This allows uniform checking for all indices without edge-case logic.
+
+## 0929 - Unique Email Addresses
+
+- **Problem:** Given a list of email addresses, return the number of unique emails after applying normalization rules.
+- **Pattern:** `String Manipulation / Hash Set`
+- **Recognition:** Need to transform each string into a canonical form and count distinct results.
+- **Key Insight:**
+  - Normalize each email before storing:
+    - Ignore everything after `+` in local name.
+    - Remove all `.` in local name.
+    - Keep domain unchanged.
+  - Use a set to automatically handle uniqueness.
+- **Time Complexity:** `O(n * m)`
+  - `n` = number of emails
+  - `m` = average email length
+- **Space Complexity:** `O(n)`
+
+---
+
+### Example
+
+```text
+Input:
+["test.email+spam@leetcode.com",
+ "testemail@leetcode.com"]
+
+Normalization:
+
+test.email+spam → testemail
+testemail → testemail
+
+Both become:
+testemail@leetcode.com
+
+Output:
+1
+```
+
+---
+
+### Key Implementation Insight
+
+#### Clean approach (preferred)
+
+```python
+local, domain = email.split("@")
+local = local.split("+")[0]
+local = local.replace(".", "")
+unique.add(f"{local}@{domain}")
+```
+
+- Uses built-in string operations instead of manual parsing
+- More readable and less error-prone
+
+---
+
+### Note on Approaches
+
+- Your first version:  
+  ✔ good pointer-based parsing practice  
+  ❌ more complex than necessary in Python
+
+- Second version:  
+  ⭐ preferred Pythonic solution  
+  ✔ clean, readable, interview-ready
+
+## 1299 - Replace Elements with Greatest Element on Right Side
+
+- **Problem:** Replace each element in the array with the greatest element among the elements to its right. The last element is replaced with `-1`.
+- **Pattern:** `Reverse Traversal / Suffix Maximum`
+- **Recognition:** Need to compute a running maximum from the right side of the array.
+- **Key Insight:**
+  - Traverse the array from right to left.
+  - At each step, maintain the maximum value seen so far.
+  - Replace current element with that running maximum.
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)` (can be optimized to `O(1)` in-place)
+
+---
+
+### Example
+
+```text
+Input:
+arr = [17, 18, 5, 4, 6, 1]
+
+Traversal from right:
+
+Start: max = -1
+
+1 → replace with -1 → max = 1
+6 → replace with 1  → max = 6
+4 → replace with 6  → max = 6
+5 → replace with 6  → max = 6
+18 → replace with 6 → max = 18
+17 → replace with 18
+
+Output:
+[18, 18, 6, 6, 6, -1]
+```
+
+---
+
+### Note
+
+Your current solution uses an auxiliary array:
+
+```python
+result[j] = max(arr[j+1], result[j+1])
+```
+
+This works, but can be optimized to O(1) space by tracking a single `max_right` variable while traversing backward.
+
+## 1408 - String Matching in an Array
+
+- **Problem:** Given an array of words, return all strings that are substrings of another word in the array.
+- **Pattern:** `Brute Force + String Search`
+- **Recognition:** Need to check if any word exists inside another word in the list.
+- **Key Insight:**
+  - Compare each pair of words.
+  - Only check containment (`in`) against the longer string to reduce unnecessary checks.
+  - Store matches in a set to avoid duplicates.
+- **Time Complexity:** `O(n² * m)`
+  - `n` = number of words
+  - `m` = average string length
+- **Space Complexity:** `O(k)`
+  - `k` = number of matching substrings
+
+---
+
+### Example
+
+```text
+Input:
+["mass", "as", "hero", "superhero"]
+
+Checks:
+"as" is in "mass" → match
+"hero" is in "superhero" → match
+
+Output:
+["as", "hero"]
+```
+
+---
+
+### Key Insight (Important)
+
+- Always compare smaller string inside larger string:
+  ```python
+  if small in large:
+  ```
+- This reduces unnecessary checks and improves clarity.
+
+---
+
+## 2678 - Number of Senior Citizens
+
+- **Problem:** Given a list of encoded passenger details, count how many passengers are older than 60.
+- **Pattern:** `String Parsing + Filtering`
+- **Recognition:** Need to extract a fixed-position substring and apply a numeric condition to each element.
+- **Key Insight:**
+  - Age is stored at a fixed index slice (`[11:13]`).
+  - Convert substring to integer and apply condition.
+  - Count how many elements satisfy the condition.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)` (optimal version) / `O(n)` (list comprehension version)
+
+---
+
+### Example
+
+```text
+Input:
+details = ["1234567890AA61Z", "1234567890BB45Z"]
+
+Extracted ages:
+61 → senior
+45 → not senior
+
+Output:
+1
+```
+
+---
+
+### Approaches
+
+#### 1. List comprehension (your version)
+
+```python
+return len([
+    int(p[11:13])
+    for p in details
+    if int(p[11:13]) > 60
+])
+```
+
+- Creates an intermediate list
+- Less memory efficient
+
+---
+
+#### 2. Optimized (recommended)
+
+```python
+return sum(int(p[11:13]) > 60 for p in details)
+```
+
+- No intermediate list created
+- `True = 1`, `False = 0`
+- More Pythonic and efficient
+
+---
+
+### Key Insight
+
+👉 Prefer `sum(condition)` over `len([condition])` when you are counting matches.
+
+This avoids unnecessary memory allocation and is the standard interview-ready approach.
+
+## 3110 - Score of a String
+
+- **Problem:** Given a string `s`, compute the sum of absolute differences between ASCII values of all adjacent characters.
+- **Pattern:** `Linear Scan / Pairwise Computation`
+- **Recognition:** Need to compare adjacent characters in sequence.
+- **Key Insight:**
+  - Iterate through the string and consider each adjacent pair.
+  - Convert characters to ASCII using `ord()`.
+  - Sum absolute differences for each pair.
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+---
+
+### Example
+
+```text
+Input:
+s = "hello"
+
+Pairs:
+h-e → |104 - 101| = 3
+e-l → |101 - 108| = 7
+l-l → |108 - 108| = 0
+l-o → |108 - 111| = 3
+
+Output:
+13
+```
+
+---
+
+### Key Insight
+
+- Only adjacent comparisons matter.
+- No need for extra data structures.
+- Direct accumulation is optimal.
