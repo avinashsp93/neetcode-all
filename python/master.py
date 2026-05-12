@@ -1,10 +1,10 @@
 from typing import List
-from arrays_and_hashing.p0118_pascals_triangle import Solution
+from l1_arrays_and_hashing.p0169_majority_element import Solution
 
 def main() -> None:
     # Input
-
-    result = Solution().generate(5)
+    nums = [1,1,2,2,2]
+    result = Solution().majorityElement_onePass(nums)
     print("result:", result)
 
 if __name__ == "__main__":
