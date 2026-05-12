@@ -7,6 +7,7 @@
 - [0027 - Remove Element](#0027---remove-element)
 - [0058 - Length of Last Word](#0058---length-of-last-word)
 - [0118 - Pascal's Triangle](#pascals-triangle)
+- [0169 - Majority Element](#0169---majority-element)
 - [0205 - Isomorphic Strings](#0205---isomorphic-strings)
 - [0217 - Contains Duplicate](#0217---contains-duplicate)
 - [0242 - Valid Anagram](#0242---valid-anagram)
@@ -207,7 +208,7 @@ result = [0,2,2,2,2,1,1,2]
 count =  [0,1,2,1,0,1,0,1]
 
 
-Every time count is 0, set the result to current number and reset count to 1. 
+
 
 ```
 
