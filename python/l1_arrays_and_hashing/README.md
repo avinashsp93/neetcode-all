@@ -18,7 +18,9 @@
 - [0929 - Unique Email Addresses](#0929---unique-email-addresses)
 - [1299 - Replace Elements with Greatest Element on Right Side](#1299---replace-elements-with-greatest-element-on-right-side)
 - [1408 - String Matching in an Array](#1408---string-matching-in-an-array)
+- [1800 - Maximum Ascending Subarray Sum](#1800---maximum-ascending-subarray-sum)
 - [2678 - Number of Senior Citizens](#2678---number-of-senior-citizens)
+- [3105 - Longest Strictly Increasing or Strictly Decreasing Subarray](#3105---longest-strictly-increasing-or-strictly-decreasing-subarray)
 - [3110 - Score of a String](#3110---score-of-a-string)
 - [3442 - Maximum Difference Between Even and Odd Frequency](#3442---maximum-difference-between-even-and-odd-frequency)
 
@@ -641,6 +643,38 @@ Output:
 
 ---
 
+## 1800 - Maximum Ascending Subarray Sum
+
+- **Problem:** Find the maximum possible sum of a strictly ascending contiguous subarray.
+- **Pattern:** `Sliding Window` / `Kadane-Style Traversal`
+- **Recognition:** 
+  - Need optimal contiguous subarray
+  - Current state depends on previous adjacent comparison
+  - Sequence either:
+    - extends current window
+    - or starts a new one
+- **Key Insight:**
+  - Maintain running ascending subarray sum:
+    - if current number is larger than previous → extend subarray
+    - otherwise → start new ascending subarray
+  - Track global maximum during traversal
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [10,20,30,5,10,50]
+
+Ascending Runs:
+10 + 20 + 30 = 60
+5 + 10 + 50 = 65
+
+Output:
+65
+```
+
 ## 2678 - Number of Senior Citizens
 
 - **Problem:** Given a list of encoded passenger details, count how many passengers are older than 60.
@@ -706,6 +740,44 @@ return sum(int(p[11:13]) > 60 for p in details)
 👉 Prefer `sum(condition)` over `len([condition])` when you are counting matches.
 
 This avoids unnecessary memory allocation and is the standard interview-ready approach.
+
+## 3105 - Longest Strictly Increasing or Strictly Decreasing Subarray
+
+- **Problem:** Find the length of the longest contiguous subarray that is either:
+  - strictly increasing
+  - or strictly decreasing
+- **Pattern:** `Sliding Window` / `Sequential Traversal`
+- **Recognition:** 
+  - Need longest continuous streak/subarray
+  - Adjacent element comparison drives state changes
+  - Only local neighboring relationships matter
+- **Key Insight:**
+  - Track two running lengths:
+    - `inc` → current increasing streak
+    - `dec` → current decreasing streak
+  - For each adjacent pair:
+    - increasing → extend `inc`, reset `dec`
+    - decreasing → extend `dec`, reset `inc`
+    - equal → reset both
+  - Maintain global maximum throughout traversal
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [1,4,3,3,2]
+
+Traversal:
+1 → 4   increasing (inc = 2)
+4 → 3   decreasing (dec = 2)
+3 → 3   reset
+3 → 2   decreasing (dec = 2)
+
+Longest monotonic length:
+2
+```
 
 ## 3110 - Score of a String
 
