@@ -6,19 +6,21 @@
 - [0014 - Longest Common Prefix](#0014---longest-common-prefix)
 - [0027 - Remove Element](#0027---remove-element)
 - [0058 - Length of Last Word](#0058---length-of-last-word)
-- [0118 - Pascal's Triangle](#pascals-triangle)
+- [0118 - Pascal's Triangle](#0118---pascals-triangle)
 - [0169 - Majority Element](#0169---majority-element)
 - [0205 - Isomorphic Strings](#0205---isomorphic-strings)
 - [0217 - Contains Duplicate](#0217---contains-duplicate)
 - [0242 - Valid Anagram](#0242---valid-anagram)
 - [0392 - Is Subsequence](#0392---is-subsequence)
 - [0485 - Max Consecutive Ones](#0485---max-consecutive-ones)
+- [0496 - Next Greater Element I](#0496---next-greater-element-i)
 - [0605 - Can Place Flowers](#0605---can-place-flowers)
 - [0929 - Unique Email Addresses](#0929---unique-email-addresses)
 - [1299 - Replace Elements with Greatest Element on Right Side](#1299---replace-elements-with-greatest-element-on-right-side)
 - [1408 - String Matching in an Array](#1408---string-matching-in-an-array)
 - [2678 - Number of Senior Citizens](#2678---number-of-senior-citizens)
 - [3110 - Score of a String](#3110---score-of-a-string)
+- [3442 - Maximum Difference Between Even and Odd Frequency](#3442---maximum-difference-between-even-and-odd-frequency)
 
 ## 0001 - Two Sum
 
@@ -395,6 +397,40 @@ Output:
 3
 ```
 
+## 0496 - Next Greater Element I
+
+- **Problem:** For each element in `nums1`, find the first greater element to its right in `nums2`. If none exists, return `-1`.
+- **Pattern:** `Monotonic Stack`
+- **Recognition:** 
+  - Need "next greater/smaller element"
+  - Searching toward left/right for first larger value
+  - Brute force involves nested loops → `O(n²)`
+- **Key Insight:**
+  - Use a decreasing monotonic stack to track unresolved elements
+  - When current number is greater than stack top:
+    - current number becomes the "next greater" for popped elements
+  - Precompute mappings for all elements in `nums2`, then answer `nums1` queries in `O(1)`
+- **Time Complexity:**  
+  - Current brute force solution: `O(n²)`
+  - Optimal monotonic stack solution: `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+nums1 = [4,1,2]
+nums2 = [1,3,4,2]
+
+Mappings:
+1 → 3
+3 → 4
+4 → -1
+2 → -1
+
+Output:
+[-1,3,-1]
+
 ## 0605 - Can Place Flowers
 
 - **Problem:** Given a flowerbed (array of 0s and 1s), determine if `n` new flowers can be planted without violating the rule that no two flowers can be adjacent.
@@ -429,6 +465,26 @@ True
 
 - Padding with `0` simplifies boundary handling.
 - This allows uniform checking for all indices without edge-case logic.
+
+## 0605 - Can Place Flowers
+
+- **Problem:** Determine if `n` new flowers can be planted in a flowerbed without violating the rule that no two adjacent plots can both contain flowers.
+- **Pattern:** `Greedy`
+- **Recognition:** 
+  - Need to make locally optimal placement decisions
+  - Each placement affects neighboring positions
+  - Goal is maximizing valid placements while scanning once
+- **Key Insight:**
+  - A flower can be planted only if:
+  
+  :contentReference[oaicite:0]{index=0}
+
+  - Padding the array with zeros:
+  
+  ```text
+  [0, *flowerbed, 0]
+  ```
+
 
 ## 0929 - Unique Email Addresses
 
@@ -688,3 +744,46 @@ Output:
 - Only adjacent comparisons matter.
 - No need for extra data structures.
 - Direct accumulation is optimal.
+
+
+## 3442 - Maximum Difference Between Even and Odd Frequency
+
+- **Problem:** Find the maximum difference between:
+  - the highest odd character frequency
+  - and the smallest even character frequency
+- **Pattern:** `Hash Map / Frequency Counting`
+- **Recognition:** 
+  - Need character occurrence tracking
+  - Problem involves frequency-based conditions (`odd/even`)
+  - Single-pass counting followed by aggregation/min-max evaluation
+- **Key Insight:**
+  - Count all character frequencies using a hash map
+  - Track:
+    - largest odd frequency
+    - smallest even frequency
+  - Final answer:
+  
+    - If no odd frequencies → return 0
+    - If no even frequencies → return largest odd frequency
+    - Otherwise → return `largest_odd - smallest_even`
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`  
+  - At most fixed alphabet size (e.g. lowercase English letters)
+
+### Example
+
+```text
+Input:
+s = "aaaaabbc"
+
+Frequencies:
+a → 5 (odd)
+b → 2 (even)
+c → 1 (odd)
+
+odd_max = 5
+even_min = 2
+
+Output:
+3

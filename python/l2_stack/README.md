@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [0020 - Valid Parentheses](#0020---valid-parentheses)
+- [0682 - Baseball Game](#0682---baseball-game)
 
 ## 0020 - Valid Parentheses
 
@@ -71,4 +72,40 @@ class Solution:
                     return False
 
         return len(stack) == 0
+```
+## 0682 - Baseball Game
+
+- **Problem:** Evaluate a list of baseball score operations and return the total score.
+- **Pattern:** `Stack`
+- **Recognition:** 
+  - Need access to recent history
+  - Operations modify/remove previous entries
+  - "Last valid score" is a strong stack indicator
+- **Key Insight:**
+  - Maintain a stack of valid scores
+  - Operations:
+    - `"C"` → remove previous score
+    - `"D"` → double previous score
+    - `"+"` → sum last two scores
+    - integer → push new score
+  - Stack naturally supports recent-score operations in `O(1)`
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+operations = ["5","2","C","D","+"]
+
+Stack Process:
+5   → [5]
+2   → [5,2]
+C   → [5]
+D   → [5,10]
++   → [5,10,15]
+
+Total:
+5 + 10 + 15 = 30
+Output: 30
 ```
