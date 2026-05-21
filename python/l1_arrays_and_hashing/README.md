@@ -12,10 +12,12 @@
 - [0217 - Contains Duplicate](#0217---contains-duplicate)
 - [0242 - Valid Anagram](#0242---valid-anagram)
 - [0392 - Is Subsequence](#0392---is-subsequence)
+- [0448 - Find All Numbers Disappeared in an Array](#0448---find-all-numbers-disappeared-in-an-array)
 - [0485 - Max Consecutive Ones](#0485---max-consecutive-ones)
 - [0496 - Next Greater Element I](#0496---next-greater-element-i)
 - [0605 - Can Place Flowers](#0605---can-place-flowers)
 - [0929 - Unique Email Addresses](#0929---unique-email-addresses)
+- [1189 - Maximum Number of Balloons](#1189---maximum-number-of-balloons)
 - [1299 - Replace Elements with Greatest Element on Right Side](#1299---replace-elements-with-greatest-element-on-right-side)
 - [1408 - String Matching in an Array](#1408---string-matching-in-an-array)
 - [1800 - Maximum Ascending Subarray Sum](#1800---maximum-ascending-subarray-sum)
@@ -369,6 +371,40 @@ Output:
 False
 ```
 
+## 0448 - Find All Numbers Disappeared in an Array
+
+- **Problem:** Given an array containing numbers in the range `[1, n]`, find all numbers that do not appear in the array.
+- **Pattern:** `Array Marking` / `Index Hashing`
+- **Recognition:** 
+  - Values are constrained to `[1, n]`
+  - Array indices can be reused as markers
+  - Need `O(1)` extra space without hash sets
+- **Key Insight:**
+  - Treat each value as an index:
+
+  - Mark presence by making the value at that index negative
+  - After traversal:
+    - positive indices represent missing numbers
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`  
+  - excluding output array
+
+### Example
+
+```text
+Input:
+nums = [4,3,2,7,8,2,3,1]
+
+Mark visited indices:
+4 → mark index 3
+3 → mark index 2
+2 → mark index 1
+7 → mark index 6
+...
+After marking:
+[-4, -3, -2, -7, 8, 2, -3, -1]
+```
+
 ## 0485 - Max Consecutive Ones
 
 - **Problem:** Given a binary array `nums`, return the maximum number of consecutive `1`s in the array.
@@ -552,6 +588,48 @@ unique.add(f"{local}@{domain}")
 - Second version:  
   ⭐ preferred Pythonic solution  
   ✔ clean, readable, interview-ready
+
+## 1189 - Maximum Number of Balloons
+
+- **Problem:** Determine how many instances of the word `"balloon"` can be formed using the characters in a string.
+- **Pattern:** `Hash Map / Frequency Counting`
+- **Recognition:** 
+  - Need character availability tracking
+  - Problem involves forming a target word from given characters
+  - Repeated character requirements matter (`l`, `o`)
+- **Key Insight:**
+  - Count frequencies of all characters in the input
+  - The limiting character determines maximum `"balloon"` formations
+  - Since:
+  
+  :contentReference[oaicite:0]{index=0}
+
+  divide counts of:
+  - `l` by `2`
+  - `o` by `2`
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`  
+  - fixed alphabet size
+
+### Example
+
+```text
+Input:
+text = "loonbalxballpoon"
+
+Character Counts:
+b → 2
+a → 2
+l → 4
+o → 4
+n → 2
+
+Possible balloons:
+min(2,2,4/2,4/2,2) = 2
+
+Output:
+2
+```
 
 ## 1299 - Replace Elements with Greatest Element on Right Side
 
