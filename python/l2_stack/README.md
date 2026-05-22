@@ -109,3 +109,41 @@ Total:
 5 + 10 + 15 = 30
 Output: 30
 ```
+
+## 1598 - Crawler Log Folder
+
+- **Problem:** Given folder navigation logs:
+  - `"../"` → move to parent folder
+  - `"./"` → stay in current folder
+  - `"x/"` → move into child folder
+  return the minimum operations needed to return to the main folder.
+- **Pattern:** `Stack Simulation`
+- **Recognition:** 
+  - Directory traversal/history tracking
+  - Operations resemble push/pop behavior
+  - Parent navigation strongly hints at stack usage
+- **Key Insight:**
+  - Moving into a folder increases depth
+  - `"../"` decreases depth if possible
+  - `"./"` changes nothing
+  - Final depth equals operations needed to return to root
+- **Time Complexity:** `O(n)`
+- **Space Complexity:**  
+  - Counter approach: `O(1)`
+  - Stack approach: `O(n)`
+
+### Example
+
+```text
+Input:
+logs = ["d1/","d2/","../","d21/","./"]
+
+Traversal:
+root → d1 → d2 → d1 → d21
+
+Current depth:
+2
+
+Output:
+2
+```
