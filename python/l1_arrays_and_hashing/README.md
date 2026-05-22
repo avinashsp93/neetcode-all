@@ -16,6 +16,7 @@
 - [0485 - Max Consecutive Ones](#0485---max-consecutive-ones)
 - [0496 - Next Greater Element I](#0496---next-greater-element-i)
 - [0605 - Can Place Flowers](#0605---can-place-flowers)
+- [0724 - Find Pivot Index](#0724---find-pivot-index)
 - [0929 - Unique Email Addresses](#0929---unique-email-addresses)
 - [1189 - Maximum Number of Balloons](#1189---maximum-number-of-balloons)
 - [1299 - Replace Elements with Greatest Element on Right Side](#1299---replace-elements-with-greatest-element-on-right-side)
@@ -523,6 +524,51 @@ True
   [0, *flowerbed, 0]
   ```
 
+## 0724 - Find Pivot Index
+
+- **Problem:** Find the pivot index where:
+  - sum of elements to the left
+  - equals sum of elements to the right
+- **Pattern:** `Prefix Sum`
+- **Recognition:** 
+  - Repeated left/right subarray sum comparisons
+  - Need efficient running sum computation
+  - Brute force nested summation would be `O(n²)`
+- **Key Insight:**
+  - Total array sum is known upfront
+  - While traversing:
+  
+  :contentReference[oaicite:0]{index=0}
+
+  - If:
+  
+  :contentReference[oaicite:1]{index=1}
+
+  then current index is the pivot
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [1,7,3,6,5,6]
+
+Index 0:
+left = 0
+right = 27
+
+Index 1:
+left = 1
+right = 20
+
+Index 3:
+left = 11
+right = 11
+
+Output:
+3
+```
 
 ## 0929 - Unique Email Addresses
 
