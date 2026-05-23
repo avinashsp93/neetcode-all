@@ -799,6 +799,48 @@ Output:
 65
 ```
 
+## Kth Distinct String in an Array
+
+- **Problem:** Return the `k`th distinct string in the array while preserving original order.  
+  A distinct string appears exactly once.
+- **Pattern:** `Hash Map / Frequency Counting`
+- **Recognition:** 
+  - Need occurrence counting
+  - Order of appearance matters
+  - "Distinct" means frequency exactly `1`
+- **Key Insight:**
+  - First pass:
+    - count frequencies of all strings
+  - Second pass:
+    - traverse original array order
+    - decrement `k` only for distinct strings
+  - When `k == 0`, current string is the answer
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+arr = ["d","b","c","b","c","a"]
+k = 2
+
+Frequencies:
+d → 1
+b → 2
+c → 2
+a → 1
+
+Distinct strings in order:
+["d","a"]
+
+2nd distinct:
+"a"
+
+Output:
+"a"
+```
+
 ## 2678 - Number of Senior Citizens
 
 - **Problem:** Given a list of encoded passenger details, count how many passengers are older than 60.
@@ -864,6 +906,54 @@ return sum(int(p[11:13]) > 60 for p in details)
 👉 Prefer `sum(condition)` over `len([condition])` when you are counting matches.
 
 This avoids unnecessary memory allocation and is the standard interview-ready approach.
+
+## 2965 - Find Missing and Repeated Values
+
+- **Problem:** In an `n x n` grid containing numbers from `1` to `n²`:
+  - one number appears twice
+  - one number is missing
+  return `[repeated, missing]`
+- **Pattern:** `Hash Set`
+- **Recognition:** 
+  - Need duplicate + missing detection
+  - Values belong to a fixed known range
+  - Membership lookup/removal needed efficiently
+- **Key Insight:**
+  - Initialize a set containing all expected values:
+  
+  :contentReference[oaicite:0]{index=0}
+
+  - Traverse grid:
+    - first occurrence → remove from set
+    - second occurrence → repeated value found
+  - Remaining value in set is the missing number
+- **Time Complexity:** `O(n²)`
+- **Space Complexity:** `O(n²)`
+
+### Example
+
+```text
+Input:
+grid = [
+  [1,3],
+  [2,2]
+]
+
+Expected values:
+{1,2,3,4}
+
+Traversal:
+1 → remove
+3 → remove
+2 → remove
+2 → duplicate found
+
+Remaining:
+4
+
+Output:
+[2,4]
+```
 
 ## 3105 - Longest Strictly Increasing or Strictly Decreasing Subarray
 

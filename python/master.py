@@ -1,10 +1,11 @@
 from typing import List
-from l1_arrays_and_hashing.p0724_find_pivot_index import Solution
+from l1_arrays_and_hashing.p2053_kth_distinct_string_in_an_array import Solution
 
 def main() -> None:
     # Input
-    nums = [1,-1,2]
-    result = Solution().pivotIndex(nums)
+    arr = ["d","b","c","b","c","a"]
+    k = 2
+    result = Solution().kthDistinct(arr, k)
     print("result:", result)
 
 if __name__ == "__main__":
