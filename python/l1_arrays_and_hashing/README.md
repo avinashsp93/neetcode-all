@@ -22,7 +22,9 @@
 - [1299 - Replace Elements with Greatest Element on Right Side](#1299---replace-elements-with-greatest-element-on-right-side)
 - [1408 - String Matching in an Array](#1408---string-matching-in-an-array)
 - [1800 - Maximum Ascending Subarray Sum](#1800---maximum-ascending-subarray-sum)
+- [2053 - Kth Distinct String in an Array](#2053---kth-distinct-string-in-an-array)
 - [2678 - Number of Senior Citizens](#2678---number-of-senior-citizens)
+- [2965 - Find Missing and Repeated Values](#2965---find-missing-and-repeated-values)
 - [3105 - Longest Strictly Increasing or Strictly Decreasing Subarray](#3105---longest-strictly-increasing-or-strictly-decreasing-subarray)
 - [3110 - Score of a String](#3110---score-of-a-string)
 - [3442 - Maximum Difference Between Even and Odd Frequency](#3442---maximum-difference-between-even-and-odd-frequency)
@@ -799,7 +801,7 @@ Output:
 65
 ```
 
-## Kth Distinct String in an Array
+## 2053 - Kth Distinct String in an Array
 
 - **Problem:** Return the `k`th distinct string in the array while preserving original order.  
   A distinct string appears exactly once.
