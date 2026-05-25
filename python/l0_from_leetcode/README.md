@@ -1,0 +1,450 @@
+# From LeetCode
+
+## Table of Contents
+
+### Easy
+
+- [0028 - Find the Index of the First Occurrence in a String](#0028---find-the-index-of-the-first-occurrence-in-a-string)
+- [0029 - Divide Two Integers](#0029---divide-two-integers)
+- [0066 - Plus One](#0066---plus-one)
+- [0067 - Add Binary](#0067---add-binary)
+- [0482 - License Key Formatting](#0482---license-key-formatting)
+- [1572 - Matrix Diagonal Sum](#1572---matrix-diagonal-sum)
+- [1588 - Sum of All Odd Length Subarrays](#1588---sum-of-all-odd-length-subarrays)
+- [2133 - Check if Every Row and Column Contains All Numbers](#2133---check-if-every-row-and-column-contains-all-numbers)
+- [2319 - Check if Matrix is X-Matrix](#2319---check-if-matrix-is-x-matrix)
+
+### Medium
+
+- [0036 - Valid Sudoku](#0036---valid-sudoku)
+
+## 0028 - Find the Index of the First Occurrence in a String
+
+- **Problem:** Return the starting index of the first occurrence of `needle` in `haystack`.  
+  Return `-1` if `needle` does not exist.
+- **Pattern:** `Sliding Window` / `Brute Force String Matching`
+- **Recognition:**
+  - Need substring search
+  - Compare a smaller pattern against every possible starting position
+  - Sequential character matching problem
+- **Key Insight:**
+  - Iterate through all valid starting indices in `haystack`
+  - For each position:
+    - compare characters one-by-one with `needle`
+  - First complete match returns starting index
+- **Time Complexity:** `O((n - m + 1) * m)`
+  - worst-case `O(nm)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+haystack = "sadbutsad"
+needle = "sad"
+
+Check:
+"sad" ✅
+
+First occurrence index:
+0
+
+Output:
+0
+
+Input:
+haystack = "leetcode"
+needle = "leeto"
+
+Mismatch occurs
+
+Output:
+-1
+```
+
+## 0029 - Divide Two Integers
+
+- **Problem:** Divide two integers without using:
+  - multiplication
+  - division
+  - modulo  
+    Return the truncated quotient.
+- **Pattern:** `Math` / `Repeated Subtraction`
+- **Recognition:**
+  - Restricted arithmetic operations
+  - Need manual simulation of division
+  - Quotient represents repeated removal of divisor
+- **Key Insight:**
+  - Division can be simulated through repeated subtraction:
+
+  :contentReference[oaicite:0]{index=0}
+  - Determine sign separately:
+    - same signs → positive quotient
+    - different signs → negative quotient
+  - Count how many times divisor can be subtracted before crossing zero
+
+- **Time Complexity:** `O(|quotient|)`
+  - very slow for large inputs
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+dividend = 10
+divisor = 3
+
+Process:
+10 - 3 = 7
+7 - 3 = 4
+4 - 3 = 1
+
+Subtracted 3 times
+
+Output:
+3
+Input:
+dividend = 7
+divisor = -3
+
+Quotient:
+-2
+```
+
+## 0066 - Plus One
+
+- **Problem:** Given a large integer represented as an array of digits, increment the integer by one and return the resulting array.
+- **Pattern:** `Simulation` / `Carry Propagation`
+- **Recognition:**
+  - Digit-by-digit arithmetic
+  - Right-to-left traversal
+  - Carry handling similar to elementary addition
+- **Key Insight:**
+  - Start with carry = `1` because we are adding one
+  - Traverse digits from right to left:
+    - digit + carry
+    - if result becomes `10`:
+      - store `0`
+      - propagate carry
+    - otherwise:
+      - carry becomes `0`
+  - If carry remains after traversal, prepend `1`
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+  - due to result array
+
+### Example
+
+```text
+Input:
+digits = [1,2,9]
+
+Process:
+9 + 1 = 10 → write 0, carry 1
+2 + 1 = 3 → carry cleared
+1 remains unchanged
+
+Output:
+[1,3,0]
+
+Input:
+digits = [9,9,9]
+
+Process:
+999 + 1 = 1000
+
+Output:
+[1,0,0,0]
+```
+
+## 0067 - Add Binary
+
+- **Problem:** Given two binary strings `a` and `b`, return their sum as a binary string.
+- **Pattern:** `Bit Manipulation` / `Simulation`
+- **Recognition:**
+  - Recognize binary addition rules by plotting out truth table
+  - Binary addition
+  - Right-to-left digit traversal
+  - Carry propagation between positions
+- **Key Insight:**
+  - Simulate binary addition from least significant bit
+  - Use:
+
+  sum = a XOR b XOR carry
+
+  for resulting bit
+
+  and:
+
+  carry = (a AND b) OR ((a XOR b) AND carry)
+
+  for carry propagation
+
+- **Time Complexity:** `O(max(n,m))`
+- **Space Complexity:** `O(max(n,m))`
+
+### Example
+
+```text
+Input:
+a = "11"
+b = "1"
+
+Process:
+1 + 1 = 10
+1 + carry = 10
+
+Output:
+"100"
+
+Input:
+a = "1010"
+b = "1011"
+
+Binary Addition:
+1010
+1011
+----
+10101
+
+Output:
+"10101"
+```
+
+## 0482 - License Key Formatting
+
+- **Problem:** Reformat a license key string by:
+  - removing existing dashes
+  - converting to uppercase
+  - regrouping characters in groups of size `k` from right to left
+- **Pattern:** `String Manipulation` / `Greedy Formatting`
+- **Recognition:**
+  - formatting requirement, not transformation logic
+  - grouping from the end is key (right-aligned chunks)
+  - dash placement depends on reversed traversal
+- **Key Insight:**
+  - Remove all `-` and normalize case first
+  - Traverse string **backwards**
+  - Build result while inserting `-` every `k` characters
+  - Reverse final string to restore correct order
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+s = "2-5g-3-J", k = 2
+
+Cleaned:
+25G3J
+
+Reverse build:
+J3-G5-2
+
+Final:
+2-5G-3J
+```
+
+## 1572 - Matrix Diagonal Sum
+
+- **Problem:** Return the sum of the primary and secondary diagonals of a square matrix.  
+  Avoid double-counting the center element when `n` is odd.
+- **Pattern:** `Matrix Traversal`
+- **Recognition:**
+  - Square matrix (`n x n`)
+  - Need both diagonals:
+    - primary: `mat[i][i]`
+    - secondary: `mat[i][n-1-i]`
+  - Overlap occurs at center when `n` is odd
+- **Key Insight:**
+  - Both diagonals can be computed in a single loop
+  - Use index relationship:
+
+  :contentReference[oaicite:0]{index=0}
+  - If `i == j`, it's the center element → add only once
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+mat = [
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+]
+
+Primary diagonal: 1 + 5 + 9
+Secondary diagonal: 3 + 5 + 7
+
+Center (5) counted once
+
+Output:
+25
+```
+
+## 1588 - Sum of All Odd Length Subarrays
+
+- **Problem:** Find the sum of all subarrays of `arr` that have odd length.
+- **Pattern:** `Prefix Sum (Implicit)` / `Brute Force Enumeration`
+- **Recognition:**
+  - Subarray-based problem
+  - Need to consider all contiguous segments
+  - Condition depends on subarray length parity (odd length only)
+- **Key Insight:**
+  - Iterate over all subarray start indices
+  - Expand end index while maintaining running sum
+  - Include subarray sum only when its length is odd
+
+  Length condition:
+  (j - i) % 2 == 0
+  - Running sum avoids recomputing from scratch each time
+
+- **Time Complexity:** `O(n²)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+arr = [1,4,2,5,3]
+
+Odd subarrays:
+[1], [4], [2], [5], [3]
+[1,4,2], [4,2,5], [2,5,3]
+[1,4,2,5,3]
+
+Sum:
+= 58
+```
+
+## 2133 - Check if Every Row and Column Contains All Numbers
+
+- **Problem:** Given an `n x n` matrix, check whether every row and every column contains all numbers from `1` to `n` exactly once.
+- **Pattern:** `Hash Set` / `Matrix Validation`
+- **Recognition:**
+  - Each row and column must be a permutation of `[1..n]`
+  - Requires uniqueness check across both dimensions
+  - Duplicate detection is the core requirement
+- **Key Insight:**
+  - For each index `i`, validate:
+    - row `i`
+    - column `i`
+  - Use sets to ensure no duplicates appear
+  - Any repetition immediately invalidates the matrix
+  - Can be written in a single loop by checking both row and column simultaneously
+- **Time Complexity:** `O(n²)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+matrix = [
+  [1,2,3],
+  [3,1,2],
+  [2,3,1]
+]
+
+Row-wise valid:
+[1,2,3], [3,1,2], [2,3,1]
+
+Column-wise valid:
+[1,3,2], [2,1,3], [3,2,1]
+
+Output:
+True
+```
+
+## 2319 - Check if Matrix is X-Matrix
+
+- **Problem:** Determine whether a square matrix is an X-Matrix:
+  - All elements on both diagonals must be non-zero
+  - All other elements must be zero
+- **Pattern:** `Matrix Traversal` / `Index Condition Checking`
+- **Recognition:**
+  - Position-based constraints (not value-based structure)
+  - Two special index conditions define valid cells
+  - Everything depends on diagonal relationships
+- **Key Insight:**
+  - A cell belongs to the X-shape if:
+    i == j or i + j == n - 1
+  - If on diagonal → must be non-zero
+  - If off diagonal → must be zero
+
+- **Time Complexity:** `O(n²)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+grid = [
+  [2,0,3],
+  [0,5,0],
+  [4,0,6]
+]
+
+Diagonals:
+2, 5, 6 and 3, 5, 4 → valid non-zero
+
+Off-diagonals:
+all 0 → valid
+
+Output:
+True
+```
+
+## 0036 - Valid Sudoku
+
+- **Problem:** Determine if a partially filled Sudoku board is valid according to Sudoku rules:
+  - each row contains unique digits `1-9`
+  - each column contains unique digits `1-9`
+  - each `3x3` sub-box contains unique digits `1-9`
+- **Pattern:** `Hash Set`
+- **Recognition:**
+  - Need duplicate detection across multiple dimensions
+  - Fast membership checking required
+  - Grid validation with uniqueness constraints
+- **Key Insight:**
+  - Use sets to track seen digits for:
+    - rows
+    - columns
+    - `3x3` boxes
+  - Ignore `"."` cells since they are empty
+  - Any repeated digit immediately invalidates the board
+  - Box starting index are 0, 3, 6 for both row and column
+  - Nested loops to get the box starting indices and nested loop to iterate through the box cells.
+
+  ```python
+
+  ```
+
+- **Time Complexity:** `O(1)`
+  - fixed `9x9` board size
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Row Check:
+5 3 . . 7 . . . .
+
+Seen:
+{5,3,7}
+
+No duplicates → valid
+
+3x3 Box:
+5 3 .
+6 . .
+. 9 8
+
+Seen:
+{5,3,6,9,8}
+
+No duplicates → valid
+```

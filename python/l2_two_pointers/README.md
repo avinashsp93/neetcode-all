@@ -2,9 +2,10 @@
 
 ## Table of Contents
 
+### Easy
+
 - [0125 - Valid Palindrome](#0125---valid-palindrome)
 - [0344 - Reverse String](#0344---reverse-string)
-
 
 ## 0125 - Valid Palindrome
 
@@ -12,7 +13,7 @@
   - removing non-alphanumeric characters
   - ignoring letter casing
 - **Pattern:** `Two Pointers`
-- **Recognition:** 
+- **Recognition:**
   - Need comparison from both ends toward center
   - Characters may need to be skipped conditionally
   - In-place traversal preferred over rebuilding strings

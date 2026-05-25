@@ -2,6 +2,8 @@
 
 ## Table of Contents
 
+### Easy
+
 - [0020 - Valid Parentheses](#0020---valid-parentheses)
 - [0682 - Baseball Game](#0682---baseball-game)
 
@@ -73,11 +75,12 @@ class Solution:
 
         return len(stack) == 0
 ```
+
 ## 0682 - Baseball Game
 
 - **Problem:** Evaluate a list of baseball score operations and return the total score.
 - **Pattern:** `Stack`
-- **Recognition:** 
+- **Recognition:**
   - Need access to recent history
   - Operations modify/remove previous entries
   - "Last valid score" is a strong stack indicator
@@ -116,9 +119,9 @@ Output: 30
   - `"../"` → move to parent folder
   - `"./"` → stay in current folder
   - `"x/"` → move into child folder
-  return the minimum operations needed to return to the main folder.
+    return the minimum operations needed to return to the main folder.
 - **Pattern:** `Stack Simulation`
-- **Recognition:** 
+- **Recognition:**
   - Directory traversal/history tracking
   - Operations resemble push/pop behavior
   - Parent navigation strongly hints at stack usage
@@ -128,7 +131,7 @@ Output: 30
   - `"./"` changes nothing
   - Final depth equals operations needed to return to root
 - **Time Complexity:** `O(n)`
-- **Space Complexity:**  
+- **Space Complexity:**
   - Counter approach: `O(1)`
   - Stack approach: `O(n)`
 
