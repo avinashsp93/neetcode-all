@@ -18,12 +18,15 @@
 - [0485 - Max Consecutive Ones](#0485---max-consecutive-ones)
 - [0496 - Next Greater Element I](#0496---next-greater-element-i)
 - [0605 - Can Place Flowers](#0605---can-place-flowers)
+- [0724 - Find Pivot Index](#0724---find-pivot-index)
 - [0929 - Unique Email Addresses](#0929---unique-email-addresses)
 - [1189 - Maximum Number of Balloons](#1189---maximum-number-of-balloons)
 - [1299 - Replace Elements with Greatest Element on Right Side](#1299---replace-elements-with-greatest-element-on-right-side)
 - [1408 - String Matching in an Array](#1408---string-matching-in-an-array)
 - [1800 - Maximum Ascending Subarray Sum](#1800---maximum-ascending-subarray-sum)
+- [2053 - Kth Distinct String in an Array](#2053---kth-distinct-string-in-an-array)
 - [2678 - Number of Senior Citizens](#2678---number-of-senior-citizens)
+- [2965 - Find Missing and Repeated Values](#2965---find-missing-and-repeated-values)
 - [3105 - Longest Strictly Increasing or Strictly Decreasing Subarray](#3105---longest-strictly-increasing-or-strictly-decreasing-subarray)
 - [3110 - Score of a String](#3110---score-of-a-string)
 - [3442 - Maximum Difference Between Even and Odd Frequency](#3442---maximum-difference-between-even-and-odd-frequency)
@@ -525,6 +528,55 @@ True
   [0, *flowerbed, 0]
   ```
 
+<<<<<<< HEAD
+=======
+## 0724 - Find Pivot Index
+
+- **Problem:** Find the pivot index where:
+  - sum of elements to the left
+  - equals sum of elements to the right
+- **Pattern:** `Prefix Sum`
+- **Recognition:** 
+  - Repeated left/right subarray sum comparisons
+  - Need efficient running sum computation
+  - Brute force nested summation would be `O(n²)`
+- **Key Insight:**
+  - Total array sum is known upfront
+  - While traversing:
+  
+  :contentReference[oaicite:0]{index=0}
+
+  - If:
+  
+  :contentReference[oaicite:1]{index=1}
+
+  then current index is the pivot
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [1,7,3,6,5,6]
+
+Index 0:
+left = 0
+right = 27
+
+Index 1:
+left = 1
+right = 20
+
+Index 3:
+left = 11
+right = 11
+
+Output:
+3
+```
+
+>>>>>>> 6e4d78ee044eb050ae3b6f71f476ed51f8c4a390
 ## 0929 - Unique Email Addresses
 
 - **Problem:** Given a list of email addresses, return the number of unique emails after applying normalization rules.
@@ -755,6 +807,48 @@ Output:
 65
 ```
 
+## 2053 - Kth Distinct String in an Array
+
+- **Problem:** Return the `k`th distinct string in the array while preserving original order.  
+  A distinct string appears exactly once.
+- **Pattern:** `Hash Map / Frequency Counting`
+- **Recognition:** 
+  - Need occurrence counting
+  - Order of appearance matters
+  - "Distinct" means frequency exactly `1`
+- **Key Insight:**
+  - First pass:
+    - count frequencies of all strings
+  - Second pass:
+    - traverse original array order
+    - decrement `k` only for distinct strings
+  - When `k == 0`, current string is the answer
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+arr = ["d","b","c","b","c","a"]
+k = 2
+
+Frequencies:
+d → 1
+b → 2
+c → 2
+a → 1
+
+Distinct strings in order:
+["d","a"]
+
+2nd distinct:
+"a"
+
+Output:
+"a"
+```
+
 ## 2678 - Number of Senior Citizens
 
 - **Problem:** Given a list of encoded passenger details, count how many passengers are older than 60.
@@ -820,6 +914,54 @@ return sum(int(p[11:13]) > 60 for p in details)
 👉 Prefer `sum(condition)` over `len([condition])` when you are counting matches.
 
 This avoids unnecessary memory allocation and is the standard interview-ready approach.
+
+## 2965 - Find Missing and Repeated Values
+
+- **Problem:** In an `n x n` grid containing numbers from `1` to `n²`:
+  - one number appears twice
+  - one number is missing
+  return `[repeated, missing]`
+- **Pattern:** `Hash Set`
+- **Recognition:** 
+  - Need duplicate + missing detection
+  - Values belong to a fixed known range
+  - Membership lookup/removal needed efficiently
+- **Key Insight:**
+  - Initialize a set containing all expected values:
+  
+  :contentReference[oaicite:0]{index=0}
+
+  - Traverse grid:
+    - first occurrence → remove from set
+    - second occurrence → repeated value found
+  - Remaining value in set is the missing number
+- **Time Complexity:** `O(n²)`
+- **Space Complexity:** `O(n²)`
+
+### Example
+
+```text
+Input:
+grid = [
+  [1,3],
+  [2,2]
+]
+
+Expected values:
+{1,2,3,4}
+
+Traversal:
+1 → remove
+3 → remove
+2 → remove
+2 → duplicate found
+
+Remaining:
+4
+
+Output:
+[2,4]
+```
 
 ## 3105 - Longest Strictly Increasing or Strictly Decreasing Subarray
 
