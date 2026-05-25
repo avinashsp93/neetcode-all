@@ -1,0 +1,36 @@
+name: Update README Stats
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run README updater
+        run: python scripts/update_readme.py
+
+      - name: Commit updated README
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add README.md
+
+          git diff --cached --quiet || git commit -m "Auto-update README stats"
+
+          git push

@@ -7,3 +7,14 @@ This repository contains all the solutions to the problems on [neetcode.io](http
 - [Arrays and Hashing](python/l1_arrays_and_hashing/README.md)
 - [Two Pointers](python/l2_two_pointers/README.md)
 - [Stack](python/l2_stack/README.md)
+
+
+<!-- STATS_START -->
+## Progress
+
+- Total Problems Solved: 42
+- Easy: 41
+- Medium: 1
+- Hard: 0
+
+<!-- STATS_END -->
