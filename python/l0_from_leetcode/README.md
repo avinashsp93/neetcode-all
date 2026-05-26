@@ -8,6 +8,7 @@
 - [0029 - Divide Two Integers](#0029---divide-two-integers)
 - [0066 - Plus One](#0066---plus-one)
 - [0067 - Add Binary](#0067---add-binary)
+- [0171 - Excel Sheet Column Number](#0171---excel-sheet-column-number)
 - [0412 - Fizz Buzz](#0412---fizz-buzz)
 - [0482 - License Key Formatting](#0482---license-key-formatting)
 - [1572 - Matrix Diagonal Sum](#1572---matrix-diagonal-sum)
@@ -18,6 +19,10 @@
 ### Medium
 
 - [0036 - Valid Sudoku](#0036---valid-sudoku)
+
+
+
+
 
 ## 0028 - Find the Index of the First Occurrence in a String
 
@@ -210,6 +215,38 @@ Binary Addition:
 
 Output:
 "10101"
+```
+
+
+## 0171 - Excel Sheet Column Number
+
+- **Problem:** Given a string representing an Excel column title, return its corresponding column number.
+- **Pattern:** `Math` / `Base Conversion`
+- **Recognition:**
+  - Recognize the pattern as a base-26 number system
+  - Each character represents a digit in base-26
+  - The rightmost character has the lowest weight
+- **Key Insight:**
+  - Convert each character to its numeric value (A=1, B=2, ..., Z=26)
+  - Use the formula for base conversion:
+    result = result * 26 + current_value
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+columnTitle = "A"
+
+Output:
+1
+
+Input:
+columnTitle = "AB"
+
+Output:
+27
 ```
 
 ## 0412 - Fizz Buzz
