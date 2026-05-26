@@ -3,9 +3,9 @@
 from pathlib import Path
 import re
 
-CURRENT = Path(__file__).resolve().parent
-README = CURRENT / "README.md"
-PYTHON_DIR = CURRENT / "python"
+ROOT = Path(__file__).resolve().parent.parent
+README = ROOT / "README.md"
+PYTHON_DIR = ROOT / "python"
 
 # Match:
 # p0217_contains_duplicate.py
