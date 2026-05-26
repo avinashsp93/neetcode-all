@@ -217,6 +217,34 @@ Output:
 "10101"
 ```
 
+## 0136 - Single Number
+
+- **Problem:** Given a non-empty array of integers `nums`, every element appears twice except for one. Find that single one.
+- **Pattern:** `Bit Manipulation`
+- **Recognition:**
+  - Each element appears twice except for one
+  - XOR operation can be used to cancel out pairs
+- **Key Insight:**
+  - XOR all elements in the array
+  - Since XOR of a number with itself is 0, and XOR is commutative and associative, the result will be the single number that does not have a pair
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [2,2,1]
+
+Output:
+1
+
+Input:
+nums = [4,1,2,1,2]
+
+Output:
+4
+```
 
 ## 0171 - Excel Sheet Column Number
 
@@ -247,6 +275,40 @@ columnTitle = "AB"
 
 Output:
 27
+```
+
+## 0268 - Missing Number
+
+- **Problem:** Given an array `nums` containing `n` distinct numbers in the range `[0, n]`, return the only number in the range that is missing from the array.
+- **Pattern:** `Math` / `Bit Manipulation`
+- **Recognition:**
+  - Array of distinct numbers in a known range
+  - Need to find the one missing number
+  - Can use mathematical properties or bit manipulation
+- **Key Insight:**
+  - Use the formula for the sum of an arithmetic sequence:
+    expected_sum = n * (n + 1) / 2
+  - Calculate the actual sum of the array
+  - The difference is the missing number
+  - Bit manipulation approach: XOR all numbers in the array with all numbers in the range [0, n]
+    - Since XOR of a number with itself is 0, and XOR is commutative and associative, the result will be the missing number 
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [3,0,1]
+
+Output:
+2
+
+Input:
+nums = [0,1]
+
+Output:
+2
 ```
 
 ## 0412 - Fizz Buzz
