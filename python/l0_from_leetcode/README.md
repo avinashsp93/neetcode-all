@@ -8,6 +8,7 @@
 - [0029 - Divide Two Integers](#0029---divide-two-integers)
 - [0066 - Plus One](#0066---plus-one)
 - [0067 - Add Binary](#0067---add-binary)
+- [0412 - Fizz Buzz](#0412---fizz-buzz)
 - [0482 - License Key Formatting](#0482---license-key-formatting)
 - [1572 - Matrix Diagonal Sum](#1572---matrix-diagonal-sum)
 - [1588 - Sum of All Odd Length Subarrays](#1588---sum-of-all-odd-length-subarrays)
@@ -209,6 +210,41 @@ Binary Addition:
 
 Output:
 "10101"
+```
+
+## 0412 - Fizz Buzz
+
+- **Problem:** Generate a list from `1` to `n` where:
+  - multiples of 3 → `"Fizz"`
+  - multiples of 5 → `"Buzz"`
+  - multiples of both → `"FizzBuzz"`
+  - otherwise → number as string
+- **Pattern:** `Simulation` / `Conditional Logic`
+- **Recognition:** 
+  - Simple iteration with rule-based replacements
+  - Divisibility conditions drive output transformation
+  - Order of checks matters (combined case first)
+- **Key Insight:**
+  - Check the most restrictive condition first:
+    - divisible by both 3 and 5 (i.e., divisible by 15)
+    - This ensures that the combined case is handled before the individual cases
+
+    i % 3 == 0 and i % 5 == 0
+
+  - Then handle single conditions:
+    - divisible by 3
+    - divisible by 5
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+n = 5
+
+Output:
+["1","2","Fizz","4","Buzz"]
 ```
 
 ## 0482 - License Key Formatting
