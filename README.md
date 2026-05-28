@@ -12,9 +12,9 @@ This repository contains all the solutions to the problems on [neetcode.io](http
 <!-- STATS_START -->
 ## Progress
 
-- Total Problems Solved: 46
-- Easy: 45
-- Medium: 1
+- Total Problems Solved: 50
+- Easy: 47
+- Medium: 3
 - Hard: 0
 
 <!-- STATS_END -->
