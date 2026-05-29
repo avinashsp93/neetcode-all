@@ -15,10 +15,13 @@
 - [1588 - Sum of All Odd Length Subarrays](#1588---sum-of-all-odd-length-subarrays)
 - [2133 - Check if Every Row and Column Contains All Numbers](#2133---check-if-every-row-and-column-contains-all-numbers)
 - [2319 - Check if Matrix is X-Matrix](#2319---check-if-matrix-is-x-matrix)
+- [3158 - Find the Duplicate Number](#3158---find-the-duplicate-number)
 
 ### Medium
 
 - [0036 - Valid Sudoku](#0036---valid-sudoku)
+- [0054 - Spiral Matrix](#0054---spiral-matrix)
+- [0287 - Find the Duplicate Number](#0287---find-the-duplicate-number)
 
 ## 0028 - Find the Index of the First Occurrence in a String
 
@@ -576,7 +579,7 @@ Output:
 True
 ```
 
-## Find the XOR of Numbers Which Appear Twice
+## 3158 - Find the XOR of Numbers Which Appear Twice
 
 - **Problem:** Return the XOR of all numbers that appear exactly twice in the array.
 - **Pattern:** `Bit Manipulation` / `Hash Set`
@@ -622,6 +625,20 @@ Remaining:
 Output:
 1
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 0036 - Valid Sudoku
 
@@ -672,4 +689,87 @@ Seen:
 {5,3,6,9,8}
 
 No duplicates → valid
+```
+
+
+## 0054 - Spiral Matrix
+
+- **Problem:** Return all elements of a matrix in spiral order:
+  - left → right
+  - top → bottom
+  - right → left
+  - bottom → top
+- **Pattern:** `Matrix Traversal` / `Boundary Simulation`
+- **Recognition:** 
+  - Traversal changes direction cyclically
+  - Matrix layers shrink after each traversal
+  - Requires careful boundary management
+- **Key Insight:**
+  - Maintain four boundaries:
+  
+  top, bottom, left, right
+
+  - Traverse in four directions:
+    1. left → right
+    2. top → bottom
+    3. right → left
+    4. bottom → top
+  - After each traversal, shrink corresponding boundary
+- **Time Complexity:** `O(mn)`
+- **Space Complexity:** `O(1)`  
+  - excluding output array
+
+### Example
+
+```text
+Input:
+matrix = [
+ [1,2,3],
+ [4,5,6],
+ [7,8,9]
+]
+
+Traversal:
+1 2 3
+6 9
+8 7
+4
+5
+
+Output:
+[1,2,3,6,9,8,7,4,5]
+```
+
+## 0287 - Find the Duplicate Number
+
+- **Problem:** Given an array containing `n + 1` integers where each integer is in the range `[1, n]`, return the duplicate number.
+- **Pattern:** `Hash Set`
+- **Recognition:** 
+  - Need duplicate detection
+  - Fast membership lookup required
+  - Values constrained to a known range
+- **Key Insight:**
+  - Maintain a set of seen numbers
+  - While traversing:
+    - if number already exists in set → duplicate found
+    - otherwise add to set
+  - First repeated value is the answer
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+nums = [1,3,4,2,2]
+
+Traversal:
+1 → add
+3 → add
+4 → add
+2 → add
+2 → already exists
+
+Output:
+2
 ```
