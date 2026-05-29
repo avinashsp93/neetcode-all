@@ -21,6 +21,7 @@
 
 - [0036 - Valid Sudoku](#0036---valid-sudoku)
 - [0054 - Spiral Matrix](#0054---spiral-matrix)
+- [0059 - Spiral Matrix II](#0059---spiral-matrix-ii)
 - [0287 - Find the Duplicate Number](#0287---find-the-duplicate-number)
 
 ## 0028 - Find the Index of the First Occurrence in a String
@@ -626,20 +627,6 @@ Output:
 1
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 0036 - Valid Sudoku
 
 - **Problem:** Determine if a partially filled Sudoku board is valid according to Sudoku rules:
@@ -691,7 +678,6 @@ Seen:
 No duplicates → valid
 ```
 
-
 ## 0054 - Spiral Matrix
 
 - **Problem:** Return all elements of a matrix in spiral order:
@@ -700,23 +686,23 @@ No duplicates → valid
   - right → left
   - bottom → top
 - **Pattern:** `Matrix Traversal` / `Boundary Simulation`
-- **Recognition:** 
+- **Recognition:**
   - Traversal changes direction cyclically
   - Matrix layers shrink after each traversal
   - Requires careful boundary management
 - **Key Insight:**
   - Maintain four boundaries:
-  
-  top, bottom, left, right
 
+  top, bottom, left, right
   - Traverse in four directions:
     1. left → right
     2. top → bottom
     3. right → left
     4. bottom → top
   - After each traversal, shrink corresponding boundary
+
 - **Time Complexity:** `O(mn)`
-- **Space Complexity:** `O(1)`  
+- **Space Complexity:** `O(1)`
   - excluding output array
 
 ### Example
@@ -740,11 +726,53 @@ Output:
 [1,2,3,6,9,8,7,4,5]
 ```
 
+## 0059 - Spiral Matrix II
+
+- **Problem:** Generate an `n x n` matrix filled with numbers from `1` to `n²` in spiral order.
+- **Pattern:** `Matrix Traversal` / `Boundary Simulation`
+- **Recognition:**
+  - Spiral movement across matrix layers
+  - Direction changes cyclically
+  - Need controlled boundary shrinking
+- **Key Insight:**
+  - Maintain four boundaries:
+    - `top`
+    - `bottom`
+    - `left`
+    - `right`
+  - Fill matrix in four directions repeatedly:
+    1. left → right
+    2. top → bottom
+    3. right → left
+    4. bottom → top
+  - Shrink boundaries after each traversal
+- **Time Complexity:** `O(n²)`
+- **Space Complexity:** `O(n²)`
+
+### Example
+
+```text
+Input:
+n = 3
+
+Fill Order:
+1 → 2 → 3
+8 → 9 → 4
+7 → 6 → 5
+
+Output:
+[
+ [1,2,3],
+ [8,9,4],
+ [7,6,5]
+]
+```
+
 ## 0287 - Find the Duplicate Number
 
 - **Problem:** Given an array containing `n + 1` integers where each integer is in the range `[1, n]`, return the duplicate number.
 - **Pattern:** `Hash Set`
-- **Recognition:** 
+- **Recognition:**
   - Need duplicate detection
   - Fast membership lookup required
   - Values constrained to a known range
