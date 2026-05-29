@@ -20,6 +20,7 @@
 ### Medium
 
 - [0036 - Valid Sudoku](#0036---valid-sudoku)
+- [0048 - Rotate Image](#0048---rotate-image)
 - [0054 - Spiral Matrix](#0054---spiral-matrix)
 - [0059 - Spiral Matrix II](#0059---spiral-matrix-ii)
 - [0287 - Find the Duplicate Number](#0287---find-the-duplicate-number)
@@ -676,6 +677,50 @@ Seen:
 {5,3,6,9,8}
 
 No duplicates → valid
+```
+
+## 0054 - Rotate Image
+
+- **Problem:** Rotate an `n x n` matrix by `90°` clockwise in-place.
+- **Pattern:** `Matrix Transformation`
+- **Recognition:**
+  - In-place matrix rotation
+  - Square matrix property is important
+  - Rotation can be decomposed into simpler transformations
+- **Key Insight:**
+  - A `90°` clockwise rotation can be achieved in two steps:
+    rotate 90° clockwise = transpose + reverse rows
+  1. Transpose matrix across main diagonal
+  2. Reverse each row horizontally
+  - While transposing, swap `matrix[i][j]` with `matrix[j][i]` for `i < j` to avoid double swapping
+  - While reverseing rows, swap `matrix[i][j]` with `matrix[i][n-1-j]` for `j < n/2`
+
+- **Time Complexity:** `O(n²)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+[
+ [1,2,3],
+ [4,5,6],
+ [7,8,9]
+]
+
+After Transpose:
+[
+ [1,4,7],
+ [2,5,8],
+ [3,6,9]
+]
+
+After Row Reverse:
+[
+ [7,4,1],
+ [8,5,2],
+ [9,6,3]
+]
 ```
 
 ## 0054 - Spiral Matrix
