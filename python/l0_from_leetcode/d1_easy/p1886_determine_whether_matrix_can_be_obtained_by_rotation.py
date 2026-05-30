@@ -9,15 +9,27 @@ class Solution:
         # order matters for 90 and -90(270)
 
         n = len(mat)
-        matchFoundFor90, matchFoundFor180, matchFoundFor270 = True, True, True
+        matchFoundFor0, matchFoundFor90, matchFoundFor180, matchFoundFor270 = True, True, True, True
+
+        intermediate = copy.deepcopy(mat)
+        # compare as is
+        i,j = 0,0
+        for i in range(0, n):
+            for j in range(0, n):
+                if target[i][j] != intermediate[i][j]:
+                    matchFoundFor0 = False
+                    break
+            if not matchFoundFor0:
+                break
+
 
         # flip along horizontal axis
         i,j = 0,0
-        for i in range(0, n):
-            for j in range(0, n//2):
-                temp = mat[j][i]
-                mat[j][i] = mat[n-1-j][i]
-                mat[n-1-j][0] = temp
+        for i in range(0, n//2):
+            for j in range(0, n):
+                temp = mat[i][j]
+                mat[i][j] = mat[n-1-i][j]
+                mat[n-1-i][j] = temp
         
         
         intermediate = copy.deepcopy(mat)
@@ -42,8 +54,8 @@ class Solution:
         intermediate = copy.deepcopy(mat)
         # rotate by -90 - flip along anti-principal diagonal
         i,j = 0,0
-        for i in range(0, n):
-            for j in range(n-1-i, -1, -1):
+        for i in range(0, n-1):
+            for j in range(0, n-1-i):
                 temp = intermediate[i][j]
                 intermediate[i][j] = intermediate[n-1-j][n-1-i]
                 intermediate[n-1-j][n-1-i] = temp
@@ -77,7 +89,4 @@ class Solution:
             if not matchFoundFor90:
                 break
             
-        return matchFoundFor90 or matchFoundFor180 or matchFoundFor270
-        
-
-
+        return matchFoundFor0 or matchFoundFor90 or matchFoundFor180 or matchFoundFor270

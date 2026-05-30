@@ -504,6 +504,38 @@ Sum:
 = 58
 ```
 
+## 1886 - Determine Whether Matrix Can Be Obtained By Rotation
+
+- **Problem:** Determine whether `target` can be obtained by rotating `mat` by:
+  - `0°`
+  - `90°`
+  - `180°`
+  - `270°`
+- **Pattern:** `Matrix Transformation` / `Simulation`
+- **Recognition:** 
+  - Rotate 90° clockwise: Flip along horizontal axis + Flip along main diagonal
+  - Rotate 180°: Flip along horizontal axis + Flip along vertical axis
+  - Rotate 270°: Flip along horizontal axis + Flip along anti-diagonal
+  - Common operation is flipping along horizontal axis.
+  
+- **Key Insight:**
+  - A square matrix has only four unique rotation states:
+  
+  - Key things while flipping along horizontal axis:
+    - `mat[i][j]` becomes `mat[n-1-i][j]` and i goes from 0 to n//2
+  - Key things while flipping along vertical axis:
+    - `mat[i][j]` becomes `mat[i][n-1-j]` and j goes from 0 to n//2
+  - Key things while flipping along main diagonal:
+    - `mat[i][j]` becomes `mat[j][i]` and i goes from 0 to n and j goes from i+1 to n (exclude diagonal)
+  - Key things while flipping along anti-diagonal:
+    - `mat[i][j]` becomes `mat[n-1-j][n-1-i]` and i goes from 0 to n-1 and j goes from 0 to n-i-1 (exclude diagonal)
+  
+  ```text
+  0°, 90°, 180°, 270°
+  ```
+
+
+
 ## 2133 - Check if Every Row and Column Contains All Numbers
 
 - **Problem:** Given an `n x n` matrix, check whether every row and every column contains all numbers from `1` to `n` exactly once.
