@@ -13,6 +13,7 @@
 - [0482 - License Key Formatting](#0482---license-key-formatting)
 - [1572 - Matrix Diagonal Sum](#1572---matrix-diagonal-sum)
 - [1588 - Sum of All Odd Length Subarrays](#1588---sum-of-all-odd-length-subarrays)
+- [1886 - Determine Whether Matrix Can Be Obtained By Rotation](#1886---determine-whether-matrix-can-be-obtained-by-rotation)
 - [2133 - Check if Every Row and Column Contains All Numbers](#2133---check-if-every-row-and-column-contains-all-numbers)
 - [2319 - Check if Matrix is X-Matrix](#2319---check-if-matrix-is-x-matrix)
 - [3158 - Find the Duplicate Number](#3158---find-the-duplicate-number)
