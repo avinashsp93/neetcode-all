@@ -1,9 +1,23 @@
 from typing import List
-from l0_from_leetcode.d2_medium.p0048_rotate_image import Solution
+from l0_from_leetcode.d1_easy.p1886_determine_whether_matrix_can_be_obtained_by_rotation import Solution
 
 def main() -> None:
-    matrix = [[1,2,3],[4,5,6],[7,8,9]]
-    result = Solution().rotate(matrix)
+    matrix = [[0,0],[1,0]]
+    target = [[1,0],[0,0]]
+
+    # matrix = [
+    #     [1,0,0,0],
+    #     [1,1,1,1],
+    #     [0,0,1,0],
+    #     [0,0,0,1],
+    # ]
+    # target = [
+    #     [0,1,1,0],
+    #     [1,0,0,1],
+    #     [1,0,0,1],
+    #     [0,1,1,0],
+    # ]
+    result = Solution().findRotation(matrix, target)
     print("result:", result)
 
 if __name__ == "__main__":
