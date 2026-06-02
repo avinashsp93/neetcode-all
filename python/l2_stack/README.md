@@ -4,8 +4,10 @@
 
 ### Easy
 
+- [Table of Contents](#table-of-contents)
 - [0020 - Valid Parentheses](#0020---valid-parentheses)
 - [0682 - Baseball Game](#0682---baseball-game)
+- [1598 - Crawler Log Folder](#1598---crawler-log-folder)
 
 ## 0020 - Valid Parentheses
 
@@ -21,8 +23,6 @@
   - `not stack` and `len(stack) == 0` are equivalent checks for an empty stack.
 - **Time Complexity:** `O(n)`
 - **Space Complexity:** `O(n)`
-
----
 
 ### Example
 
@@ -40,40 +40,6 @@ Process:
 
 Stack ends empty → valid
 Output: True
-```
-
----
-
-### Key Insight
-
-- Stack ensures correct nesting order (Last-In-First-Out)
-- Always validate:
-  - empty stack before pop
-  - final stack must be empty
-
----
-
-### Code
-
-```python
-class Solution:
-    def isValid(self, s: str) -> bool:
-        stack = []
-
-        brace_map = {
-            ')': '(',
-            '}': '{',
-            ']': '['
-        }
-
-        for i in s:
-            if i in ['(', '{', '[']:
-                stack.append(i)
-            elif i in [')','}',']']:
-                if not stack or brace_map[i] != stack.pop():
-                    return False
-
-        return len(stack) == 0
 ```
 
 ## 0682 - Baseball Game

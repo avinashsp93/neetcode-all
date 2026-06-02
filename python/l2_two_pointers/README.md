@@ -4,10 +4,10 @@
 
 ### Easy
 
-- [0125 - Valid Palindrome](#0125---valid-palindrome)
+- [Table of Contents](#table-of-contents)
+- [0125 - Valid Palindrome I](#0125---valid-palindrome-i)
 - [0344 - Reverse String](#0344---reverse-string)
 - [0680 - Valid Palindrome II](#0680---valid-palindrome-ii)
-
 
 ## 0125 - Valid Palindrome I
 
@@ -68,23 +68,17 @@ Result:
 ["o","l","l","e","h"]
 ```
 
-### Key Insight
-
-- Each swap fixes two positions at once.
-- Only need `n // 2` iterations.
-- In-place swapping avoids extra memory usage.
-
 ## 0680 - Valid Palindrome II
 
 - **Problem:** Given a string, determine if it can become a palindrome after deleting at most one character.
 - **Pattern:** `Two Pointers` / `Greedy + Subproblem Check`
-- **Recognition:** 
+- **Recognition:**
   - Standard palindrome check with a twist
   - First mismatch triggers a “one deletion allowed” decision
   - Must validate two possible skip cases
 - **Key Insight:**
   - Use two pointers from both ends:
-    - if characters match → continue
+    - if characters match → continue, and move inward (subproblem reduces)
     - if mismatch → try skipping either left or right character
   - Only one deletion is allowed, so we check two possibilities:
     1. skip left character
@@ -107,3 +101,4 @@ remove 'b' → "aca" (valid palindrome)
 
 Output:
 True
+```
