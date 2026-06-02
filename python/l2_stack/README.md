@@ -1,13 +1,18 @@
 # Stack
 
-## Table of Contents
-
 ### Easy
 
-- [Table of Contents](#table-of-contents)
 - [0020 - Valid Parentheses](#0020---valid-parentheses)
 - [0682 - Baseball Game](#0682---baseball-game)
 - [1598 - Crawler Log Folder](#1598---crawler-log-folder)
+
+<br><br>
+
+<h2 style="text-align: center;text-transform: uppercase;">
+  EASY PROBLEMS
+</h2>
+
+<br><br>
 
 ## 0020 - Valid Parentheses
 

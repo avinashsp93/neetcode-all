@@ -29,6 +29,14 @@
 - [3110 - Score of a String](#3110---score-of-a-string)
 - [3442 - Maximum Difference Between Even and Odd Frequency](#3442---maximum-difference-between-even-and-odd-frequency)
 
+<br><br>
+
+<h2 style="text-align: center;text-transform: uppercase;">
+  EASY PROBLEMS
+</h2>
+
+<br><br>
+
 ## 0001 - Two Sum
 
 - **Problem**: Given an array of integers and a target sum, find the indices of the two numbers that add up to the target.

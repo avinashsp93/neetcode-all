@@ -41,6 +41,14 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [0059 - Spiral Matrix II](#0059---spiral-matrix-ii)
 - [0287 - Find the Duplicate Number](#0287---find-the-duplicate-number)
 
+<br><br>
+
+<h2 style="text-align: center;text-transform: uppercase;">
+  EASY PROBLEMS
+</h2>
+
+<br><br>
+
 ## 0028 - Find the Index of the First Occurrence in a String
 
 - **Problem:** Return the starting index of the first occurrence of `needle` in `haystack`.  
@@ -931,6 +939,14 @@ Remaining:
 Output:
 1
 ```
+
+<br><br>
+
+<h2 style="text-align: center;text-transform: uppercase;">
+  MEDIUM PROBLEMS
+</h2>
+
+<br><br>
 
 ## 0036 - Valid Sudoku
 

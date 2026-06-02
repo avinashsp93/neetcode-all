@@ -1,13 +1,18 @@
 # Two Pointers
 
-## Table of Contents
-
 ### Easy
 
-- [Table of Contents](#table-of-contents)
 - [0125 - Valid Palindrome I](#0125---valid-palindrome-i)
 - [0344 - Reverse String](#0344---reverse-string)
 - [0680 - Valid Palindrome II](#0680---valid-palindrome-ii)
+
+<br><br>
+
+<h2 style="text-align: center;text-transform: uppercase;">
+  EASY PROBLEMS
+</h2>
+
+<br><br>
 
 ## 0125 - Valid Palindrome I
 
