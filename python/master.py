@@ -1,9 +1,9 @@
 from typing import List
-from l2_two_pointers.d1_easy.p0680_valid_palindrome_ii import Solution
+from l0_from_leetcode.d1_easy.p0070_climbing_stairs import Solution
 
 def main() -> None:
-    s = "aba"
-    result = Solution().validPalindrome(s)
+    n = 5
+    result = Solution().climbStairs(n)
     print("result:", result)
 
 if __name__ == "__main__":
