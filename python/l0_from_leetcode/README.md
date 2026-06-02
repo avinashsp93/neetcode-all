@@ -8,6 +8,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [0029 - Divide Two Integers](#0029---divide-two-integers)
 - [0066 - Plus One](#0066---plus-one)
 - [0067 - Add Binary](#0067---add-binary)
+- [0070 - Climbing Stairs](#0070---climbing-stairs)
 - [0136 - Single Number](#0136---single-number)
 - [0171 - Excel Sheet Column Number](#0171---excel-sheet-column-number)
 - [0268 - Missing Number](#0268---missing-number)
@@ -16,7 +17,9 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [0389 - Find the Difference](#0389---find-the-difference)
 - [0412 - Fizz Buzz](#0412---fizz-buzz)
 - [0482 - License Key Formatting](#0482---license-key-formatting)
+- [0509 - Fibonacci Number](#0509---fibonacci-number)
 - [1572 - Matrix Diagonal Sum](#1572---matrix-diagonal-sum)
+- [1137 - N-th Tribonacci Number](#1137---n-th-tribonacci-number)
 - [1588 - Sum of All Odd Length Subarrays](#1588---sum-of-all-odd-length-subarrays)
 - [1886 - Determine Whether Matrix Can Be Obtained By Rotation](#1886---determine-whether-matrix-can-be-obtained-by-rotation)
 - [2133 - Check if Every Row and Column Contains All Numbers](#2133---check-if-every-row-and-column-contains-all-numbers)
@@ -227,6 +230,54 @@ Binary Addition:
 
 Output:
 "10101"
+```
+
+## 0070 - Climbing Stairs
+
+- **Problem:** Given `n` stairs, where you can climb either `1` or `2` steps at a time, return the number of distinct ways to reach the top.
+- **Pattern:** `Dynamic Programming` / `Memoized Recursion`
+- **Recognition:**
+  - Count total ways to reach a target
+  - Current state depends on smaller subproblems
+  - Fibonacci-like structure
+- **Key Insight:**
+  - To write the code, use the following rule
+    - Check
+    - Compute
+    - Cache
+    - Return
+  - To reach stair `n`:
+    - come from `n - 1` with a 1-step move
+    - come from `n - 2` with a 2-step move
+
+  Recurrence:
+
+  f(n)=f(n−1)+f(n−2)
+  - Store previously computed results in a memo table to avoid recomputation
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+n = 4
+
+Ways to reach 4:
+
+From stair 3:
+f(3)
+
+From stair 2:
+f(2)
+
+f(4) = f(3) + f(2)
+     = 3 + 2
+     = 5
+
+Output:
+5
 ```
 
 ## 0136 - Single Number
@@ -495,6 +546,44 @@ Final:
 2-5G-3J
 ```
 
+## 0509 - Fibonacci Number
+
+- **Problem:** Given `n`, return the `n`th Fibonacci number.
+- **Pattern:** `Dynamic Programming` / `Memoized Recursion`
+- **Recognition:**
+  - Recursive definition with overlapping subproblems
+  - Same values are recomputed multiple times in naive recursion
+  - Natural fit for memoization
+- **Key Insight:**
+  - Fibonacci follows the recurrence:
+  - To write the code, use the following rule
+    - Check
+    - Compute
+    - Cache
+    - Return
+
+  f(n)=f(n−1)+f(n−2)
+  - Cache previously computed results in a memo table
+  - Each Fibonacci value is computed exactly once
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+n = 5
+
+F(5)
+= F(4) + F(3)
+= 3 + 2
+= 5
+
+Output:
+5
+```
+
 ## 1572 - Matrix Diagonal Sum
 
 - **Problem:** Return the sum of the primary and secondary diagonals of a square matrix.  
@@ -533,6 +622,45 @@ Center (5) counted once
 
 Output:
 25
+```
+
+## 1137 - N-th Tribonacci Number
+
+- **Problem:** Given `n`, return the `n`th Tribonacci number, where each number is the sum of the previous three numbers.
+- **Pattern:** `Dynamic Programming` / `Memoized Recursion`
+- **Recognition:**
+  - Recursive sequence with overlapping subproblems
+  - Each state depends on the previous three states
+  - Naive recursion would recompute the same values many times
+- **Key Insight:**
+  - To write the code, use the following rule
+    - Check
+    - Compute
+    - Cache
+    - Return
+  - Tribonacci follows the recurrence:
+
+    T(n) = T(n-1) + T(n-2) + T(n-3)
+
+  - Store computed values in a memo table
+  - Each Tribonacci number is calculated only once
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+n = 4
+
+T(4)
+= T(3) + T(2) + T(1)
+= 2 + 1 + 1
+= 4
+
+Output:
+4
 ```
 
 ## 1588 - Sum of All Odd Length Subarrays
