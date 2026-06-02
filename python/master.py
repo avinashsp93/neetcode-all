@@ -1,14 +1,11 @@
 from typing import List
-from l0_from_leetcode.d1_easy.p1886_determine_whether_matrix_can_be_obtained_by_rotation import Solution
+from l0_from_leetcode.d2_medium.p0034_find_first_and_last_position_of_element_in_sorted_array import Solution
 
 def main() -> None:
-    # matrix = [[0,0],[1,0]]
-    # target = [[1,0],[0,0]]
+    nums = [1,2]
+    target = 2
 
-    matrix = [[0,1],[1,0]]
-    target = [[1,0],[0,1]]
-
-    result = Solution().findRotation(matrix, target)
+    result = Solution().searchRange(nums, target)
     print("result:", result)
 
 if __name__ == "__main__":

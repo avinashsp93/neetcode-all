@@ -1,7 +1,5 @@
 # Arrays & Hashing
 
-## Table of Contents
-
 ### Easy
 
 - [0001 - Two Sum](#0001---two-sum)
@@ -528,29 +526,29 @@ True
   [0, *flowerbed, 0]
   ```
 
-<<<<<<< HEAD
-=======
+# <<<<<<< HEAD
+
 ## 0724 - Find Pivot Index
 
 - **Problem:** Find the pivot index where:
   - sum of elements to the left
   - equals sum of elements to the right
 - **Pattern:** `Prefix Sum`
-- **Recognition:** 
+- **Recognition:**
   - Repeated left/right subarray sum comparisons
   - Need efficient running sum computation
   - Brute force nested summation would be `O(n²)`
 - **Key Insight:**
   - Total array sum is known upfront
   - While traversing:
-  
-  :contentReference[oaicite:0]{index=0}
 
+  :contentReference[oaicite:0]{index=0}
   - If:
-  
+
   :contentReference[oaicite:1]{index=1}
 
   then current index is the pivot
+
 - **Time Complexity:** `O(n)`
 - **Space Complexity:** `O(1)`
 
@@ -576,7 +574,8 @@ Output:
 3
 ```
 
->>>>>>> 6e4d78ee044eb050ae3b6f71f476ed51f8c4a390
+> > > > > > > 6e4d78ee044eb050ae3b6f71f476ed51f8c4a390
+
 ## 0929 - Unique Email Addresses
 
 - **Problem:** Given a list of email addresses, return the number of unique emails after applying normalization rules.
@@ -812,7 +811,7 @@ Output:
 - **Problem:** Return the `k`th distinct string in the array while preserving original order.  
   A distinct string appears exactly once.
 - **Pattern:** `Hash Map / Frequency Counting`
-- **Recognition:** 
+- **Recognition:**
   - Need occurrence counting
   - Order of appearance matters
   - "Distinct" means frequency exactly `1`
@@ -920,21 +919,21 @@ This avoids unnecessary memory allocation and is the standard interview-ready ap
 - **Problem:** In an `n x n` grid containing numbers from `1` to `n²`:
   - one number appears twice
   - one number is missing
-  return `[repeated, missing]`
+    return `[repeated, missing]`
 - **Pattern:** `Hash Set`
-- **Recognition:** 
+- **Recognition:**
   - Need duplicate + missing detection
   - Values belong to a fixed known range
   - Membership lookup/removal needed efficiently
 - **Key Insight:**
   - Initialize a set containing all expected values:
-  
-  :contentReference[oaicite:0]{index=0}
 
+  :contentReference[oaicite:0]{index=0}
   - Traverse grid:
     - first occurrence → remove from set
     - second occurrence → repeated value found
   - Remaining value in set is the missing number
+
 - **Time Complexity:** `O(n²)`
 - **Space Complexity:** `O(n²)`
 
