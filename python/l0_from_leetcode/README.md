@@ -18,13 +18,13 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [0412 - Fizz Buzz](#0412---fizz-buzz)
 - [0482 - License Key Formatting](#0482---license-key-formatting)
 - [0509 - Fibonacci Number](#0509---fibonacci-number)
-- [1572 - Matrix Diagonal Sum](#1572---matrix-diagonal-sum)
 - [1137 - N-th Tribonacci Number](#1137---n-th-tribonacci-number)
-- [1160 - Find Words That Can Be Formed by Characters (Leetcode 1160)](#1160---find-words-that-can-be-formed-by-characters-leetcode-1160)
+- [1160 - Find Words That Can Be Formed by Characters](#1160---find-words-that-can-be-formed-by-characters)
+- [1572 - Matrix Diagonal Sum](#1572---matrix-diagonal-sum)
 - [1588 - Sum of All Odd Length Subarrays](#1588---sum-of-all-odd-length-subarrays)
 - [1886 - Determine Whether Matrix Can Be Obtained By Rotation](#1886---determine-whether-matrix-can-be-obtained-by-rotation)
 - [2133 - Check if Every Row and Column Contains All Numbers](#2133---check-if-every-row-and-column-contains-all-numbers)
-- [Rearrange Characters to Form Target String (Leetcode 2287)](#rearrange-characters-to-form-target-string-leetcode-2287)
+- [2287 - Rearrange Characters to Form Target String](#2287---rearrange-characters-to-form-target-string)
 - [2319 - Check if Matrix is X-Matrix](#2319---check-if-matrix-is-x-matrix)
 - [3158 - Find the XOR of Numbers Which Appear Twice](#3158---find-the-xor-of-numbers-which-appear-twice)
 - [0036 - Valid Sudoku](#0036---valid-sudoku)
@@ -586,46 +586,6 @@ Output:
 5
 ```
 
-## 1572 - Matrix Diagonal Sum
-
-- **Problem:** Return the sum of the primary and secondary diagonals of a square matrix.  
-  Avoid double-counting the center element when `n` is odd.
-- **Pattern:** `Matrix Traversal`
-- **Recognition:**
-  - Square matrix (`n x n`)
-  - Need both diagonals:
-    - primary: `mat[i][i]`
-    - secondary: `mat[i][n-1-i]`
-  - Overlap occurs at center when `n` is odd
-- **Key Insight:**
-  - Both diagonals can be computed in a single loop
-  - Use index relationship:
-
-  :contentReference[oaicite:0]{index=0}
-  - If `i == j`, it's the center element → add only once
-
-- **Time Complexity:** `O(n)`
-- **Space Complexity:** `O(1)`
-
-### Example
-
-```text
-Input:
-mat = [
-  [1,2,3],
-  [4,5,6],
-  [7,8,9]
-]
-
-Primary diagonal: 1 + 5 + 9
-Secondary diagonal: 3 + 5 + 7
-
-Center (5) counted once
-
-Output:
-25
-```
-
 ## 1137 - N-th Tribonacci Number
 
 - **Problem:** Given `n`, return the `n`th Tribonacci number, where each number is the sum of the previous three numbers.
@@ -665,7 +625,7 @@ Output:
 4
 ```
 
-## 1160 - Find Words That Can Be Formed by Characters (Leetcode 1160)
+## 1160 - Find Words That Can Be Formed by Characters
 
 - **Problem:** Given a list of words and a string `chars`, return the total length of words that can be formed using letters from `chars` (each letter can be used only as many times as it appears in `chars`).
 - **Pattern:** `Hash Map / Frequency Counting`
@@ -704,6 +664,46 @@ Valid words:
 
 Output:
 6
+```
+
+## 1572 - Matrix Diagonal Sum
+
+- **Problem:** Return the sum of the primary and secondary diagonals of a square matrix.  
+  Avoid double-counting the center element when `n` is odd.
+- **Pattern:** `Matrix Traversal`
+- **Recognition:**
+  - Square matrix (`n x n`)
+  - Need both diagonals:
+    - primary: `mat[i][i]`
+    - secondary: `mat[i][n-1-i]`
+  - Overlap occurs at center when `n` is odd
+- **Key Insight:**
+  - Both diagonals can be computed in a single loop
+  - Use index relationship:
+
+  :contentReference[oaicite:0]{index=0}
+  - If `i == j`, it's the center element → add only once
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+mat = [
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+]
+
+Primary diagonal: 1 + 5 + 9
+Secondary diagonal: 3 + 5 + 7
+
+Center (5) counted once
+
+Output:
+25
 ```
 
 ## 1588 - Sum of All Odd Length Subarrays
@@ -807,7 +807,7 @@ Output:
 True
 ```
 
-## Rearrange Characters to Form Target String (Leetcode 2287)
+## 2287 - Rearrange Characters to Form Target String
 
 - **Problem:** Given strings `s` and `target`, return the maximum number of copies of `target` that can be formed using characters from `s`.
 - **Pattern:** `Hash Map / Frequency Counting`
