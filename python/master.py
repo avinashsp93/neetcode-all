@@ -1,14 +1,9 @@
 from typing import List
-from l0_from_leetcode.d1_easy.p1886_determine_whether_matrix_can_be_obtained_by_rotation import Solution
+from l2_two_pointers.d1_easy.p0680_valid_palindrome_ii import Solution
 
 def main() -> None:
-    # matrix = [[0,0],[1,0]]
-    # target = [[1,0],[0,0]]
-
-    matrix = [[0,1],[1,0]]
-    target = [[1,0],[0,1]]
-
-    result = Solution().findRotation(matrix, target)
+    s = "aba"
+    result = Solution().validPalindrome(s)
     print("result:", result)
 
 if __name__ == "__main__":
