@@ -4,6 +4,7 @@
 
 - [0020 - Valid Parentheses](#0020---valid-parentheses)
 - [0682 - Baseball Game](#0682---baseball-game)
+- [1544 - Make The String Great](#1544---make-the-string-great)
 - [1598 - Crawler Log Folder](#1598---crawler-log-folder)
 
 <br><br>
@@ -82,6 +83,41 @@ D   → [5,10]
 Total:
 5 + 10 + 15 = 30
 Output: 30
+```
+
+## 1544 - Make The String Great
+
+- **Problem:** Given a string, repeatedly remove adjacent pairs of the same letter in different cases (e.g., `'a'` and `'A'`) until no such pairs remain.
+- **Pattern:** `Stack`
+- **Recognition:**
+  - Adjacent cancellation problem
+  - Pairwise interaction between characters
+  - Order matters → requires LIFO structure
+- **Key Insight:**
+  - Use a stack to track valid characters
+  - If current character and stack top are the same letter in opposite cases → remove both
+  - Case difference rule:
+
+  |ord(a) - ord(A)| = 32
+
+  - Otherwise, push character onto stack
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+s = "leEeetcode"
+
+Process:
+l e E e e t c o d e
+   ↕ cancel (eE)
+Result:
+leetcode
+
+Output:
+"leetcode"
 ```
 
 ## 1598 - Crawler Log Folder

@@ -20,6 +20,7 @@
 - [0929 - Unique Email Addresses](#0929---unique-email-addresses)
 - [1189 - Maximum Number of Balloons](#1189---maximum-number-of-balloons)
 - [1299 - Replace Elements with Greatest Element on Right Side](#1299---replace-elements-with-greatest-element-on-right-side)
+- [1394 - Find Lucky Integer in an Array](#1394---find-lucky-integer-in-an-array)
 - [1408 - String Matching in an Array](#1408---string-matching-in-an-array)
 - [1800 - Maximum Ascending Subarray Sum](#1800---maximum-ascending-subarray-sum)
 - [2053 - Kth Distinct String in an Array](#2053---kth-distinct-string-in-an-array)
@@ -534,8 +535,6 @@ True
   [0, *flowerbed, 0]
   ```
 
-# <<<<<<< HEAD
-
 ## 0724 - Find Pivot Index
 
 - **Problem:** Find the pivot index where:
@@ -581,8 +580,6 @@ right = 11
 Output:
 3
 ```
-
-> > > > > > > 6e4d78ee044eb050ae3b6f71f476ed51f8c4a390
 
 ## 0929 - Unique Email Addresses
 
@@ -738,6 +735,42 @@ result[j] = max(arr[j+1], result[j+1])
 ```
 
 This works, but can be optimized to O(1) space by tracking a single `max_right` variable while traversing backward.
+
+## 1394 - Find Lucky Integer in an Array
+
+- **Problem:** A lucky integer is an integer whose value is equal to its frequency in the array. Return the largest such integer, or `-1` if none exist.
+- **Pattern:** `Hash Map / Frequency Counting`
+- **Recognition:**
+  - Compare element values with their occurrence counts
+  - Requires frequency tracking + conditional filtering
+  - Need to maximize over valid candidates
+- **Key Insight:**
+  - Build frequency map of all elements
+  - Check condition:
+
+  k == frequency(k)
+
+  - Track the largest valid lucky number
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+arr = [2,2,3,4]
+
+Frequencies:
+2 → 2
+3 → 1
+4 → 1
+
+Valid lucky integers:
+2
+
+Output:
+2
+```
 
 ## 1408 - String Matching in an Array
 

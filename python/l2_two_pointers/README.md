@@ -47,6 +47,45 @@ Output:
 True
 ```
 
+## 0283 - Move Zeroes
+
+- **Problem:** Move all `0`s to the end of the array while maintaining the relative order of non-zero elements. Modify the array in-place.
+- **Pattern:** `Two Pointers`
+- **Recognition:**
+  - Need stable rearrangement of elements
+  - Move a specific value (`0`) while preserving order of others
+  - In-place modification required
+- **Key Insight:**
+  - Use two pointers:
+    - `r` scans every element
+    - `l` tracks the next position for a non-zero value
+  - Whenever a non-zero is found:
+    - swap it into position `l`
+    - advance `l`
+  - l is a slow pointer and r is a fast pointer
+  - All positions before `l` contain non-zero values in correct order
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+[0,1,0,3,12]
+
+l=0, r=1 → swap 1 with 0
+[1,0,0,3,12]
+
+l=1, r=3 → swap 3 with 0
+[1,3,0,0,12]
+
+l=2, r=4 → swap 12 with 0
+[1,3,12,0,0]
+
+Output:
+[1,3,12,0,0]
+```
+
 ## 0344 - Reverse String
 
 - **Problem:** Reverse a list of characters in-place.
