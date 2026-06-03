@@ -13,6 +13,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [0171 - Excel Sheet Column Number](#0171---excel-sheet-column-number)
 - [0268 - Missing Number](#0268---missing-number)
 - [0278 - First Bad Version](#0278---first-bad-version)
+- [0342 -Power of Four](#0342--power-of-four)
 - [0383 - Ransom Note](#0383---ransom-note)
 - [0389 - Find the Difference](#0389---find-the-difference)
 - [0412 - Fizz Buzz](#0412---fizz-buzz)
@@ -27,11 +28,6 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [2287 - Rearrange Characters to Form Target String](#2287---rearrange-characters-to-form-target-string)
 - [2319 - Check if Matrix is X-Matrix](#2319---check-if-matrix-is-x-matrix)
 - [3158 - Find the XOR of Numbers Which Appear Twice](#3158---find-the-xor-of-numbers-which-appear-twice)
-- [0036 - Valid Sudoku](#0036---valid-sudoku)
-- [0054 - Rotate Image](#0054---rotate-image)
-- [0054 - Spiral Matrix](#0054---spiral-matrix)
-- [0059 - Spiral Matrix II](#0059---spiral-matrix-ii)
-- [0287 - Find the Duplicate Number](#0287---find-the-duplicate-number)
 
 ### Medium
 
@@ -39,6 +35,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [0048 - Rotate Image](#0048---rotate-image)
 - [0054 - Spiral Matrix](#0054---spiral-matrix)
 - [0059 - Spiral Matrix II](#0059---spiral-matrix-ii)
+- [0151 - Reverse Words in a String](#0151---reverse-words-in-a-string)
 - [0165 - Compare Version Numbers](#0165---compare-version-numbers)
 - [0287 - Find the Duplicate Number](#0287---find-the-duplicate-number)
 
@@ -407,6 +404,75 @@ Output:
 
   - Time Complexity: O(log n)
   - Space Complexity: O(1)
+
+## 0342 -Power of Four
+
+- **Problem:** Determine whether an integer `n` is a power of `4`.
+- **Pattern:** `Bit Manipulation`
+- **Recognition:**
+  - Power-of-k validation
+  - Constraints favor bitwise operations over loops/division
+  - Power of 4 is a special subset of powers of 2
+- **Key Insight:**
+  - A power of 4 must satisfy **both**:
+    1. It is a power of 2 (exactly one bit set)
+    2. That bit is in an even position
+
+  First check (power of 2):
+
+  :contentReference[oaicite:0]{index=0}
+
+  Then ensure the set bit is in a valid power-of-4 position using:
+
+  ```python
+  0x55555555
+  ```
+
+  Binary pattern:
+
+```
+01010101010101010101010101010101
+```
+
+which has 1s only in even bit positions.
+
+- **Time Complexity:** `O(1)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+n = 16
+
+Binary:
+10000
+
+Power of 2?
+10000 & 01111 = 0 ✓
+
+Valid power-of-4 position?
+10000 & 010101... ≠ 0 ✓
+
+Output:
+True
+```
+
+Notes
+
+- **Strong interview pattern:**
+  - power-of-two checks using bit tricks
+  - additional constraint on bit position
+- **Why the mask works:**
+  - 4^0 = 1 -> bit position 0
+  - 4^1 = 4 -> bit position 2
+  - 4^2 = 16 -> bit position 4
+  - 4^3 = 64 -> bit position 6
+  - Powers of 4 have their single set bit only in even-indexed positions.
+- **Common progression:**
+  - Power of Two → single set bit
+  - Power of Three → math/division approach
+  - Power of Four → power of two + position check
 
 ## 0383 - Ransom Note
 
@@ -1132,6 +1198,91 @@ Output:
  [8,9,4],
  [7,6,5]
 ]
+```
+
+## 0151 - Reverse Words in a String
+
+- **Problem:** Reverse the order of words in a string while removing leading, trailing, and extra spaces between words.
+- **Pattern:** `String Manipulation`
+- **Recognition:**
+  - Word-level reversal (not character reversal)
+  - Input may contain irregular spacing
+  - Need normalized output formatting
+- **Key Insight:**
+  - `split()` automatically:
+    - removes leading/trailing spaces
+    - collapses multiple spaces
+    - extracts words
+  - Reverse the list of words
+  - Join them back with a single space
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+"  hello   world  "
+
+split():
+["hello", "world"]
+
+reverse:
+["world", "hello"]
+
+Output:
+"world hello"
+```
+
+## 0165 - Compare Version Numbers
+
+- **Problem:** Compare two version strings and return:
+  - `1` if `version1 > version2`
+  - `-1` if `version1 < version2`
+  - `0` if they are equal
+- **Pattern:** `Two Pointers` / `String Parsing`
+- **Recognition:**
+  - Structured string comparison
+  - Components separated by delimiters (`.`)
+  - Leading zeros should be ignored
+- **Key Insight:**
+  - Split both versions into revision numbers
+  - Compare corresponding revisions from left to right
+  - Convert each revision to an integer:
+    - `"001"` and `"1"` become equal
+  - If one version has remaining revisions, they only matter if any are non-zero
+- **Time Complexity:** `O(n + m)`
+- **Space Complexity:** `O(n + m)`
+  - due to storing split components
+
+### Example
+
+```text
+Input:
+version1 = "1.01"
+version2 = "1.001"
+
+Compare:
+1 == 1
+1 == 1
+
+Output:
+0
+
+
+Input:
+version1 = "1.0"
+version2 = "1.0.1"
+
+Compare:
+1 == 1
+0 == 0
+
+Remaining:
+1 > 0
+
+Output:
+-1
 ```
 
 ## 0165 - Compare Version Numbers

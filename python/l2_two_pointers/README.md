@@ -3,6 +3,7 @@
 ### Easy
 
 - [0125 - Valid Palindrome I](#0125---valid-palindrome-i)
+- [0283 - Move Zeroes](#0283---move-zeroes)
 - [0344 - Reverse String](#0344---reverse-string)
 - [0680 - Valid Palindrome II](#0680---valid-palindrome-ii)
 
