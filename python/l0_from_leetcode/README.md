@@ -31,6 +31,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 
 ### Medium
 
+- [0034 - Find First and Last Position of Element in Sorted Array](#0034---find-first-and-last-position-of-element-in-sorted-array)
 - [0036 - Valid Sudoku](#0036---valid-sudoku)
 - [0048 - Rotate Image](#0048---rotate-image)
 - [0054 - Spiral Matrix](#0054---spiral-matrix)
@@ -1014,6 +1015,34 @@ Output:
 </h2>
 
 <br><br>
+
+## 0034 - Find First and Last Position of Element in Sorted Array
+
+- **Problem:** Given a sorted array `nums` and a target value, return the starting and ending position of the target in the array. If the target is not found, return `[-1, -1]`.
+- **Pattern:** `Binary Search`
+- **Recognition:**
+  - Sorted array allows for binary search
+  - Need to find both first and last occurrence
+  - Two-pass binary search approach is common
+- **Key Insight:**
+  - Perform binary search to find the leftmost index of the target
+  - Perform binary search to find the rightmost index of the target
+  - If either search fails, return `[-1, -1]`
+- **Time Complexity:** `O(log n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [5,7,7,8,8,10]
+target = 8
+Leftmost index of 8 is 3
+Rightmost index of 8 is 4
+Output:
+[3,4]
+```
+
 
 ## 0036 - Valid Sudoku
 
