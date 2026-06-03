@@ -28,11 +28,6 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [2287 - Rearrange Characters to Form Target String](#2287---rearrange-characters-to-form-target-string)
 - [2319 - Check if Matrix is X-Matrix](#2319---check-if-matrix-is-x-matrix)
 - [3158 - Find the XOR of Numbers Which Appear Twice](#3158---find-the-xor-of-numbers-which-appear-twice)
-- [0036 - Valid Sudoku](#0036---valid-sudoku)
-- [0054 - Rotate Image](#0054---rotate-image)
-- [0054 - Spiral Matrix](#0054---spiral-matrix)
-- [0059 - Spiral Matrix II](#0059---spiral-matrix-ii)
-- [0287 - Find the Duplicate Number](#0287---find-the-duplicate-number)
 
 ### Medium
 
@@ -40,6 +35,8 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [0048 - Rotate Image](#0048---rotate-image)
 - [0054 - Spiral Matrix](#0054---spiral-matrix)
 - [0059 - Spiral Matrix II](#0059---spiral-matrix-ii)
+- [0151 - Reverse Words in a String](#0151---reverse-words-in-a-string)
+- [0165 - Compare Version Numbers](#0165---compare-version-numbers)
 - [0287 - Find the Duplicate Number](#0287---find-the-duplicate-number)
 
 <br><br>
@@ -1201,6 +1198,91 @@ Output:
  [8,9,4],
  [7,6,5]
 ]
+```
+
+## 0151 - Reverse Words in a String
+
+- **Problem:** Reverse the order of words in a string while removing leading, trailing, and extra spaces between words.
+- **Pattern:** `String Manipulation`
+- **Recognition:**
+  - Word-level reversal (not character reversal)
+  - Input may contain irregular spacing
+  - Need normalized output formatting
+- **Key Insight:**
+  - `split()` automatically:
+    - removes leading/trailing spaces
+    - collapses multiple spaces
+    - extracts words
+  - Reverse the list of words
+  - Join them back with a single space
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+"  hello   world  "
+
+split():
+["hello", "world"]
+
+reverse:
+["world", "hello"]
+
+Output:
+"world hello"
+```
+
+## 0165 - Compare Version Numbers
+
+- **Problem:** Compare two version strings and return:
+  - `1` if `version1 > version2`
+  - `-1` if `version1 < version2`
+  - `0` if they are equal
+- **Pattern:** `Two Pointers` / `String Parsing`
+- **Recognition:**
+  - Structured string comparison
+  - Components separated by delimiters (`.`)
+  - Leading zeros should be ignored
+- **Key Insight:**
+  - Split both versions into revision numbers
+  - Compare corresponding revisions from left to right
+  - Convert each revision to an integer:
+    - `"001"` and `"1"` become equal
+  - If one version has remaining revisions, they only matter if any are non-zero
+- **Time Complexity:** `O(n + m)`
+- **Space Complexity:** `O(n + m)`
+  - due to storing split components
+
+### Example
+
+```text
+Input:
+version1 = "1.01"
+version2 = "1.001"
+
+Compare:
+1 == 1
+1 == 1
+
+Output:
+0
+
+
+Input:
+version1 = "1.0"
+version2 = "1.0.1"
+
+Compare:
+1 == 1
+0 == 0
+
+Remaining:
+1 > 0
+
+Output:
+-1
 ```
 
 ## 0287 - Find the Duplicate Number
