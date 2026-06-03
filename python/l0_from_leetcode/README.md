@@ -39,6 +39,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [0048 - Rotate Image](#0048---rotate-image)
 - [0054 - Spiral Matrix](#0054---spiral-matrix)
 - [0059 - Spiral Matrix II](#0059---spiral-matrix-ii)
+- [0165 - Compare Version Numbers](#0165---compare-version-numbers)
 - [0287 - Find the Duplicate Number](#0287---find-the-duplicate-number)
 
 <br><br>
@@ -1131,6 +1132,57 @@ Output:
  [8,9,4],
  [7,6,5]
 ]
+```
+
+## 0165 - Compare Version Numbers
+
+- **Problem:** Compare two version strings and return:
+  - `1` if `version1 > version2`
+  - `-1` if `version1 < version2`
+  - `0` if they are equal
+- **Pattern:** `Two Pointers` / `String Parsing`
+- **Recognition:**
+  - Numbers are split into revisions separated by `.`
+  - Leading zeros should not affect comparison
+  - Need lexicographical comparison on numeric components
+- **Key Insight:**
+  - Split both version strings into revision arrays
+  - Compare corresponding revisions as integers
+  - If revisions differ, return immediately
+  - If one version has remaining revisions, they only matter if any remaining value is non-zero
+- **Time Complexity:** `O(n + m)`
+- **Space Complexity:** `O(n + m)`
+  - due to storing split revisions
+
+### Example
+
+```text
+Input:
+version1 = "1.01"
+version2 = "1.001"
+
+Compare:
+1 == 1
+1 == 1
+
+Output:
+0
+```
+
+```text
+Input:
+version1 = "1.0"
+version2 = "1.0.1"
+
+Compare:
+1 == 1
+0 == 0
+
+Remaining revision:
+1
+
+Output:
+-1
 ```
 
 ## 0287 - Find the Duplicate Number
