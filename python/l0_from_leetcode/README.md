@@ -13,6 +13,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [0171 - Excel Sheet Column Number](#0171---excel-sheet-column-number)
 - [0268 - Missing Number](#0268---missing-number)
 - [0278 - First Bad Version](#0278---first-bad-version)
+- [0342 -Power of Four](#0342--power-of-four)
 - [0383 - Ransom Note](#0383---ransom-note)
 - [0389 - Find the Difference](#0389---find-the-difference)
 - [0412 - Fizz Buzz](#0412---fizz-buzz)
@@ -406,6 +407,75 @@ Output:
 
   - Time Complexity: O(log n)
   - Space Complexity: O(1)
+
+## 0342 -Power of Four
+
+- **Problem:** Determine whether an integer `n` is a power of `4`.
+- **Pattern:** `Bit Manipulation`
+- **Recognition:**
+  - Power-of-k validation
+  - Constraints favor bitwise operations over loops/division
+  - Power of 4 is a special subset of powers of 2
+- **Key Insight:**
+  - A power of 4 must satisfy **both**:
+    1. It is a power of 2 (exactly one bit set)
+    2. That bit is in an even position
+
+  First check (power of 2):
+
+  :contentReference[oaicite:0]{index=0}
+
+  Then ensure the set bit is in a valid power-of-4 position using:
+
+  ```python
+  0x55555555
+  ```
+
+  Binary pattern:
+
+```
+01010101010101010101010101010101
+```
+
+which has 1s only in even bit positions.
+
+- **Time Complexity:** `O(1)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+n = 16
+
+Binary:
+10000
+
+Power of 2?
+10000 & 01111 = 0 ✓
+
+Valid power-of-4 position?
+10000 & 010101... ≠ 0 ✓
+
+Output:
+True
+```
+
+Notes
+
+- **Strong interview pattern:**
+  - power-of-two checks using bit tricks
+  - additional constraint on bit position
+- **Why the mask works:**
+  - 4^0 = 1 -> bit position 0
+  - 4^1 = 4 -> bit position 2
+  - 4^2 = 16 -> bit position 4
+  - 4^3 = 64 -> bit position 6
+  - Powers of 4 have their single set bit only in even-indexed positions.
+- **Common progression:**
+  - Power of Two → single set bit
+  - Power of Three → math/division approach
+  - Power of Four → power of two + position check
 
 ## 0383 - Ransom Note
 
