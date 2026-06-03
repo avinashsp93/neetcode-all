@@ -99,8 +99,8 @@ Output: 30
   - Case difference rule:
 
   |ord(a) - ord(A)| = 32
-
   - Otherwise, push character onto stack
+
 - **Time Complexity:** `O(n)`
 - **Space Complexity:** `O(n)`
 
