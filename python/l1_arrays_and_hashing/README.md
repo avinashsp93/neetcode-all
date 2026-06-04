@@ -11,6 +11,7 @@
 - [0205 - Isomorphic Strings](#0205---isomorphic-strings)
 - [0217 - Contains Duplicate](#0217---contains-duplicate)
 - [0242 - Valid Anagram](#0242---valid-anagram)
+- [0290 - Word Pattern](#0290---word-pattern)
 - [0392 - Is Subsequence](#0392---is-subsequence)
 - [0448 - Find All Numbers Disappeared in an Array](#0448---find-all-numbers-disappeared-in-an-array)
 - [0485 - Max Consecutive Ones](#0485---max-consecutive-ones)
@@ -343,7 +344,6 @@ return all(v == 0 for v in my_dict_letter_to_word.values())
 
 - Ensures no leftover unmatched characters exist
 
-
 ## 0290 - Word Pattern
 
 - **Problem:** Given a pattern string and a space-separated string `s`, determine if `s` follows the same pattern.
@@ -383,6 +383,7 @@ All mappings consistent
 Output:
 True
 ```
+
 ```
 Input:
 pattern = "abba"
@@ -806,8 +807,8 @@ This works, but can be optimized to O(1) space by tracking a single `max_right` 
   - Check condition:
 
   k == frequency(k)
-
   - Track the largest valid lucky number
+
 - **Time Complexity:** `O(n)`
 - **Space Complexity:** `O(n)`
 

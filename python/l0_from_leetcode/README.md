@@ -28,14 +28,18 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [2287 - Rearrange Characters to Form Target String](#2287---rearrange-characters-to-form-target-string)
 - [2319 - Check if Matrix is X-Matrix](#2319---check-if-matrix-is-x-matrix)
 - [3158 - Find the XOR of Numbers Which Appear Twice](#3158---find-the-xor-of-numbers-which-appear-twice)
-- [3936 - Minimum Swaps to move zeros to the end](#3936---minimum-swaps-to-move-zeros-to-the-end)
+- [3921 - Score Validator](#3921---score-validator)
+- [3925 - Concatenate Array with Reverse](#3925---concatenate-array-with-reverse)
+- [3931 - Check Adjacent Digit Differences](#3931---check-adjacent-digit-differences)
+- [3936 - Minimum Swaps to Move Zeros to End](#3936---minimum-swaps-to-move-zeros-to-end)
+- [3945 - Digit Frequency Score](#3945---digit-frequency-score)
 
 ### Medium
 
 - [0034 - Find First and Last Position of Element in Sorted Array](#0034---find-first-and-last-position-of-element-in-sorted-array)
 - [0036 - Valid Sudoku](#0036---valid-sudoku)
 - [0048 - Rotate Image](#0048---rotate-image)
-- [0054 - Spiral Matrix](#0054---spiral-matrix)
+- [0054 - Spiral Matrix I](#0054---spiral-matrix-i)
 - [0059 - Spiral Matrix II](#0059---spiral-matrix-ii)
 - [0151 - Reverse Words in a String](#0151---reverse-words-in-a-string)
 - [0165 - Compare Version Numbers](#0165---compare-version-numbers)
@@ -348,6 +352,87 @@ columnTitle = "AB"
 
 Output:
 27
+```
+
+## 0231 - Power of Two
+
+- **Problem:** Determine whether a given integer `n` is a power of two.
+- **Pattern:** `Bit Manipulation`
+- **Recognition:**
+  - The problem asks whether a number can be represented as `2^k`.
+  - Powers of two have a unique binary representation.
+  - Bitwise operations provide a constant-time solution.
+- **Key Insight:**
+  - A power of two contains exactly one set bit (`1`) in its binary representation.
+  - Subtracting `1` from a power of two flips that set bit and all bits to its right.
+  - Therefore:
+
+    ```text
+    n & (n - 1) = 0
+    ```
+
+    only when `n` has exactly one set bit.
+
+  - Since non-positive numbers are not powers of two, first check `n > 0`.
+
+- **Time Complexity:** `O(1)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+n = 16
+
+Binary:
+16 = 10000
+15 = 01111
+
+10000
+&
+01111
+=
+00000
+
+Output:
+True
+```
+
+### Example 2
+
+```text
+Input:
+n = 18
+
+Binary:
+18 = 10010
+17 = 10001
+
+10010
+&
+10001
+=
+10000
+
+Result is not zero
+
+Output:
+False
+```
+
+### Example 3
+
+```text
+Input:
+n = 1
+
+Binary:
+1 = 1
+
+1 & 0 = 0
+
+Output:
+True
 ```
 
 ## 0268 - Missing Number
@@ -1212,68 +1297,7 @@ Output:
 False
 ```
 
-## 3945 - Digit Frequency Score
-
-- **Problem:** Calculate the digit frequency score of an integer `n`, where each digit contributes:
-
-  `digit × frequency of that digit`
-
-- **Pattern:** `Hash Map Counting`
-- **Recognition:**
-  - Need to count occurrences of elements.
-  - Each unique digit contributes based on its frequency.
-  - A hash map (dictionary) is a natural way to store counts.
-- **Key Insight:**
-  - Convert the number to a string and count the frequency of each digit using a dictionary.
-  - For every digit-frequency pair:
-
-    `contribution = digit × frequency`
-
-  - Sum all contributions to obtain the final score.
-
-- **Time Complexity:** `O(d)`
-  - `d` = number of digits in `n`
-- **Space Complexity:** `O(k)`
-  - `k` = number of distinct digits (`≤ 10`)
-
-### Example
-
-```text
-Input:
-n = 122333
-
-Digit Frequencies:
-1 -> 1
-2 -> 2
-3 -> 3
-
-Score:
-(1 × 1) + (2 × 2) + (3 × 3)
-= 1 + 4 + 9
-= 14
-
-Output:
-14
-```
-
-### Example 2
-
-```text
-Input:
-n = 5555
-
-Digit Frequencies:
-5 -> 4
-
-Score:
-5 × 4
-= 20
-
-Output:
-20
-```
-
-## 3936 - Minimum Swaps to Move Zeroes to End
+## 3936 - Minimum Swaps to Move Zeros to End
 
 - **Problem:** Given a binary array containing `0`s and `1`s, determine the minimum number of swaps required to move all `0`s to the end of the array.
 - **Pattern:** `Counting` / `Greedy Observation`
@@ -1338,6 +1362,67 @@ Output:
 0
 ```
 
+## 3945 - Digit Frequency Score
+
+- **Problem:** Calculate the digit frequency score of an integer `n`, where each digit contributes:
+
+  `digit × frequency of that digit`
+
+- **Pattern:** `Hash Map Counting`
+- **Recognition:**
+  - Need to count occurrences of elements.
+  - Each unique digit contributes based on its frequency.
+  - A hash map (dictionary) is a natural way to store counts.
+- **Key Insight:**
+  - Convert the number to a string and count the frequency of each digit using a dictionary.
+  - For every digit-frequency pair:
+
+    `contribution = digit × frequency`
+
+  - Sum all contributions to obtain the final score.
+
+- **Time Complexity:** `O(d)`
+  - `d` = number of digits in `n`
+- **Space Complexity:** `O(k)`
+  - `k` = number of distinct digits (`≤ 10`)
+
+### Example
+
+```text
+Input:
+n = 122333
+
+Digit Frequencies:
+1 -> 1
+2 -> 2
+3 -> 3
+
+Score:
+(1 × 1) + (2 × 2) + (3 × 3)
+= 1 + 4 + 9
+= 14
+
+Output:
+14
+```
+
+### Example 2
+
+```text
+Input:
+n = 5555
+
+Digit Frequencies:
+5 -> 4
+
+Score:
+5 × 4
+= 20
+
+Output:
+20
+```
+
 <br><br>
 
 <h2 style="text-align: center;text-transform: uppercase;">
@@ -1372,7 +1457,6 @@ Rightmost index of 8 is 4
 Output:
 [3,4]
 ```
-
 
 ## 0036 - Valid Sudoku
 
@@ -1469,7 +1553,7 @@ After Row Reverse:
 ]
 ```
 
-## 0054 - Spiral Matrix
+## 0054 - Spiral Matrix I
 
 - **Problem:** Return all elements of a matrix in spiral order:
   - left → right

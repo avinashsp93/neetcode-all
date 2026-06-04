@@ -6,6 +6,7 @@
 - [0283 - Move Zeroes](#0283---move-zeroes)
 - [0344 - Reverse String](#0344---reverse-string)
 - [0680 - Valid Palindrome II](#0680---valid-palindrome-ii)
+- [1768 - Merge Strings Alternately](#1768---merge-strings-alternately)
 
 <br><br>
 
@@ -146,4 +147,82 @@ remove 'b' → "aca" (valid palindrome)
 
 Output:
 True
+```
+
+## 1768 - Merge Strings Alternately
+
+- **Problem:** Merge two strings by alternating characters from each string, starting with the first string. If one string is longer, append its remaining characters at the end.
+- **Pattern:** `Two Pointers`
+- **Recognition:**
+  - Need to traverse two sequences simultaneously.
+  - Characters are consumed in order from both strings.
+  - Remaining characters from the longer string must be handled after the main traversal.
+- **Key Insight:**
+  - Use two pointers:
+    - `p1` for `word1`
+    - `p2` for `word2`
+  - While both pointers are within bounds:
+    - Append one character from `word1`
+    - Append one character from `word2`
+    - Advance both pointers
+  - After the loop:
+    - If `word1` is exhausted, append the remaining part of `word2`
+    - If `word2` is exhausted, append the remaining part of `word1`
+
+- **Time Complexity:** `O(n + m)`
+  - `n` = length of `word1`
+  - `m` = length of `word2`
+- **Space Complexity:** `O(n + m)`
+  - for the output string
+
+### Example
+
+```text
+Input:
+word1 = "abc"
+word2 = "pqr"
+
+Merge:
+a + p
+b + q
+c + r
+
+Output:
+"apbqcr"
+```
+
+### Example 2
+
+```text
+Input:
+word1 = "ab"
+word2 = "pqrs"
+
+Merge:
+a + p
+b + q
+
+Remaining:
+rs
+
+Output:
+"apbqrs"
+```
+
+### Example 3
+
+```text
+Input:
+word1 = "abcd"
+word2 = "pq"
+
+Merge:
+a + p
+b + q
+
+Remaining:
+cd
+
+Output:
+"apbqcd"
 ```
