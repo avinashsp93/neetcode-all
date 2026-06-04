@@ -343,6 +343,63 @@ return all(v == 0 for v in my_dict_letter_to_word.values())
 
 - Ensures no leftover unmatched characters exist
 
+
+## 0290 - Word Pattern
+
+- **Problem:** Given a pattern string and a space-separated string `s`, determine if `s` follows the same pattern.
+- **Pattern:** `Hash Map / Bi-directional Mapping`
+- **Recognition:**
+  - Need a one-to-one correspondence between two sequences
+  - Similar to **Isomorphic Strings**
+  - Mapping must be consistent in both directions
+- **Key Insight:**
+  - Maintain two hash maps:
+    - `pattern character → word`
+    - `word → pattern character`
+  - For each position:
+    - verify existing mappings are consistent
+    - create new mappings if absent
+  - Both mappings must agree to satisfy a bijection
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+pattern = "abba"
+s = "dog cat cat dog"
+
+Mappings:
+a → dog
+b → cat
+
+Reverse Mappings:
+dog → a
+cat → b
+
+All mappings consistent
+
+Output:
+True
+```
+```
+Input:
+pattern = "abba"
+s = "dog cat cat fish"
+
+Expected:
+b → cat
+
+Found:
+b → fish
+
+Conflict
+
+Output:
+False
+```
+
 ## 0392 - Is Subsequence
 
 - **Problem:** Given two strings `s` and `t`, return `True` if `s` is a subsequence of `t`, otherwise return `False`.

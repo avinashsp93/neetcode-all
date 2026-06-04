@@ -31,6 +31,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 
 ### Medium
 
+- [0034 - Find First and Last Position of Element in Sorted Array](#0034---find-first-and-last-position-of-element-in-sorted-array)
 - [0036 - Valid Sudoku](#0036---valid-sudoku)
 - [0048 - Rotate Image](#0048---rotate-image)
 - [0054 - Spiral Matrix](#0054---spiral-matrix)
@@ -1279,6 +1280,34 @@ Output:
 
 <br><br>
 
+## 0034 - Find First and Last Position of Element in Sorted Array
+
+- **Problem:** Given a sorted array `nums` and a target value, return the starting and ending position of the target in the array. If the target is not found, return `[-1, -1]`.
+- **Pattern:** `Binary Search`
+- **Recognition:**
+  - Sorted array allows for binary search
+  - Need to find both first and last occurrence
+  - Two-pass binary search approach is common
+- **Key Insight:**
+  - Perform binary search to find the leftmost index of the target
+  - Perform binary search to find the rightmost index of the target
+  - If either search fails, return `[-1, -1]`
+- **Time Complexity:** `O(log n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [5,7,7,8,8,10]
+target = 8
+Leftmost index of 8 is 3
+Rightmost index of 8 is 4
+Output:
+[3,4]
+```
+
+
 ## 0036 - Valid Sudoku
 
 - **Problem:** Determine if a partially filled Sudoku board is valid according to Sudoku rules:
@@ -1544,6 +1573,57 @@ Compare:
 
 Remaining:
 1 > 0
+
+Output:
+-1
+```
+
+## 0165 - Compare Version Numbers
+
+- **Problem:** Compare two version strings and return:
+  - `1` if `version1 > version2`
+  - `-1` if `version1 < version2`
+  - `0` if they are equal
+- **Pattern:** `Two Pointers` / `String Parsing`
+- **Recognition:**
+  - Numbers are split into revisions separated by `.`
+  - Leading zeros should not affect comparison
+  - Need lexicographical comparison on numeric components
+- **Key Insight:**
+  - Split both version strings into revision arrays
+  - Compare corresponding revisions as integers
+  - If revisions differ, return immediately
+  - If one version has remaining revisions, they only matter if any remaining value is non-zero
+- **Time Complexity:** `O(n + m)`
+- **Space Complexity:** `O(n + m)`
+  - due to storing split revisions
+
+### Example
+
+```text
+Input:
+version1 = "1.01"
+version2 = "1.001"
+
+Compare:
+1 == 1
+1 == 1
+
+Output:
+0
+```
+
+```text
+Input:
+version1 = "1.0"
+version2 = "1.0.1"
+
+Compare:
+1 == 1
+0 == 0
+
+Remaining revision:
+1
 
 Output:
 -1

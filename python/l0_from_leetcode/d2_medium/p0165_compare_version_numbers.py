@@ -22,4 +22,5 @@ class Solution:
                 if int(v1[i]) > 0:
                     return 1
                 i+=1
+        
         return 0
