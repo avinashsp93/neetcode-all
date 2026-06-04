@@ -13,7 +13,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [0171 - Excel Sheet Column Number](#0171---excel-sheet-column-number)
 - [0268 - Missing Number](#0268---missing-number)
 - [0278 - First Bad Version](#0278---first-bad-version)
-- [0342 -Power of Four](#0342--power-of-four)
+- [0342 - Power of Four](#0342--power-of-four)
 - [0383 - Ransom Note](#0383---ransom-note)
 - [0389 - Find the Difference](#0389---find-the-difference)
 - [0412 - Fizz Buzz](#0412---fizz-buzz)
@@ -1008,6 +1008,71 @@ Output:
 1
 ```
 
+## 3936 - Minimum Swaps to Move Zeroes to End
+
+- **Problem:** Given a binary array containing `0`s and `1`s, determine the minimum number of swaps required to move all `0`s to the end of the array.
+- **Pattern:** `Counting` / `Greedy Observation`
+- **Recognition:**
+  - The final positions of all `0`s are known: they must occupy the last `k` positions, where `k` is the number of zeroes.
+  - Swapping can place a misplaced `1` in the correct position with a `0` from elsewhere.
+  - Only the elements in the target suffix need to be inspected.
+- **Key Insight:**
+  - Count the total number of zeroes, `k`.
+  - In the desired arrangement, the last `k` positions should all contain `0`.
+  - Examine those last `k` positions:
+    - Every `1` found there is misplaced.
+    - Each misplaced `1` requires exactly one swap with a `0` outside the suffix.
+  - Therefore, the answer is simply the number of non-zero elements in the last `k` positions.
+
+- **Time Complexity:** `O(n)`
+  - Counting zeroes and scanning the target suffix each take linear time.
+- **Space Complexity:** `O(1)`
+  - excluding the temporary slice created by Python
+
+### Example
+
+```text
+Input:
+nums = [0, 1, 0, 1, 1]
+
+Number of zeroes:
+k = 2
+
+Target suffix (last 2 positions):
+[1, 1]
+
+Misplaced elements:
+2 ones
+
+Minimum swaps:
+2
+
+Output:
+2
+```
+
+### Example 2
+
+```text
+Input:
+nums = [1, 1, 1, 0, 0]
+
+Number of zeroes:
+k = 2
+
+Target suffix (last 2 positions):
+[0, 0]
+
+Misplaced elements:
+0
+
+Minimum swaps:
+0
+
+Output:
+0
+```
+
 <br><br>
 
 <h2 style="text-align: center;text-transform: uppercase;">
@@ -1309,57 +1374,6 @@ Compare:
 
 Remaining:
 1 > 0
-
-Output:
--1
-```
-
-## 0165 - Compare Version Numbers
-
-- **Problem:** Compare two version strings and return:
-  - `1` if `version1 > version2`
-  - `-1` if `version1 < version2`
-  - `0` if they are equal
-- **Pattern:** `Two Pointers` / `String Parsing`
-- **Recognition:**
-  - Numbers are split into revisions separated by `.`
-  - Leading zeros should not affect comparison
-  - Need lexicographical comparison on numeric components
-- **Key Insight:**
-  - Split both version strings into revision arrays
-  - Compare corresponding revisions as integers
-  - If revisions differ, return immediately
-  - If one version has remaining revisions, they only matter if any remaining value is non-zero
-- **Time Complexity:** `O(n + m)`
-- **Space Complexity:** `O(n + m)`
-  - due to storing split revisions
-
-### Example
-
-```text
-Input:
-version1 = "1.01"
-version2 = "1.001"
-
-Compare:
-1 == 1
-1 == 1
-
-Output:
-0
-```
-
-```text
-Input:
-version1 = "1.0"
-version2 = "1.0.1"
-
-Compare:
-1 == 1
-0 == 0
-
-Remaining revision:
-1
 
 Output:
 -1
