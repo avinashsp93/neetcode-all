@@ -28,6 +28,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [2287 - Rearrange Characters to Form Target String](#2287---rearrange-characters-to-form-target-string)
 - [2319 - Check if Matrix is X-Matrix](#2319---check-if-matrix-is-x-matrix)
 - [3158 - Find the XOR of Numbers Which Appear Twice](#3158---find-the-xor-of-numbers-which-appear-twice)
+- [3936 - Minimum Swaps to move zeros to the end](#3936---minimum-swaps-to-move-zeros-to-the-end)
 
 ### Medium
 
