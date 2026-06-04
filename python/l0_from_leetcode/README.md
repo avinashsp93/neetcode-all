@@ -1007,6 +1007,270 @@ Output:
 1
 ```
 
+## 3908 - Valid Digit Number
+
+- **Problem:** Determine whether digit `x` appears in the decimal representation of `n`, but **not as the first digit**.
+- **Pattern:** `String Conversion` / `Digit Inspection`
+- **Recognition:**
+  - Need to inspect individual digits of a number.
+  - Position of a digit matters.
+  - String conversion provides simple digit access.
+- **Key Insight:**
+  - Convert `n` to a string.
+  - The first digit must not be `x`.
+  - The digit `x` must appear somewhere after the first position.
+  - Check both conditions directly:
+    ```python
+    str(x) != str(n)[0] and str(x) in str(n)[1:]
+    ```
+
+- **Time Complexity:** `O(d)`
+  - `d` = number of digits in `n`
+- **Space Complexity:** `O(d)`
+  - due to string conversion
+
+### Example
+
+```text
+Input:
+n = 3123
+x = 2
+
+Check:
+First digit = '3'
+Remaining digits = '123'
+
+'2' != '3'  -> True
+'2' in '123' -> True
+
+Output:
+True
+```
+
+## 3921 - Score Validator
+
+- **Problem:** Process a sequence of cricket scoring events and return the final score and number of wickets lost.
+- **Pattern:** `Simulation` / `Event Processing`
+- **Recognition:**
+  - Input consists of sequential events that modify a running state.
+  - Multiple event types have different effects on score and wickets.
+  - Requires maintaining cumulative values while iterating once through the input.
+- **Key Insight:**
+  - Track two variables:
+    - `score` → total runs scored
+    - `wickets` → total wickets lost
+  - Process each event:
+    - `"W"` → increment wickets
+    - `"WD"` or `"NB"` → add 1 run
+    - Numeric string (`"0"`–`"6"`) → add corresponding runs
+  - Cricket innings end after 10 wickets, so return immediately when the 10th wicket falls.
+
+- **Time Complexity:** `O(n)`
+  - `n` = number of events
+- **Space Complexity:** `O(1)`
+  - only a few variables are used
+
+### Example
+
+```text
+Input:
+events = ["1", "4", "WD", "W", "6", "NB"]
+
+Processing:
+score = 0, wickets = 0
+
+"1"  -> score = 1
+"4"  -> score = 5
+"WD" -> score = 6
+"W"  -> wickets = 1
+"6"  -> score = 12
+"NB" -> score = 13
+
+Output:
+[13, 1]
+```
+
+### Early Termination Example
+
+```text
+Input:
+events = ["W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "6"]
+
+Processing:
+10th wicket falls
+
+Innings ends immediately.
+
+Output:
+[0, 10]
+```
+
+## 3925 - Concatenate Array with Reverse
+
+- **Problem:** Return a new array formed by concatenating `nums` with its reversed version.
+- **Pattern:** `Array Manipulation`
+- **Recognition:**
+  - Need to create a transformed copy of the input array.
+  - Reverse order of elements is required.
+  - Result is a combination of the original array and its reverse.
+- **Key Insight:**
+  - Use Python slicing `nums[::-1]` to create a reversed copy of the array.
+  - Concatenate the original array with the reversed array using `+`.
+  - This produces a new array containing all elements followed by the same elements in reverse order.
+
+- **Time Complexity:** `O(n)`
+  - Creating the reversed copy takes `O(n)`.
+  - Concatenation also takes `O(n)`.
+- **Space Complexity:** `O(n)`
+  - A new array of size `2n` is created.
+
+### Example
+
+```text
+Input:
+nums = [1, 2, 3]
+
+Reverse:
+[3, 2, 1]
+
+Concatenation:
+[1, 2, 3] + [3, 2, 1]
+
+Output:
+[1, 2, 3, 3, 2, 1]
+```
+
+### Example 2
+
+```text
+Input:
+nums = [5, 10]
+
+Reverse:
+[10, 5]
+
+Concatenation:
+[5, 10] + [10, 5]
+
+Output:
+[5, 10, 10, 5]
+```
+
+## 3931 - Check Adjacent Digit Differences
+
+- **Problem:** Determine whether the absolute difference between every pair of adjacent digits in a string is at most `2`.
+- **Pattern:** `Sequential Traversal` / `Adjacent Comparison`
+- **Recognition:**
+  - Need to compare neighboring elements in a sequence.
+  - Validation depends on a condition holding for every adjacent pair.
+  - Can stop early as soon as an invalid pair is found.
+- **Key Insight:**
+  - Iterate through the string from left to right.
+  - For each index `i`, compare digit `s[i]` with `s[i + 1]`.
+  - If their absolute difference exceeds `2`, return `False`.
+  - If all adjacent pairs satisfy the condition, return `True`.
+
+- **Time Complexity:** `O(n)`
+  - `n` = length of the string
+- **Space Complexity:** `O(1)`
+  - only a few variables are used
+
+### Example
+
+```text
+Input:
+s = "12345"
+
+Comparisons:
+|1 - 2| = 1
+|2 - 3| = 1
+|3 - 4| = 1
+|4 - 5| = 1
+
+All differences are ≤ 2
+
+Output:
+True
+```
+
+### Example 2
+
+```text
+Input:
+s = "1358"
+
+Comparisons:
+|1 - 3| = 2
+|3 - 5| = 2
+|5 - 8| = 3
+
+Difference exceeds 2
+
+Output:
+False
+```
+
+## 3945 - Digit Frequency Score
+
+- **Problem:** Calculate the digit frequency score of an integer `n`, where each digit contributes:
+
+  `digit × frequency of that digit`
+
+- **Pattern:** `Hash Map Counting`
+- **Recognition:**
+  - Need to count occurrences of elements.
+  - Each unique digit contributes based on its frequency.
+  - A hash map (dictionary) is a natural way to store counts.
+- **Key Insight:**
+  - Convert the number to a string and count the frequency of each digit using a dictionary.
+  - For every digit-frequency pair:
+
+    `contribution = digit × frequency`
+
+  - Sum all contributions to obtain the final score.
+
+- **Time Complexity:** `O(d)`
+  - `d` = number of digits in `n`
+- **Space Complexity:** `O(k)`
+  - `k` = number of distinct digits (`≤ 10`)
+
+### Example
+
+```text
+Input:
+n = 122333
+
+Digit Frequencies:
+1 -> 1
+2 -> 2
+3 -> 3
+
+Score:
+(1 × 1) + (2 × 2) + (3 × 3)
+= 1 + 4 + 9
+= 14
+
+Output:
+14
+```
+
+### Example 2
+
+```text
+Input:
+n = 5555
+
+Digit Frequencies:
+5 -> 4
+
+Score:
+5 × 4
+= 20
+
+Output:
+20
+```
+
 <br><br>
 
 <h2 style="text-align: center;text-transform: uppercase;">
@@ -1066,7 +1330,7 @@ Seen:
 No duplicates → valid
 ```
 
-## 0054 - Rotate Image
+## 0048 - Rotate Image
 
 - **Problem:** Rotate an `n x n` matrix by `90°` clockwise in-place.
 - **Pattern:** `Matrix Transformation`
