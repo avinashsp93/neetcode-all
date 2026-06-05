@@ -28,6 +28,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [2287 - Rearrange Characters to Form Target String](#2287---rearrange-characters-to-form-target-string)
 - [2319 - Check if Matrix is X-Matrix](#2319---check-if-matrix-is-x-matrix)
 - [3158 - Find the XOR of Numbers Which Appear Twice](#3158---find-the-xor-of-numbers-which-appear-twice)
+- [3894 - Traffic Signal Color](#3894---traffic-signal-color)
 - [3903 - First Stable Index](#3903---first-stable-index)
 - [3908 - Valid Digit Number](#3908---valid-digit-number)
 - [3912 - Valid Elements in an Array](#3912---valid-elements-in-an-array)
@@ -1096,6 +1097,38 @@ Remaining:
 
 Output:
 1
+```
+
+## 3894 - Traffic Signal Color
+
+- **Problem:** Determine the traffic signal color based on the value of `timer`.
+- **Pattern:** `Conditional Logic`
+- **Recognition:**
+  - Output depends on a fixed set of conditions.
+  - No iteration or complex data structures are required.
+  - Each timer value range maps directly to a specific signal color.
+- **Key Insight:**
+  - Check the timer value against the defined rules:
+    - `30 < timer <= 90` → `"Red"`
+    - `timer == 30` → `"Orange"`
+    - `timer == 0` → `"Green"`
+    - Otherwise → `"Invalid"`
+  - Return the corresponding signal color as soon as a condition is met.
+
+- **Time Complexity:** `O(1)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+timer = 30
+
+Check:
+timer == 30
+
+Output:
+"Orange"
 ```
 
 ## 3903 - First Stable Index
