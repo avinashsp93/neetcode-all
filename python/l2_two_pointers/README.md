@@ -1,7 +1,7 @@
 # Two Pointers
 
 ### Easy
-
+- [0088 - Merge Sorted Array](#0088---merge-sorted-array)
 - [0125 - Valid Palindrome I](#0125---valid-palindrome-i)
 - [0283 - Move Zeroes](#0283---move-zeroes)
 - [0344 - Reverse String](#0344---reverse-string)
@@ -15,6 +15,88 @@
 </h2>
 
 <br><br>
+
+## 0088 - Merge Sorted Array
+
+- **Problem:** Merge two sorted arrays `nums1` and `nums2` into a single sorted array stored inside `nums1`.
+- **Pattern:** `Two Pointers` / `Reverse Traversal`
+- **Recognition:**
+  - Two sorted arrays need to be merged.
+  - `nums1` already has enough extra space to hold all elements.
+  - Writing from the front would overwrite unprocessed values.
+- **Key Insight:**
+  - Use three pointers:
+    - `p1` → last valid element in `nums1`
+    - `p2` → last element in `nums2`
+    - `p` → last position in `nums1`
+  - Compare elements from the end of both arrays.
+  - Place the larger element at position `p`.
+  - Move the corresponding pointer and continue.
+  - If elements remain in `nums2`, copy them into `nums1`.
+  - No need to copy remaining elements from `nums1` since they are already in the correct position.
+
+- **Time Complexity:** `O(m + n)`
+  - Each element is processed at most once.
+- **Space Complexity:** `O(1)`
+  - Merging is performed in-place.
+
+### Example
+
+```text
+Input:
+nums1 = [1,2,3,0,0,0]
+m = 3
+
+nums2 = [2,5,6]
+n = 3
+
+Pointers:
+p1 = 2 (3)
+p2 = 2 (6)
+p  = 5
+
+Step 1:
+6 > 3
+nums1[5] = 6
+
+[1,2,3,0,0,6]
+
+Step 2:
+5 > 3
+nums1[4] = 5
+
+[1,2,3,0,5,6]
+
+Step 3:
+3 > 2
+nums1[3] = 3
+
+[1,2,3,3,5,6]
+
+Step 4:
+2 == 2
+nums1[2] = 2
+
+[1,2,2,3,5,6]
+
+Remaining:
+Copy 2 from nums2
+
+Output:
+[1,2,2,3,5,6]
+```
+
+### Why Reverse Traversal?
+
+```text
+nums1 = [1,2,3,0,0,0]
+
+If we merge from the front,
+values in nums1 may be overwritten before being compared.
+
+By filling from the end,
+all unprocessed elements remain intact.
+```
 
 ## 0125 - Valid Palindrome I
 
