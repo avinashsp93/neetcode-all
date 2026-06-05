@@ -28,6 +28,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [2287 - Rearrange Characters to Form Target String](#2287---rearrange-characters-to-form-target-string)
 - [2319 - Check if Matrix is X-Matrix](#2319---check-if-matrix-is-x-matrix)
 - [3158 - Find the XOR of Numbers Which Appear Twice](#3158---find-the-xor-of-numbers-which-appear-twice)
+- [3917 - Count Indices with Opposite Parity](#3917---count-indices-with-opposite-parity)
 - [3921 - Score Validator](#3921---score-validator)
 - [3925 - Concatenate Array with Reverse](#3925---concatenate-array-with-reverse)
 - [3931 - Check Adjacent Digit Differences](#3931---check-adjacent-digit-differences)
@@ -1132,6 +1133,100 @@ Remaining digits = '123'
 
 Output:
 True
+```
+
+## 3912 - Valid Elements in an Array
+
+- **Problem:** Find all elements that are greater than every element to their left and greater than every element to their right.
+- **Pattern:** `Prefix Maximum` / `Suffix Maximum`
+- **Recognition:**
+  - Need to compare each element against all elements on both sides.
+  - Direct comparison with every other element would be inefficient.
+  - Prefix and suffix information can be precomputed to make validation efficient.
+- **Key Insight:**
+  - Traverse from left to right and mark elements that are greater than all previous elements.
+  - Traverse from right to left and mark elements that are greater than all elements to their right.
+  - An element is valid only if it satisfies both conditions.
+  - Collect all elements that are marked valid from both directions.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+  - for the prefix and suffix marker arrays
+
+### Example
+
+```text
+Input:
+nums = [1, 3, 2, 5, 4]
+
+Greater than all elements to the left:
+[True, True, False, True, False]
+
+Greater than all elements to the right:
+[False, True, False, True, True]
+
+Valid elements:
+3, 5
+
+Output:
+[3, 5]
+```
+
+## 3917 - Count Indices with Opposite Parity
+
+- **Problem:** For each index `i`, count how many elements to its right have the opposite parity (even vs. odd) and return the resulting array.
+- **Pattern:** `Reverse Traversal` / `Counting`
+- **Recognition:**
+  - Need information about elements that appear to the right of the current index.
+  - Counting is based on a simple property (parity).
+  - A reverse traversal allows maintaining running counts efficiently.
+- **Key Insight:**
+  - Traverse the array from right to left.
+  - Maintain:
+    - `evenC` = number of even elements seen so far
+    - `oddC` = number of odd elements seen so far
+  - For each element:
+    - If it is even, all previously seen odd numbers contribute to its answer.
+    - If it is odd, all previously seen even numbers contribute to its answer.
+  - Store the counts while traversing backwards, then reverse the result to restore the original order.
+
+- **Time Complexity:** `O(n)`
+  - Single pass through the array plus one reversal.
+- **Space Complexity:** `O(n)`
+  - For the output array.
+
+### Example
+
+```text
+Input:
+nums = [2, 1, 4, 3]
+
+Traverse from right to left:
+
+3 (odd):
+evenC = 0
+answer = 0
+
+4 (even):
+oddC = 1
+answer = 1
+
+1 (odd):
+evenC = 1
+answer = 1
+
+2 (even):
+oddC = 2
+answer = 2
+
+Collected (reverse order):
+[0, 1, 1, 2]
+
+Reverse:
+[2, 1, 1, 0]
+
+Output:
+[2, 1, 1, 0]
 ```
 
 ## 3921 - Score Validator
