@@ -28,6 +28,9 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [2287 - Rearrange Characters to Form Target String](#2287---rearrange-characters-to-form-target-string)
 - [2319 - Check if Matrix is X-Matrix](#2319---check-if-matrix-is-x-matrix)
 - [3158 - Find the XOR of Numbers Which Appear Twice](#3158---find-the-xor-of-numbers-which-appear-twice)
+- [3903 - First Stable Index](#3903---first-stable-index)
+- [3908 - Valid Digit Number](#3908---valid-digit-number)
+- [3912 - Valid Elements in an Array](#3912---valid-elements-in-an-array)
 - [3917 - Count Indices with Opposite Parity](#3917---count-indices-with-opposite-parity)
 - [3921 - Score Validator](#3921---score-validator)
 - [3925 - Concatenate Array with Reverse](#3925---concatenate-array-with-reverse)
@@ -1093,6 +1096,63 @@ Remaining:
 
 Output:
 1
+```
+
+## 3903 - First Stable Index
+
+- **Problem:** Find the smallest index `i` such that the difference between the maximum value seen up to `i` and the minimum value seen from `i` to the end is at most `k`.
+- **Pattern:** `Prefix Maximum` / `Suffix Minimum`
+- **Recognition:**
+  - Need information from both the left and right side of every index.
+  - Recomputing maximums and minimums for each index would be inefficient.
+  - Prefix and suffix arrays allow constant-time validation per index.
+- **Key Insight:**
+  - Build a `maxScores` array where:
+
+    `maxScores[i] = max(nums[0...i])`
+
+  - Build a `minScores` array where:
+
+    `minScores[i] = min(nums[i...n-1])`
+
+  - For each index `i`, check whether:
+
+    ```text
+    maxScores[i] - minScores[i] <= k
+    ```
+
+  - Return the first index that satisfies the condition.
+  - If no valid index exists, return `-1`.
+
+- **Time Complexity:** `O(n)`
+  - One pass for prefix maximums, one pass for suffix minimums, and one validation pass.
+- **Space Complexity:** `O(n)`
+  - For the prefix and suffix arrays.
+
+### Example
+
+```text
+Input:
+nums = [3, 1, 4, 2]
+k = 2
+
+Prefix maximums:
+[3, 3, 4, 4]
+
+Suffix minimums:
+[1, 1, 2, 2]
+
+Differences:
+3 - 1 = 2 ✓
+3 - 1 = 2 ✓
+4 - 2 = 2 ✓
+4 - 2 = 2 ✓
+
+First valid index:
+0
+
+Output:
+0
 ```
 
 ## 3908 - Valid Digit Number
