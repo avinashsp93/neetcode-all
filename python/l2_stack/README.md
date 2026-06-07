@@ -157,3 +157,89 @@ Current depth:
 Output:
 2
 ```
+
+## 2696 - Minimum String Length After Removing Substrings
+
+- **Problem:** Repeatedly remove occurrences of `"AB"` and `"CD"` from a string and return the minimum possible length after all removals.
+- **Pattern:** `Stack`
+- **Recognition:**
+  - Characters may form removable pairs with adjacent previous characters.
+  - Removing one pair can create new removable pairs.
+  - A stack efficiently tracks the current valid characters while processing the string.
+- **Key Insight:**
+  - Traverse the string character by character.
+  - Use a stack to store characters that have not been removed.
+  - When encountering:
+    - `"B"` and the top of the stack is `"A"`, remove the pair.
+    - `"D"` and the top of the stack is `"C"`, remove the pair.
+  - Otherwise, push the current character onto the stack.
+  - After processing all characters, the stack contains the remaining string, and its size is the answer.
+
+- **Time Complexity:** `O(n)`
+  - Each character is pushed and popped at most once.
+- **Space Complexity:** `O(n)`
+  - In the worst case, all characters remain in the stack.
+
+### Example
+
+```text
+Input:
+s = "ABFCACDB"
+
+Process:
+AB -> removed
+FCACDB
+CD -> removed
+FCAB
+AB -> removed
+FC
+
+Remaining string:
+"FC"
+
+Output:
+2
+```
+
+## 3174 - Clear Digits
+
+- **Problem:** Remove each digit and the closest non-digit character immediately to its left. Return the resulting string after all removals.
+- **Pattern:** `Stack`
+- **Recognition:**
+  - A character must be removed based on a future character (a digit).
+  - Removals affect the most recent valid character.
+  - A stack naturally keeps track of the nearest character to the left.
+- **Key Insight:**
+  - Traverse the string from left to right.
+  - Store characters in a stack.
+  - When a digit is encountered:
+    - Remove the most recent letter from the stack.
+    - Do not add the digit to the stack.
+  - Otherwise, push the character onto the stack.
+  - After processing all characters, the stack contains the final string.
+
+- **Time Complexity:** `O(n)`
+  - Each character is pushed and popped at most once.
+- **Space Complexity:** `O(n)`
+  - In the worst case, all characters remain in the stack.
+
+### Example
+
+```text
+Input:
+s = "abc3d2"
+
+Process:
+a -> [a]
+b -> [a, b]
+c -> [a, b, c]
+3 -> remove c
+d -> [a, b, d]
+2 -> remove d
+
+Remaining:
+ab
+
+Output:
+"ab"
+```
