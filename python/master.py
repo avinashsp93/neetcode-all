@@ -1,19 +1,16 @@
 from typing import List
-from l3_linked_list.d1_easy.reverse_linked_list import ListNode, Solution
+from l3_linked_list.d1_easy.p0021_merge_two_sorted_lists import ListNode, Solution
 
 def main() -> None:
-    l1 = ListNode(1, None)
-    l2 = ListNode(2, None)
-    l3 = ListNode(3, None)
-    l4 = ListNode(4, None)
+    l1 = ListNode(1, ListNode(2, ListNode(4, ListNode(4, ListNode(6, None)))))
+    l2 = ListNode(1, ListNode(3, ListNode(4, ListNode(5, None))))
 
-    l1.next = l2
-    l2.next = l3
-    l3.next = l4
 
-    head = l1
+    l3 = Solution().mergeTwoLists(l1, l2)
 
-    Solution().reverseListRecursive(head)
+    while l3 is not None:
+        print(l3.val)
+        l3 = l3.next
 
 
 if __name__ == "__main__":
