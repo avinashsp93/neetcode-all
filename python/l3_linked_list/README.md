@@ -3,6 +3,7 @@
 ### Easy
 
 - [0206 - Reverse Linked List](#0206---reverse-linked-list)
+- [0021 - Merge Two Sorted Lists](#0021---merge-two-sorted-lists)
 
 <br><br>
 
@@ -57,4 +58,40 @@ Iteration 5:
 
 Output:
 5 -> 4 -> 3 -> 2 -> 1
+```
+
+## 0021 - Merge Two Sorted Lists
+
+- **Problem:** Merge two sorted linked lists into a single sorted linked list and return its head.
+- **Pattern:** `Linked List` / `Two Pointers`
+- **Recognition:**
+  - Two sorted sequences need to be combined while maintaining sorted order.
+  - Only the current node from each list needs to be compared.
+  - A dummy node simplifies handling the head of the merged list.
+- **Key Insight:**
+  - Use a dummy node to build the merged list.
+  - Maintain a `tail` pointer representing the last node in the merged list.
+  - Compare the current nodes of both lists:
+    - Append the smaller node to the merged list.
+    - Advance the corresponding list pointer.
+  - Once one list is exhausted, append the remaining nodes of the other list.
+  - Return `dummy.next` as the head of the merged list.
+
+- **Time Complexity:** `O(n + m)`
+  - `n` and `m` are the lengths of the two lists.
+- **Space Complexity:** `O(1)`
+  - Nodes are reused; no additional list is created.
+
+### Example
+
+```text
+Input:
+list1 = 1 -> 2 -> 4
+list2 = 1 -> 3 -> 4
+
+Merge:
+1 -> 1 -> 2 -> 3 -> 4 -> 4
+
+Output:
+1 -> 1 -> 2 -> 3 -> 4 -> 4
 ```

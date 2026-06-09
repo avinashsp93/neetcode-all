@@ -1099,6 +1099,38 @@ Output:
 1
 ```
 
+## 3783 - Find Mirror Distance of an Integer
+
+- **Problem:** Find the absolute difference between an integer and its digit-reversed (mirror) form.
+- **Pattern:** `Math` / `String Manipulation`
+- **Recognition:**
+  - Requires reversing the digits of a number.
+  - The result is the distance between the original and reversed values.
+- **Key Insight:**
+  - Convert the number to a string.
+  - Reverse it using slicing (`[::-1]`).
+  - Convert back to an integer and compute the absolute difference.
+
+- **Time Complexity:** `O(d)`
+  - `d` = number of digits in `n`
+- **Space Complexity:** `O(d)`
+
+### Example
+
+```text
+Input:
+n = 123
+
+Mirror:
+321
+
+Distance:
+|321 - 123| = 198
+
+Output:
+198
+```
+
 ## 3894 - Traffic Signal Color
 
 - **Problem:** Determine the traffic signal color based on the value of `timer`.
