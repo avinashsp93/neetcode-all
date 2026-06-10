@@ -11,6 +11,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [0070 - Climbing Stairs](#0070---climbing-stairs)
 - [0136 - Single Number](#0136---single-number)
 - [0171 - Excel Sheet Column Number](#0171---excel-sheet-column-number)
+- [0231 - Power of Two](#0231---power-of-two)
 - [0268 - Missing Number](#0268---missing-number)
 - [0278 - First Bad Version](#0278---first-bad-version)
 - [0342 - Power of Four](#0342--power-of-four)
@@ -28,6 +29,9 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [2287 - Rearrange Characters to Form Target String](#2287---rearrange-characters-to-form-target-string)
 - [2319 - Check if Matrix is X-Matrix](#2319---check-if-matrix-is-x-matrix)
 - [3158 - Find the XOR of Numbers Which Appear Twice](#3158---find-the-xor-of-numbers-which-appear-twice)
+- [3783 - Mirror Distance of an Integer](#3783---mirror-distance-of-an-integer)
+- [3870 - Count Commas in Range](#3870---count-commas-in-range)
+- [3884 - First Matching Character From Both Ends](#3884---first-matching-character-from-both-ends)
 - [3894 - Traffic Signal Color](#3894---traffic-signal-color)
 - [3903 - First Stable Index](#3903---first-stable-index)
 - [3908 - Valid Digit Number](#3908---valid-digit-number)
@@ -1101,7 +1105,7 @@ Output:
 1
 ```
 
-## 3783 - Find Mirror Distance of an Integer
+## 3783 - Mirror Distance of an Integer
 
 - **Problem:** Find the absolute difference between an integer and its digit-reversed (mirror) form.
 - **Pattern:** `Math` / `String Manipulation`
@@ -1131,6 +1135,69 @@ Distance:
 
 Output:
 198
+```
+
+## 3870 - Count Commas in Range
+
+- **Problem:** Count how many commas appear when writing all integers from `1` to `n` using standard comma-separated formatting.
+- **Pattern:** `Math`
+- **Key Insight:**
+  - Numbers from `1` to `999` contain no commas.
+  - Every number from `1000` to `n` contains exactly one comma.
+  - Therefore, the count is:
+    ```text
+    max(0, n - 999)
+    ```
+
+- **Time Complexity:** `O(1)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+n = 1005
+
+Numbers with commas:
+1000, 1001, 1002, 1003, 1004, 1005
+
+Output:
+6
+```
+
+## 3884 - First Matching Character from Both Ends
+
+- **Problem:** Find the first index `i` such that the character at position `i` matches the character at its mirrored position from the end of the string.
+- **Pattern:** `Two Pointers` / `Symmetric Comparison`
+- **Recognition:**
+  - Characters need to be compared with their mirrored counterparts.
+  - The first valid index should be returned immediately.
+  - Only one pass through the string is required.
+- **Key Insight:**
+  - For each index `i`, compare:
+    ```text
+    s[i] and s[n - i - 1]
+    ```
+  - If they match, return `i`.
+  - If no matching mirrored pair exists, return `-1`.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+s = "abca"
+
+Comparisons:
+s[0] = 'a', s[3] = 'a' ✓
+
+First matching index:
+0
+
+Output:
+0
 ```
 
 ## 3894 - Traffic Signal Color

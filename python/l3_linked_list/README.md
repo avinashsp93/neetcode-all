@@ -2,8 +2,8 @@
 
 ### Easy
 
-- [0206 - Reverse Linked List](#0206---reverse-linked-list)
 - [0021 - Merge Two Sorted Lists](#0021---merge-two-sorted-lists)
+- [0206 - Reverse Linked List](#0206---reverse-linked-list)
 
 <br><br>
 
