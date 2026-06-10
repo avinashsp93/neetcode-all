@@ -38,6 +38,8 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [3931 - Check Adjacent Digit Differences](#3931---check-adjacent-digit-differences)
 - [3936 - Minimum Swaps to Move Zeros to End](#3936---minimum-swaps-to-move-zeros-to-end)
 - [3945 - Digit Frequency Score](#3945---digit-frequency-score)
+- [3950 - Exactly One Consecutive Set Bits Pair](#3950---exactly-one-consecutive-set-bits-pair)
+- [3954 - Sum of Compatible Numbers in Range I](#3954---sum-of-compatible-numbers-in-range-i)
 
 ### Medium
 
@@ -1641,6 +1643,97 @@ Score:
 
 Output:
 20
+```
+
+## 3950 - Exactly One Consecutive Set Bits Pair
+
+- **Problem:** Determine whether the binary representation of `n` contains exactly one occurrence of two consecutive set bits (`11`).
+- **Pattern:** `Bit Manipulation`
+- **Recognition:**
+  - Requires analyzing the binary representation of a number.
+  - Looking for a specific bit pattern (`11`).
+  - Bitwise operations can inspect adjacent bits efficiently.
+- **Key Insight:**
+  - Examine the last two bits using:
+    ```text
+    n & 3
+    ```
+    where `3` is `11` in binary.
+  - If the result is `3`, the current two-bit window is `11`.
+  - Right shift the number one bit at a time and count how many times `11` appears.
+  - Return `True` only if exactly one such pair exists.
+
+- **Time Complexity:** `O(log n)`
+  - One iteration per bit.
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+n = 13
+
+Binary:
+1101
+
+Windows:
+01 -> not a pair
+10 -> not a pair
+11 -> one pair
+
+Count = 1
+
+Output:
+True
+```
+
+## 3954 - Sum of Compatible Numbers in Range I
+
+- **Problem:** Find the sum of all integers `x` in the range `[n-k, n+k]` such that `n` and `x` have no common set bits.
+- **Pattern:** `Bit Manipulation` / `Simulation`
+- **Recognition:**
+  - Need to evaluate every number in a given range.
+  - Compatibility is determined using a bitwise condition.
+  - The condition `n & x == 0` indicates no overlapping set bits.
+- **Key Insight:**
+  - Iterate through all numbers in the range:
+    ```text
+    [max(0, n-k), n+k]
+    ```
+  - For each number `x`, check:
+    ```text
+    n & x == 0
+    ```
+  - If true, add `x` to the running sum.
+  - Return the final accumulated sum.
+
+- **Time Complexity:** `O(k)`
+  - The range contains at most `2k + 1` numbers.
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+n = 5
+k = 2
+
+Range:
+[3, 4, 5, 6, 7]
+
+Binary:
+5 = 101
+
+3 = 011 -> 101 & 011 ≠ 0
+4 = 100 -> 101 & 100 ≠ 0
+5 = 101 -> 101 & 101 ≠ 0
+6 = 110 -> 101 & 110 ≠ 0
+7 = 111 -> 101 & 111 ≠ 0
+
+No compatible numbers.
+
+Output:
+0
 ```
 
 <br><br>
