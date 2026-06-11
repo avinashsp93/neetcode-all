@@ -1,16 +1,16 @@
 from typing import List
-from l3_linked_list.d1_easy.p0021_merge_two_sorted_lists import ListNode, Solution
+from l0_from_leetcode.d2_medium.p0074_search_a_2d_matrix import Solution
 
 def main() -> None:
-    l1 = ListNode(1, ListNode(2, ListNode(4, ListNode(4, ListNode(6, None)))))
-    l2 = ListNode(1, ListNode(3, ListNode(4, ListNode(5, None))))
 
+    matrix = [
+        [10, 20],
+        [30, 40]
+    ]
+    target = 5
 
-    l3 = Solution().mergeTwoLists(l1, l2)
-
-    while l3 is not None:
-        print(l3.val)
-        l3 = l3.next
+    result = Solution().searchMatrix(matrix, target)
+    print(result)
 
 
 if __name__ == "__main__":

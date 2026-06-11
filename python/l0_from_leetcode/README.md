@@ -30,9 +30,11 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [2319 - Check if Matrix is X-Matrix](#2319---check-if-matrix-is-x-matrix)
 - [3158 - Find the XOR of Numbers Which Appear Twice](#3158---find-the-xor-of-numbers-which-appear-twice)
 - [3783 - Mirror Distance of an Integer](#3783---mirror-distance-of-an-integer)
+- [3866 - First Unique Even Element](#3866---first-unique-even-element)
 - [3870 - Count Commas in Range](#3870---count-commas-in-range)
 - [3884 - First Matching Character From Both Ends](#3884---first-matching-character-from-both-ends)
 - [3894 - Traffic Signal Color](#3894---traffic-signal-color)
+- [3898 - Find the Degree of Each Vertex](#3898---find-the-degree-of-each-vertex)
 - [3903 - First Stable Index](#3903---first-stable-index)
 - [3908 - Valid Digit Number](#3908---valid-digit-number)
 - [3912 - Valid Elements in an Array](#3912---valid-elements-in-an-array)
@@ -1137,6 +1139,43 @@ Output:
 198
 ```
 
+## 3866 - First Unique Even Element
+
+- **Problem:** Find the first even number that appears exactly once in the array. Return `-1` if no such element exists.
+- **Pattern:** `Hash Map Counting`
+- **Recognition:**
+  - Need to identify unique elements.
+  - Order of appearance matters.
+  - Frequency counting followed by a second pass is a common approach.
+- **Key Insight:**
+  - Count the frequency of all even numbers using a hash map.
+  - Traverse the array again in its original order.
+  - Return the first even number whose frequency is `1`.
+  - If no unique even number exists, return `-1`.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(k)`
+  - `k` = number of distinct even values
+
+### Example
+
+```text
+Input:
+nums = [4, 2, 4, 6, 2, 8]
+
+Even Frequencies:
+4 -> 2
+2 -> 2
+6 -> 1
+8 -> 1
+
+First unique even:
+6
+
+Output:
+6
+```
+
 ## 3870 - Count Commas in Range
 
 - **Problem:** Count how many commas appear when writing all integers from `1` to `n` using standard comma-separated formatting.
@@ -1230,6 +1269,36 @@ timer == 30
 
 Output:
 "Orange"
+```
+
+## 3898 - Find the Degree of Each Vertex
+
+- **Problem:** Given an adjacency matrix of a graph, return the degree of each vertex.
+- **Pattern:** `Matrix Traversal`
+- **Key Insight:**
+  - In an adjacency matrix, each row represents a vertex.
+  - The degree of a vertex is the sum of the values in its row.
+  - Compute the sum for each row and store it in the result.
+
+- **Time Complexity:** `O(V²)`
+- **Space Complexity:** `O(V)`
+  - for the output array
+
+### Example
+
+```text
+Input:
+[
+ [0, 1, 1],
+ [1, 0, 0],
+ [1, 0, 0]
+]
+
+Row sums:
+[2, 1, 1]
+
+Output:
+[2, 1, 1]
 ```
 
 ## 3903 - First Stable Index
