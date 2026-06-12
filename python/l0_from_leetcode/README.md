@@ -25,6 +25,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [1572 - Matrix Diagonal Sum](#1572---matrix-diagonal-sum)
 - [1588 - Sum of All Odd Length Subarrays](#1588---sum-of-all-odd-length-subarrays)
 - [1720 - Decode XORed Array](#1720---decode-xored-array)
+- [1748 - Sum of Unique Elements](#1748---sum-of-unique-elements)
 - [1886 - Determine Whether Matrix Can Be Obtained By Rotation](#1886---determine-whether-matrix-can-be-obtained-by-rotation)
 - [2133 - Check if Every Row and Column Contains All Numbers](#2133---check-if-every-row-and-column-contains-all-numbers)
 - [2287 - Rearrange Characters to Form Target String](#2287---rearrange-characters-to-form-target-string)
@@ -956,6 +957,41 @@ arr[3] = 3 ^ 2 = 1
 
 Output:
 [1, 0, 2, 1]
+```
+
+## 1748 - Sum of Unique Elements
+
+- **Problem:** Return the sum of all elements in an array that appear exactly once.
+- **Pattern:** `Hash Map Counting`
+- **Recognition:**
+  - Need frequency of each element.
+  - Only elements with frequency `1` contribute to the result.
+  - A dictionary is the simplest way to track counts.
+- **Key Insight:**
+  - First pass: count occurrences of each number.
+  - Second pass: sum only those keys whose frequency is `1`.
+  - This cleanly separates counting from aggregation.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(k)`
+  - `k` = number of distinct elements
+
+### Example
+
+```text
+Input:
+nums = [1, 2, 2, 3]
+
+Frequencies:
+1 -> 1
+2 -> 2
+3 -> 1
+
+Unique elements:
+1 + 3
+
+Output:
+4
 ```
 
 ## 1886 - Determine Whether Matrix Can Be Obtained By Rotation
