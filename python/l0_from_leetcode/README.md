@@ -54,9 +54,11 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [0048 - Rotate Image](#0048---rotate-image)
 - [0054 - Spiral Matrix I](#0054---spiral-matrix-i)
 - [0059 - Spiral Matrix II](#0059---spiral-matrix-ii)
+- [0074 - Search a 2D Matrix](#0074---search-a-2d-matrix)
 - [0151 - Reverse Words in a String](#0151---reverse-words-in-a-string)
 - [0165 - Compare Version Numbers](#0165---compare-version-numbers)
 - [0287 - Find the Duplicate Number](#0287---find-the-duplicate-number)
+- [3895 - Count Digit Appearances](#3895---count-digit-appearances)
 
 <br><br>
 
@@ -2097,7 +2099,7 @@ Output:
 - **Problem:** Determine whether a target value exists in a matrix where:
   - Each row is sorted in ascending order.
   - The first element of each row is greater than the last element of the previous row.
-- **Pattern:** `Binary Search`
+- **Pattern:** `Binary Search` / `Floor Binary Search`
 - **Recognition:**
   - Rows are ordered relative to each other.
   - Each row is individually sorted.
@@ -2258,4 +2260,39 @@ Traversal:
 
 Output:
 2
+```
+
+## 3895 - Count Digit Appearances
+
+- **Problem:** Count how many times a given digit appears across all numbers in an array.
+- **Pattern:** `Math` / `Digit Extraction`
+- **Recognition:**
+  - Need to inspect every digit of every number.
+  - Converting to strings is possible, but arithmetic operations provide a direct solution.
+  - Digits can be extracted using modulo and integer division.
+- **Key Insight:**
+  - For each number:
+    - Handle the special case `0` when the target digit is also `0`.
+    - Repeatedly extract the last digit using `% 10`.
+    - If it matches the target digit, increment the count.
+    - Remove the last digit using `// 10`.
+  - Continue until all digits have been processed.
+
+- **Time Complexity:** `O(total_digits)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [12, 23, 202]
+digit = 2
+
+Occurrences:
+12  -> 1
+23  -> 1
+202 -> 2
+
+Output:
+4
 ```
