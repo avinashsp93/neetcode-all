@@ -2092,6 +2092,55 @@ Output:
 ]
 ```
 
+## 0074 - Search a 2D Matrix
+
+- **Problem:** Determine whether a target value exists in a matrix where:
+  - Each row is sorted in ascending order.
+  - The first element of each row is greater than the last element of the previous row.
+- **Pattern:** `Binary Search`
+- **Recognition:**
+  - Rows are ordered relative to each other.
+  - Each row is individually sorted.
+  - The matrix can be searched by first locating the candidate row, then searching within that row.
+- **Key Insight:**
+  - Perform a binary search on the first column to find the **floor row**:
+    - The last row whose first element is less than or equal to the target.
+    - Refer to the `searchBinary` code for implementation details.
+  - If the target equals the first element of a row, return `True`.
+  - Once the candidate row is found, perform a second binary search within that row.
+  - If the target is found, return `True`; otherwise return `False`.
+
+- **Time Complexity:** `O(log m + log n)`
+  - `m` = number of rows
+  - `n` = number of columns
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+matrix =
+[
+  [1, 3, 5, 7],
+  [10, 11, 16, 20],
+  [23, 30, 34, 60]
+]
+
+target = 16
+
+Step 1:
+Binary search rows using first column.
+Candidate row = [10, 11, 16, 20]
+
+Step 2:
+Binary search within the row.
+
+16 found.
+
+Output:
+True
+```
+
 ## 0151 - Reverse Words in a String
 
 - **Problem:** Reverse the order of words in a string while removing leading, trailing, and extra spaces between words.
