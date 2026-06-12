@@ -24,6 +24,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [1160 - Find Words That Can Be Formed by Characters](#1160---find-words-that-can-be-formed-by-characters)
 - [1572 - Matrix Diagonal Sum](#1572---matrix-diagonal-sum)
 - [1588 - Sum of All Odd Length Subarrays](#1588---sum-of-all-odd-length-subarrays)
+- [1720 - Decode XORed Array](#1720---decode-xored-array)
 - [1886 - Determine Whether Matrix Can Be Obtained By Rotation](#1886---determine-whether-matrix-can-be-obtained-by-rotation)
 - [2133 - Check if Every Row and Column Contains All Numbers](#2133---check-if-every-row-and-column-contains-all-numbers)
 - [2287 - Rearrange Characters to Form Target String](#2287---rearrange-characters-to-form-target-string)
@@ -58,6 +59,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [0151 - Reverse Words in a String](#0151---reverse-words-in-a-string)
 - [0165 - Compare Version Numbers](#0165---compare-version-numbers)
 - [0287 - Find the Duplicate Number](#0287---find-the-duplicate-number)
+- [2433 - Find The Original Array of Prefix XOR](#2433---find-the-original-array-of-prefix-xor)
 - [3895 - Count Digit Appearances](#3895---count-digit-appearances)
 
 <br><br>
@@ -916,6 +918,44 @@ Odd subarrays:
 
 Sum:
 = 58
+```
+
+## 1720 - Decode XORed Array
+
+- **Problem:** Given an XOR-encoded array and the first element of the original array, reconstruct the original array.
+- **Pattern:** `Bit Manipulation` / `XOR Property`
+- **Recognition:**
+  - Each encoded value represents XOR between consecutive original elements.
+  - Need to reconstruct a sequence from pairwise relationships.
+- **Key Insight:**
+  - Given:
+    ```text
+    encoded[i] = arr[i] ^ arr[i+1]
+    ```
+  - We can recover the next element using:
+    ```text
+    arr[i+1] = encoded[i] ^ arr[i]
+    ```
+  - Start with the given `first` element and iteratively build the original array.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+encoded = [1, 2, 3]
+first = 1
+
+Reconstruction:
+arr[0] = 1
+arr[1] = 1 ^ 1 = 0
+arr[2] = 2 ^ 0 = 2
+arr[3] = 3 ^ 2 = 1
+
+Output:
+[1, 0, 2, 1]
 ```
 
 ## 1886 - Determine Whether Matrix Can Be Obtained By Rotation
@@ -2260,6 +2300,73 @@ Traversal:
 
 Output:
 2
+```
+
+## 2433 - Find The Original Array of Prefix XOR
+
+- **Problem:** Given a prefix XOR array `pref`, reconstruct the original array.
+- **Pattern:** `Bit Manipulation` / `Prefix XOR`
+- **Recognition:**
+  - The input contains cumulative XOR values.
+  - XOR has a reversible property:
+    ```text
+    A ^ B ^ A = B
+    ```
+  - Previous prefix values can be used to recover original elements.
+- **Key Insight:**
+  - Given:
+    ```text
+    pref[i] = arr[0] ^ arr[1] ^ ... ^ arr[i]
+    ```
+  - The original element can be recovered as:
+    ```text
+    arr[i] = pref[i] ^ pref[i-1]
+    ```
+  - Since:
+    ```text
+    (arr[0] ^ ... ^ arr[i]) ^ (arr[0] ^ ... ^ arr[i-1])
+    = arr[i]
+    ```
+
+### Solution 1: Build a New Array
+
+- Create a result array starting with `pref[0]`.
+- For each index `i > 0`, append:
+
+  ```text
+  pref[i] ^ pref[i-1]
+  ```
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Solution 2: In-Place
+
+- Traverse from right to left.
+- Replace each element with:
+  ```text
+  pref[i] ^= pref[i-1]
+  ```
+- The input array itself becomes the original array.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+pref = [5, 2, 0, 3, 1]
+
+Recover:
+arr[0] = 5
+arr[1] = 2 ^ 5 = 7
+arr[2] = 0 ^ 2 = 2
+arr[3] = 3 ^ 0 = 3
+arr[4] = 1 ^ 3 = 2
+
+Output:
+[5, 7, 2, 3, 2]
 ```
 
 ## 3895 - Count Digit Appearances
