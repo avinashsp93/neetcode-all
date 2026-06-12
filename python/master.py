@@ -1,8 +1,9 @@
 from typing import List
-from l0_from_leetcode.d2_medium.p2433_find_the_original_array_of_prefix_xor import Solution
+from l3_linked_list.d1_easy.p0203_remove_linked_list_elements import Solution, ListNode
 def main() -> None:
-    pref = [5,2,0,3,1]
-    result = Solution().findArray(pref)
+    head = ListNode(7, ListNode(7, ListNode(7, ListNode(7, None))))
+    val = 7
+    result = Solution().removeElements(head, val)
     print(result)
 
 
