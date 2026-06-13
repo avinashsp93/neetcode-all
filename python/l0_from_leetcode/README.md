@@ -34,6 +34,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [3783 - Mirror Distance of an Integer](#3783---mirror-distance-of-an-integer)
 - [3866 - First Unique Even Element](#3866---first-unique-even-element)
 - [3870 - Count Commas in Range](#3870---count-commas-in-range)
+- [3880 - Minimum Absolute Difference Between Two Values](#3880---minimum-absolute-difference-between-two-values)
 - [3884 - First Matching Character From Both Ends](#3884---first-matching-character-from-both-ends)
 - [3894 - Traffic Signal Color](#3894---traffic-signal-color)
 - [3898 - Find the Degree of Each Vertex](#3898---find-the-degree-of-each-vertex)
@@ -1280,6 +1281,44 @@ Numbers with commas:
 
 Output:
 6
+```
+
+## 3880 - Minimum Absolute Difference Between Two Values
+
+- **Problem:** Find the minimum distance between any occurrence of `1` and any occurrence of `2` in the array.
+- **Pattern:** `Single Pass Traversal`
+- **Recognition:**
+  - Need the closest occurrence of two specific values.
+  - Only the most recent position of each value matters.
+  - A single scan is sufficient.
+- **Key Insight:**
+  - Track the most recent index of:
+    - `1`
+    - `2`
+  - Whenever a `1` is found, compare its position with the most recent `2`.
+  - Whenever a `2` is found, compare its position with the most recent `1`.
+  - Maintain the minimum distance seen so far.
+  - If either value never appears, return `-1`.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [1, 3, 2, 1, 2]
+
+Distances:
+|0 - 2| = 2
+|3 - 2| = 1
+|4 - 3| = 1
+
+Minimum distance:
+1
+
+Output:
+1
 ```
 
 ## 3884 - First Matching Character from Both Ends
