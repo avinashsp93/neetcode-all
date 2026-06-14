@@ -10,12 +10,15 @@
 - [0234 - Palindrome Linked List](#0234---palindrome-linked-list)
 - [0876 - Middle of the Linked List](#0876---middle-of-the-linked-list)
 
+### Hard
+
+- [0023 - Merge k Sorted Lists](#0023---merge-k-sorted-lists)
+
 <br><br>
 
 <h2 style="text-align: center;text-transform: uppercase;">
   EASY PROBLEMS
 </h2>
-
 
 ## 0021 - Merge Two Sorted Lists
 
@@ -127,6 +130,8 @@ Output:
 True
 ```
 
+<<<<<<< HEAD
+=======
 ## 0203 - Remove Linked List Elements
 
 - **Problem:** Remove all nodes from a linked list whose value equals `val`.
@@ -163,6 +168,7 @@ Output:
 ```
 
 
+>>>>>>> 07f497e01a5a4beadc1fa8cec6e762f0c87b672b
 ## 0206 - Reverse Linked List
 
 - **Problem:** Reverse a singly linked list and return the new head.
@@ -212,7 +218,6 @@ Output:
 5 -> 4 -> 3 -> 2 -> 1
 ```
 
-
 ## 0234 - Palindrome Linked List
 
 - **Problem:** Determine whether a linked list reads the same forward and backward.
@@ -252,6 +257,32 @@ Output:
 True
 ```
 
+<<<<<<< HEAD
+<h2 style="text-align: center;text-transform: uppercase;">
+  HARD PROBLEMS
+</h2>
+
+## 0023 - Merge K Sorted Lists
+
+- **Problem:** Merge `k` sorted linked lists into one sorted linked list.
+- **Pattern:** `Linked List` / `Iterative Merge`
+- **Recognition:**
+  - Multiple sorted lists need to be combined.
+  - A known solution exists for merging two sorted lists.
+  - Repeatedly applying the two-list merge can solve the larger problem.
+- **Key Insight:**
+  - Start with the first list as the current result.
+  - Iteratively merge it with each remaining list using the standard two-pointer merge technique.
+  - After each merge, the result remains sorted and becomes the input for the next merge.
+  - Continue until all lists have been merged.
+
+- **Time Complexity:** `O(Nk)`
+  - `N` = total number of nodes across all lists
+  - `k` = number of lists
+  - Each merge may traverse most of the accumulated result.
+- **Space Complexity:** `O(1)`
+  - Nodes are reused; no additional linked lists are created.
+=======
 ## 0876 - Middle of the Linked List
 
 - **Problem:** Return the middle node of a linked list. If there are two middle nodes, return the second one.
@@ -270,11 +301,31 @@ True
 
 - **Time Complexity:** `O(n)`
 - **Space Complexity:** `O(1)`
+>>>>>>> 07f497e01a5a4beadc1fa8cec6e762f0c87b672b
 
 ### Example
 
 ```text
 Input:
+<<<<<<< HEAD
+[
+  1 -> 4 -> 5,
+  1 -> 3 -> 4,
+  2 -> 6
+]
+
+Merge first two:
+1 -> 1 -> 3 -> 4 -> 4 -> 5
+
+Merge with third:
+1 -> 1 -> 2 -> 3 -> 4 -> 4 -> 5 -> 6
+
+Output:
+1 -> 1 -> 2 -> 3 -> 4 -> 4 -> 5 -> 6
+```
+
+- Note: A more optimal solution uses Divide & Conquer or a Min Heap, achieving O(N log k) time instead of O(Nk).d
+=======
 1 -> 2 -> 3 -> 4 -> 5
 
 Traversal:
@@ -287,3 +338,4 @@ tortoise points to 3
 Output:
 3 -> 4 -> 5
 ```
+>>>>>>> 07f497e01a5a4beadc1fa8cec6e762f0c87b672b

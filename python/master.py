@@ -1,11 +1,9 @@
 from typing import List
-from l3_linked_list.d1_easy.p0203_remove_linked_list_elements import Solution, ListNode
+from l0_from_leetcode.d1_easy.p3880_minimum_absolute_difference_between_two_values import Solution
 def main() -> None:
-    head = ListNode(7, ListNode(7, ListNode(7, ListNode(7, None))))
-    val = 7
-    result = Solution().removeElements(head, val)
+    nums = [2,1]
+    result = Solution().minAbsoluteDifference(nums)
     print(result)
-
 
 if __name__ == "__main__":
     main()
