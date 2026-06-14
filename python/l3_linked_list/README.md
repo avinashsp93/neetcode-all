@@ -12,7 +12,7 @@
 
 ### Hard
 
-- [0023 - Merge k Sorted Lists](#0023---merge-k-sorted-lists)
+- [0023 - Merge K Sorted Lists](#0023---merge-k-sorted-lists)
 
 <br><br>
 
@@ -130,8 +130,6 @@ Output:
 True
 ```
 
-<<<<<<< HEAD
-=======
 ## 0203 - Remove Linked List Elements
 
 - **Problem:** Remove all nodes from a linked list whose value equals `val`.
@@ -168,7 +166,6 @@ Output:
 ```
 
 
->>>>>>> 07f497e01a5a4beadc1fa8cec6e762f0c87b672b
 ## 0206 - Reverse Linked List
 
 - **Problem:** Reverse a singly linked list and return the new head.
@@ -257,7 +254,59 @@ Output:
 True
 ```
 
-<<<<<<< HEAD
+## 0876 - Middle of the Linked List
+
+- **Problem:** Return the middle node of a linked list. If there are two middle nodes, return the second one.
+- **Pattern:** `Linked List` / `Fast & Slow Pointers`
+- **Recognition:**
+  - Need to find a position relative to the length of the list.
+  - Computing the length first is unnecessary.
+  - Fast and slow pointers can locate the middle in one pass.
+- **Key Insight:**
+  - Use two pointers:
+    - `tortoise` moves one node at a time.
+    - `hare` moves two nodes at a time.
+  - When `hare` reaches the end of the list, `tortoise` will be at the middle.
+  - For even-length lists, this naturally returns the second middle node.
+  - Let hare move first twice so that when it reaches the end, tortoise is at the correct middle node.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+[
+  1 -> 4 -> 5,
+  1 -> 3 -> 4,
+  2 -> 6
+]
+
+Merge first two:
+1 -> 1 -> 3 -> 4 -> 4 -> 5
+
+Merge with third:
+1 -> 1 -> 2 -> 3 -> 4 -> 4 -> 5 -> 6
+
+Output:
+1 -> 1 -> 2 -> 3 -> 4 -> 4 -> 5 -> 6
+```
+
+- Note: A more optimal solution uses Divide & Conquer or a Min Heap, achieving O(N log k) time instead of O(Nk).d
+1 -> 2 -> 3 -> 4 -> 5
+
+Traversal:
+tortoise moves 1 step
+hare moves 2 steps
+
+When hare reaches the end:
+tortoise points to 3
+
+Output:
+3 -> 4 -> 5
+```
+
 <h2 style="text-align: center;text-transform: uppercase;">
   HARD PROBLEMS
 </h2>
@@ -282,60 +331,4 @@ True
   - Each merge may traverse most of the accumulated result.
 - **Space Complexity:** `O(1)`
   - Nodes are reused; no additional linked lists are created.
-=======
-## 0876 - Middle of the Linked List
 
-- **Problem:** Return the middle node of a linked list. If there are two middle nodes, return the second one.
-- **Pattern:** `Linked List` / `Fast & Slow Pointers`
-- **Recognition:**
-  - Need to find a position relative to the length of the list.
-  - Computing the length first is unnecessary.
-  - Fast and slow pointers can locate the middle in one pass.
-- **Key Insight:**
-  - Use two pointers:
-    - `tortoise` moves one node at a time.
-    - `hare` moves two nodes at a time.
-  - When `hare` reaches the end of the list, `tortoise` will be at the middle.
-  - For even-length lists, this naturally returns the second middle node.
-  - Let hare move first twice so that when it reaches the end, tortoise is at the correct middle node.
-
-- **Time Complexity:** `O(n)`
-- **Space Complexity:** `O(1)`
->>>>>>> 07f497e01a5a4beadc1fa8cec6e762f0c87b672b
-
-### Example
-
-```text
-Input:
-<<<<<<< HEAD
-[
-  1 -> 4 -> 5,
-  1 -> 3 -> 4,
-  2 -> 6
-]
-
-Merge first two:
-1 -> 1 -> 3 -> 4 -> 4 -> 5
-
-Merge with third:
-1 -> 1 -> 2 -> 3 -> 4 -> 4 -> 5 -> 6
-
-Output:
-1 -> 1 -> 2 -> 3 -> 4 -> 4 -> 5 -> 6
-```
-
-- Note: A more optimal solution uses Divide & Conquer or a Min Heap, achieving O(N log k) time instead of O(Nk).d
-=======
-1 -> 2 -> 3 -> 4 -> 5
-
-Traversal:
-tortoise moves 1 step
-hare moves 2 steps
-
-When hare reaches the end:
-tortoise points to 3
-
-Output:
-3 -> 4 -> 5
-```
->>>>>>> 07f497e01a5a4beadc1fa8cec6e762f0c87b672b
