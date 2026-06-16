@@ -3,7 +3,10 @@
 ### Easy
 
 - [0035 - Search Insert Position](#0035---search-insert-position)
+- [0069 - Sqrt(x)](#0069---sqrtx)
+- [0367 - Valid Perfect Square](#0367---valid-perfect-square)
 - [0374 - Guess Number Higher or Lower](#0374---guess-number-higher-or-lower)
+- [0441 - Arranging Coins](#0441---arranging-coins)
 - [0704 - Binary Search](#0704---binary-search)
 
 <br><br>
@@ -49,6 +52,80 @@ low = 1
 Output:
 1
 ```
+## 0069 - Sqrt(x)
+
+- **Problem:** Compute and return the integer square root of `x`, rounded down to the nearest integer.
+- **Pattern:** `Binary Search`
+- **Recognition:**
+  - Need the largest integer whose square does not exceed `x`.
+  - The search space is sorted from `1` to `x`.
+  - Binary search efficiently finds this boundary.
+- **Key Insight:**
+  - Search for the largest value `mid` satisfying:
+    
+    
+    
+  - If `mid²` is too large, search left.
+  - If `mid²` is too small, search right.
+  - If an exact square root is found, return it.
+  - When the search ends, `high` points to the integer square root.
+
+- **Time Complexity:** `O(log x)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+x = 8
+
+mid = 4 -> 16 > 8
+mid = 2 -> 4 < 8
+mid = 3 -> 9 > 8
+
+Largest integer with square ≤ 8:
+2
+
+Output:
+2
+```
+
+
+## 0367 - Valid Perfect Square
+
+- **Problem:** Determine whether a positive integer is a perfect square without using built-in square root functions.
+- **Pattern:** `Binary Search`
+- **Recognition:**
+  - Need to find whether an integer `x` exists such that:
+    
+    
+    
+  - The search space is sorted (`1` to `num`).
+  - Binary search can efficiently locate the square root candidate.
+- **Key Insight:**
+  - Search within the range `[1, num]`.
+  - For each midpoint:
+    - Compute `mid²`.
+    - If `mid² > num`, search left.
+    - If `mid² < num`, search right.
+    - If `mid² == num`, `num` is a perfect square.
+  - If the search ends without a match, return `False`.
+
+- **Time Complexity:** `O(log n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+num = 16
+
+mid = 8  -> 64  > 16
+mid = 4  -> 16 == 16
+
+Output:
+True
+```
 
 
 ## 0374 - Guess Number Higher or Lower
@@ -85,6 +162,87 @@ Guess 6 -> correct
 Output:
 6
 ```
+
+## 0441 - Arranging Coins
+
+- **Problem:** Given `n` coins, build a staircase where the `i-th` row contains exactly `i` coins. Return the number of complete rows that can be formed.
+- **Pattern:** `Math` / `Binary Search`
+- **Recognition:**
+  - Rows require:
+    ```text
+    1 + 2 + 3 + ... + k
+    ```
+    coins.
+  - Need the largest `k` such that:
+    ```text
+    k(k + 1)/2 <= n
+    ```
+  - Can be solved using simulation, binary search, or the quadratic formula.
+
+### Solution 1: Simulation
+
+- Build rows one at a time.
+- Subtract the required coins for each row.
+- Stop when there are not enough coins for the next row.
+
+- **Time Complexity:** `O(√n)`
+- **Space Complexity:** `O(1)`
+
+### Solution 2: Binary Search
+
+- Use the formula for the sum of the first `k` natural numbers:
+  ```text
+  S(k) = k(k + 1)/2
+  ```
+- Search for the largest `k` satisfying:
+  ```text
+  k(k + 1)/2 <= n
+  ```
+- If the triangular number is too large, search left.
+- Otherwise, search right.
+- After the search, `high` stores the answer.
+
+- **Time Complexity:** `O(log n)`
+- **Space Complexity:** `O(1)`
+
+### Solution 3: Math Formula
+
+- Solve:
+  ```text
+  k(k + 1)/2 = n
+  ```
+- Using the quadratic formula:
+
+  
+
+- The answer is the integer floor of the expression.
+
+- **Time Complexity:** `O(1)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+n = 8
+
+Rows:
+1 coin  -> complete
+2 coins -> complete
+3 coins -> complete
+
+Coins used:
+1 + 2 + 3 = 6
+
+Remaining:
+2
+
+Cannot complete the 4th row.
+
+Output:
+3
+```
+
 
 ## 0704 - Binary Search
 
