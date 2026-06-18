@@ -1,8 +1,8 @@
 from typing import List
-from l0_from_leetcode.d1_easy.p3880_minimum_absolute_difference_between_two_values import Solution
+from l3_binary_search.d2_medium.p0540_single_element_in_a_sorted_array import Solution
 def main() -> None:
-    nums = [2,1]
-    result = Solution().minAbsoluteDifference(nums)
+    nums = [1,1,2,2,3]
+    result = Solution().singleNonDuplicate(nums)
     print(result)
 
 if __name__ == "__main__":
