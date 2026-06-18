@@ -1,8 +1,11 @@
 from typing import List
-from l0_from_leetcode.d1_easy.p3880_minimum_absolute_difference_between_two_values import Solution
+from l0_from_leetcode.d2_medium.p0033_search_in_rotated_sorted_array import Solution
 def main() -> None:
-    nums = [2,1]
-    result = Solution().minAbsoluteDifference(nums)
+    nums = [4,5,6,7,0,1,2]
+    target = 0
+    result = Solution().search(nums, target)
+
+    
     print(result)
 
 if __name__ == "__main__":
