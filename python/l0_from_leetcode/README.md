@@ -49,6 +49,7 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [3945 - Digit Frequency Score](#3945---digit-frequency-score)
 - [3950 - Exactly One Consecutive Set Bits Pair](#3950---exactly-one-consecutive-set-bits-pair)
 - [3954 - Sum of Compatible Numbers in Range I](#3954---sum-of-compatible-numbers-in-range-i)
+- [3959 - Check Good Integer](#3959---check-good-integer)
 
 ### Medium
 
@@ -1988,6 +1989,61 @@ No compatible numbers.
 Output:
 0
 ```
+
+## 3959 - Check Good Integer
+
+- **Problem:** Determine whether the difference between the sum of the squares of an integer's digits and the sum of its digits is at least `50`.
+- **Pattern:** `Math` / `Digit Processing`
+- **Recognition:**
+  - Need to process each digit independently.
+  - Two aggregations are required:
+    - Sum of digits
+    - Sum of squared digits
+  - The final result depends on their difference.
+- **Key Insight:**
+  - Traverse all digits of `n`.
+  - Compute:
+    ```text
+    digitSum = sum of digits
+    squareSum = sum of squared digits
+    ```
+  - Check:
+    ```text
+    squareSum - digitSum >= 50
+    ```
+  - Return `True` if the condition holds; otherwise `False`.
+
+- **Time Complexity:** `O(d)`
+  - `d` = number of digits in `n`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+n = 99
+
+digitSum:
+9 + 9 = 18
+
+squareSum:
+9² + 9² = 162
+
+Difference:
+162 - 18 = 144
+
+Output:
+True
+```
+
+
+
+
+
+
+
+
+
 
 <br><br>
 
