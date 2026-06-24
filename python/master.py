@@ -1,11 +1,8 @@
 from typing import List
-from l0_from_leetcode.d2_medium.p0033_search_in_rotated_sorted_array import Solution
+from l1_arrays_and_hashing.d1_easy.p1002_find_common_characters import Solution
 def main() -> None:
-    nums = [4,5,6,7,0,1,2]
-    target = 0
-    result = Solution().search(nums, target)
-
-    
+    words = ["cool","lock","cook"]
+    result = Solution().commonChars(words)
     print(result)
 
 if __name__ == "__main__":
