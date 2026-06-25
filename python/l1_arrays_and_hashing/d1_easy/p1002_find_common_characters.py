@@ -2,6 +2,10 @@ class Solution:
     def commonChars(self, words: List[str]) -> List[str]:
         listOfWordCounts = []
         result = []
+
+        if len(words) == 1:
+            return list(words[0])
+
         for word in words:
             wordCount = dict()
             for char in word:
