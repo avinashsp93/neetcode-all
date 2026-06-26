@@ -1,28 +1,31 @@
+from typing import List
+
 class Solution:
     def decrypt(self, code: List[int], k: int) -> List[int]:
-        left, right = 1, k
-        if k < 0:
-            left, right = -1, k
-            
-        runningSum = 0
-
         if k == 0:
-            return [0 for i in range(len(code))]
+            return [0 for j in range(len(code))]
 
+        left, right = 1, k+1
+        if k < 0:
+            left, right = k, 0
+        
+        runningSum = 0
         result = []
+        for i in range(left, right):
+            runningSum += code[i % len(code)]
+        result.append(runningSum)
 
         if k > 0:
-            for i in range(left, right+1):
-                runningSum += code[i]
+            for l in range(1, len(code)):
+                runningSum -= code[l % len(code)]
+                runningSum += code[(l + k) % len(code)]
+                result.append(runningSum)
         else:
-            for i in range(left, right-1, -1):
-                runningSum += code[i]
-        
-        for j in range(0, len(code)):
-            result.append(runningSum)
-            right += 1
-            runningSum += code[right % len(code)]
-            runningSum -= code[left % len(code)]
-            left += 1
-        
+            for l in range(1, len(code)):
+                runningSum += code[(l - 1) % len(code)]
+                runningSum -= code[(l + k - 1) % len(code)]
+                result.append(runningSum)
         return result
+
+
+        

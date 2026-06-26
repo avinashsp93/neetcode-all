@@ -1,3 +1,5 @@
+from typing import List
+
 class Solution:
     def singleNonDuplicate_BigO_N(self, nums: List[int]) -> int:
         my_set = set()
@@ -10,28 +12,24 @@ class Solution:
 
     def singleNonDuplicate(self, nums: List[int]) -> int:
         low, high = 0, len(nums)-1
-        if len(nums) == 1:
-            return nums[0]
-        
         while(low <= high):
             mid = (low + high)//2
-            leftMid = mid - 1
-            rightMid = mid + 1
-            
-            # corner case
-            if((leftMid < 0 and nums[mid] != nums[rightMid]) or (rightMid > len(nums)-1 and nums[mid] != nums[leftMid])):
+            isEvenMid = mid % 2 == 0
+
+            leftSame = mid > 0 and nums[mid] == nums[mid-1]
+            rightSame = mid < len(nums)-1 and nums[mid] == nums[mid+1]
+
+            if not leftSame and not rightSame:
                 return nums[mid]
 
-            if(nums[leftMid] != nums[mid] and nums[rightMid] != nums[mid]):
-                return nums[mid]
-            elif(nums[mid-1] == nums[mid]):
-                secondMidIndex = mid - 1  
+            if isEvenMid:
+                if rightSame:
+                    low = mid + 2
+                else:
+                    high = mid - 2
             else:
-                secondMidIndex = mid + 1
-            
-            if(min(mid, secondMidIndex) - low) % 2 == 0:
-                low = mid + 1
-            else:
-                high = mid - 1
-        
-        return 0
+                if leftSame:
+                    low = mid + 1
+                else:
+                    high = mid - 1
+        return -1

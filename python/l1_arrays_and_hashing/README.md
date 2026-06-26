@@ -19,6 +19,7 @@
 - [0605 - Can Place Flowers](#0605---can-place-flowers)
 - [0724 - Find Pivot Index](#0724---find-pivot-index)
 - [0929 - Unique Email Addresses](#0929---unique-email-addresses)
+- [1002 - Find Common Characters](#1002---find-common-characters)
 - [1189 - Maximum Number of Balloons](#1189---maximum-number-of-balloons)
 - [1299 - Replace Elements with Greatest Element on Right Side](#1299---replace-elements-with-greatest-element-on-right-side)
 - [1394 - Find Lucky Integer in an Array](#1394---find-lucky-integer-in-an-array)
@@ -704,6 +705,44 @@ unique.add(f"{local}@{domain}")
   ⭐ preferred Pythonic solution  
   ✔ clean, readable, interview-ready
 
+## 1002 - Find Common Characters
+
+- **Problem:** Return all characters that appear in every string, including duplicates.
+- **Pattern:** `Hash Map` / `Frequency Counting`
+- **Recognition:**
+  - Need the frequency of each character in every word.
+  - A character is common only if it appears in all words.
+  - The number of times it appears in the answer is the minimum frequency across all words.
+- **Key Insight:**
+  - Build a frequency map for each word.
+  - For every character in the first word:
+    - Check whether it exists in every other frequency map.
+    - Track its minimum frequency across all words.
+  - Add each common character to the result as many times as its minimum frequency.
+
+- **Time Complexity:** `O(n × m)`
+  - `n` = number of words
+  - `m` = average length of a word
+- **Space Complexity:** `O(n × k)`
+  - `k` = number of distinct characters per word
+
+### Example
+
+```text
+Input:
+words = ["bella", "label", "roller"]
+
+Frequencies:
+l -> min(2, 2, 2) = 2
+e -> min(1, 1, 1) = 1
+
+Common characters:
+["e", "l", "l"]
+
+Output:
+["e", "l", "l"]
+```
+
 ## 1189 - Maximum Number of Balloons
 
 - **Problem:** Determine how many instances of the word `"balloon"` can be formed using the characters in a string.
@@ -873,6 +912,74 @@ Output:
 
 ---
 
+## 1436 - Destination City
+
+- **Problem:** Given a list of directed paths, find the destination city that has no outgoing path.
+- **Pattern:** `Hash Set`
+- **Recognition:**
+  - Need to identify a node that never appears as a source.
+  - Fast membership checks are required.
+  - A hash set efficiently stores all source cities.
+- **Key Insight:**
+  - Add every source city to a set.
+  - Traverse the paths again.
+  - The first destination city not present in the source set is the final destination.
+  - Return that city.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+paths = [["A","B"], ["B","C"], ["C","D"]]
+
+Source cities:
+{A, B, C}
+
+Destination cities:
+B ✓
+C ✓
+D ✗
+
+Output:
+"D"
+```
+
+## 1684 - Count the Number of Consistent Strings
+
+- **Problem:** Count how many strings consist only of characters from the given `allowed` string.
+- **Pattern:** `Hash Set` / `String Traversal`
+- **Recognition:**
+  - Every character of a word must satisfy a membership condition.
+  - If any character is not allowed, the word is invalid.
+  - Each word can be checked independently.
+- **Key Insight:**
+  - Traverse each word character by character.
+  - If any character is not in `allowed`, discard the word.
+  - Otherwise, count it as a consistent string.
+
+- **Time Complexity:** `O(n × m)`
+  - `n` = number of words
+  - `m` = average word length
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+allowed = "ab"
+words = ["ad", "bd", "aaab", "baa", "badab"]
+
+Consistent:
+"aaab"
+"baa"
+
+Output:
+2
+```
+
 ## 1800 - Maximum Ascending Subarray Sum
 
 - **Problem:** Find the maximum possible sum of a strictly ascending contiguous subarray.
@@ -945,6 +1052,43 @@ Distinct strings in order:
 
 Output:
 "a"
+```
+
+## 2490 - Circular Sentence
+
+- **Problem:** Determine whether a sentence is circular, where the first character of each word matches the last character of the previous word, and the first word also follows the last word.
+- **Pattern:** `String Traversal`
+- **Recognition:**
+  - Need to compare adjacent words.
+  - The comparison wraps around from the last word to the first.
+  - Every pair must satisfy the same condition.
+- **Key Insight:**
+  - Split the sentence into words.
+  - For each word, compare:
+    - its first character
+    - the last character of the previous word
+  - Using `i - 1` naturally wraps the first word to the last.
+  - If all comparisons match, the sentence is circular.
+
+- **Time Complexity:** `O(n)`
+  - `n` = length of the sentence
+- **Space Complexity:** `O(w)`
+  - `w` = number of words (due to splitting)
+
+### Example
+
+```text
+Input:
+sentence = "leetcode exercises sound delightful"
+
+Comparisons:
+e == e ✓
+s == s ✓
+d == d ✓
+l == l ✓
+
+Output:
+True
 ```
 
 ## 2678 - Number of Senior Citizens
