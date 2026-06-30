@@ -23,17 +23,23 @@ class Solution:
     def postorderTraversalIterative(self, root: Optional[TreeNode]) -> List[int]:
         # iterative
 
+        stack = [root]
+        visited = [False]
+
         result = []
-        stack = []
 
-        curr = root
-        while curr or stack:
-            while curr:
-                stack.append(curr.right)
-                curr = curr.left
-            if curr:
-                result.append(curr.val)
-            else:
-                curr = stack.pop()
+        while stack:
+            cur = stack.pop()
+            vis = visited.pop()
 
-        return result
+            if cur:
+                if vis:
+                    result.append(cur.val)
+                else:
+                    stack.append(cur)
+                    visited.append(True)
+                    stack.append(cur.right)
+                    visited.append(False)
+                    stack.append(cur.left)
+                    visited.append(False)
+            return result
