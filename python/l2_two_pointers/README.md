@@ -1,6 +1,7 @@
 # Two Pointers
 
 ### Easy
+- [0026 - Remove Duplicates from Sorted Array](#0026---remove-duplicates-from-sorted-array)
 - [0088 - Merge Sorted Array](#0088---merge-sorted-array)
 - [0125 - Valid Palindrome I](#0125---valid-palindrome-i)
 - [0283 - Move Zeroes](#0283---move-zeroes)
@@ -15,6 +16,43 @@
 </h2>
 
 <br><br>
+
+## 0026 - Remove Duplicates from Sorted Array
+
+- **Problem:** Remove duplicates from a sorted array in-place and return the number of unique elements.
+- **Pattern:** `Two Pointers` / `Fast & Slow Pointers`
+- **Recognition:**
+  - The array is already sorted.
+  - Duplicate values appear consecutively.
+  - The array must be modified in-place with `O(1)` extra space.
+- **Key Insight:**
+  - Use two pointers:
+    - `slow` tracks the position of the last unique element.
+    - `fast` scans the array for new unique values.
+  - Whenever `nums[fast]` differs from `nums[slow]`:
+    - Advance `slow`.
+    - Copy `nums[fast]` to `nums[slow]`.
+  - After one pass, the first `slow + 1` elements contain all unique values in sorted order.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [1, 1, 2, 2, 3]
+
+Traversal:
+slow = 0
+fast scans the array
+
+Unique values copied:
+[1, 2, 3, _, _]
+
+Output:
+3
+```
 
 ## 0088 - Merge Sorted Array
 
@@ -229,6 +267,45 @@ remove 'b' → "aca" (valid palindrome)
 
 Output:
 True
+```
+
+## 0977 - Squares of a Sorted Array
+
+- **Problem:** Return an array of the squares of each number, sorted in non-decreasing order.
+- **Pattern:** `Two Pointers`
+- **Recognition:**
+  - Squaring negative numbers can make them larger than positive numbers.
+  - The largest square must come from one of the two ends of the sorted array.
+  - Two pointers can build the sorted result in a single pass.
+- **Key Insight:**
+  - Initialize two pointers:
+    - `left` at the beginning.
+    - `right` at the end.
+  - Compare the absolute values at both ends.
+  - Append the larger square to the result.
+  - Move the corresponding pointer inward.
+  - Since the largest squares are added first, reverse the result at the end.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+nums = [-4, -1, 0, 3, 10]
+
+Compare:
+|-4| vs |10| -> 100
+|-4| vs |3|  -> 16
+|-1| vs |3|  -> 9
+...
+
+Reversed result:
+[0, 1, 9, 16, 100]
+
+Output:
+[0, 1, 9, 16, 100]
 ```
 
 ## 1768 - Merge Strings Alternately
