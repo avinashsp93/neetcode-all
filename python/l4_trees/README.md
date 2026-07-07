@@ -188,3 +188,53 @@ Diameter through root:
 Output:
 3
 ```
+
+## 0572 - Subtree of Another Tree
+
+- **Problem:** Determine whether one binary tree is a subtree of another.
+- **Pattern:** `Binary Tree` / `Recursion`
+- **Recognition:**
+  - Need to compare entire subtrees, not just individual nodes.
+  - Every node in the main tree is a potential root of the subtree.
+  - A recursive tree comparison can verify structural equality.
+- **Key Insight:**
+  - Define a helper function to determine whether two trees are identical:
+    - Both nodes are `None` → identical.
+    - One node is `None` or values differ → not identical.
+    - Otherwise, recursively compare both left and right children.
+  - Traverse the main tree.
+  - At each node:
+    - Check if the subtree rooted there is identical to `subRoot`.
+    - If not, recursively search the left and right subtrees.
+  - Return `True` as soon as a matching subtree is found.
+
+- **Time Complexity:** `O(m × n)`
+  - `m` = number of nodes in `root`
+  - `n` = number of nodes in `subRoot`
+- **Space Complexity:** `O(h)`
+  - `h` = height of the recursion stack
+
+### Example
+
+```text
+Input:
+
+Root:
+      3
+     / \
+    4   5
+   / \
+  1   2
+
+SubRoot:
+    4
+   / \
+  1   2
+
+Compare at each node:
+3 ✗
+4 ✓
+
+Output:
+True
+```
