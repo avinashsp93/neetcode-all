@@ -12,24 +12,28 @@
 - [0217 - Contains Duplicate](#0217---contains-duplicate)
 - [0242 - Valid Anagram](#0242---valid-anagram)
 - [0290 - Word Pattern](#0290---word-pattern)
+- [0383 - Ransom Note](#0383---ransom-note)
 - [0392 - Is Subsequence](#0392---is-subsequence)
 - [0448 - Find All Numbers Disappeared in an Array](#0448---find-all-numbers-disappeared-in-an-array)
 - [0485 - Max Consecutive Ones](#0485---max-consecutive-ones)
 - [0496 - Next Greater Element I](#0496---next-greater-element-i)
 - [0605 - Can Place Flowers](#0605---can-place-flowers)
 - [0724 - Find Pivot Index](#0724---find-pivot-index)
+- [0896 - Monotonic Array](#0896---monotonic-array)
 - [0929 - Unique Email Addresses](#0929---unique-email-addresses)
 - [1002 - Find Common Characters](#1002---find-common-characters)
 - [1189 - Maximum Number of Balloons](#1189---maximum-number-of-balloons)
 - [1299 - Replace Elements with Greatest Element on Right Side](#1299---replace-elements-with-greatest-element-on-right-side)
 - [1394 - Find Lucky Integer in an Array](#1394---find-lucky-integer-in-an-array)
 - [1408 - String Matching in an Array](#1408---string-matching-in-an-array)
+- [1752 - Check if Array Is Sorted and Rotated](#1752---check-if-array-is-sorted-and-rotated)
 - [1800 - Maximum Ascending Subarray Sum](#1800---maximum-ascending-subarray-sum)
 - [2053 - Kth Distinct String in an Array](#2053---kth-distinct-string-in-an-array)
 - [2678 - Number of Senior Citizens](#2678---number-of-senior-citizens)
 - [2965 - Find Missing and Repeated Values](#2965---find-missing-and-repeated-values)
 - [3105 - Longest Strictly Increasing or Strictly Decreasing Subarray](#3105---longest-strictly-increasing-or-strictly-decreasing-subarray)
 - [3110 - Score of a String](#3110---score-of-a-string)
+- [3151 - Special Array I](#3151---special-array-i)
 - [3442 - Maximum Difference Between Even and Odd Frequency](#3442---maximum-difference-between-even-and-odd-frequency)
 
 <br><br>
@@ -402,6 +406,39 @@ Output:
 False
 ```
 
+
+## 0383 - Ransom Note
+
+- **Problem:** Determine if a `ransomNote` can be constructed from letters in `magazine`, where each letter can only be used once.
+- **Pattern:** `Hash Map / Frequency Counting`
+- **Recognition:**
+  - Need to track availability of characters
+  - Repeated consumption of limited resources
+  - Greedy character usage with constraints
+- **Key Insight:**
+  - Build frequency map of `magazine`
+  - For each character in `ransomNote`:
+    - check availability in map
+    - decrement count if usable
+    - fail immediately if unavailable
+- **Time Complexity:** `O(n + m)`
+- **Space Complexity:** `O(1)` (bounded alphabet size)
+
+### Example
+
+```text
+Input:
+ransomNote = "aa"
+magazine = "ab"
+
+Process:
+a → available (1 → 0)
+a → not available → fail
+
+Output:
+False
+```
+
 ## 0392 - Is Subsequence
 
 - **Problem:** Given two strings `s` and `t`, return `True` if `s` is a subsequence of `t`, otherwise return `False`.
@@ -638,6 +675,37 @@ right = 11
 
 Output:
 3
+```
+
+## 0896 - Monotonic Array
+
+- **Problem:** Determine whether an array is monotonic, meaning it is entirely non-decreasing or non-increasing.
+- **Pattern:** `Array Traversal`
+- **Recognition:**
+  - Need to identify whether the array changes in only one direction.
+  - Equal adjacent elements are allowed.
+  - A single pass is sufficient.
+- **Key Insight:**
+  - Traverse the array and track whether:
+    - An increasing pair has been seen.
+    - A decreasing pair has been seen.
+  - If both increasing and decreasing pairs exist, the array is not monotonic.
+  - Otherwise, it is either non-decreasing or non-increasing.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [1, 2, 2, 3]
+
+Increasing pairs: Yes
+Decreasing pairs: No
+
+Output:
+True
 ```
 
 ## 0929 - Unique Email Addresses
@@ -980,6 +1048,44 @@ Output:
 2
 ```
 
+## 1752 - Check if Array Is Sorted and Rotated
+
+- **Problem:** Determine whether an array is a sorted array that has been rotated some number of times.
+- **Pattern:** `Array Traversal`
+- **Recognition:**
+  - A sorted array has no decreasing adjacent pairs.
+  - A rotated sorted array has exactly one "drop" where the order decreases.
+  - Comparing adjacent elements, including the last and first, is sufficient.
+- **Key Insight:**
+  - Traverse the array and count the number of positions where:
+    ```text
+    nums[i + 1] < nums[i]
+    ```
+  - Start from index `-1` so the comparison includes the last and first elements.
+  - If there is more than one decreasing pair, the array cannot be a sorted rotated array.
+  - Otherwise, return `True`.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [3, 4, 5, 1, 2]
+
+Drops:
+5 > 1 ✓
+All other adjacent pairs are non-decreasing.
+
+Number of drops:
+1
+
+Output:
+True
+```
+
+
 ## 1800 - Maximum Ascending Subarray Sum
 
 - **Problem:** Find the maximum possible sum of a strictly ascending contiguous subarray.
@@ -1280,6 +1386,39 @@ Output:
 - Only adjacent comparisons matter.
 - No need for extra data structures.
 - Direct accumulation is optimal.
+
+## 3151 - Special Array I
+
+- **Problem:** Determine whether an array is special, where every pair of adjacent elements has opposite parity.
+- **Pattern:** `Array Traversal`
+- **Recognition:**
+  - Only adjacent elements need to be compared.
+  - A valid array alternates between even and odd numbers.
+  - A single violation makes the array invalid.
+- **Key Insight:**
+  - Traverse the array once.
+  - For each adjacent pair, compare their parity using:
+    ```text
+    nums[i] % 2
+    ```
+  - If two consecutive elements have the same parity, return `False`.
+  - If all adjacent pairs have opposite parity, return `True`.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [2, 1, 4, 3]
+
+Parity:
+Even → Odd → Even → Odd
+
+Output:
+True
+```
 
 ## 3442 - Maximum Difference Between Even and Odd Frequency
 

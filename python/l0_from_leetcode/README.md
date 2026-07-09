@@ -15,7 +15,6 @@ This directory contains solutions to various problems from LeetCode, categorized
 - [0268 - Missing Number](#0268---missing-number)
 - [0278 - First Bad Version](#0278---first-bad-version)
 - [0342 - Power of Four](#0342--power-of-four)
-- [0383 - Ransom Note](#0383---ransom-note)
 - [0389 - Find the Difference](#0389---find-the-difference)
 - [0412 - Fizz Buzz](#0412---fizz-buzz)
 - [0482 - License Key Formatting](#0482---license-key-formatting)
@@ -581,37 +580,6 @@ Notes
   - Power of Three → math/division approach
   - Power of Four → power of two + position check
 
-## 0383 - Ransom Note
-
-- **Problem:** Determine if a `ransomNote` can be constructed from letters in `magazine`, where each letter can only be used once.
-- **Pattern:** `Hash Map / Frequency Counting`
-- **Recognition:**
-  - Need to track availability of characters
-  - Repeated consumption of limited resources
-  - Greedy character usage with constraints
-- **Key Insight:**
-  - Build frequency map of `magazine`
-  - For each character in `ransomNote`:
-    - check availability in map
-    - decrement count if usable
-    - fail immediately if unavailable
-- **Time Complexity:** `O(n + m)`
-- **Space Complexity:** `O(1)` (bounded alphabet size)
-
-### Example
-
-```text
-Input:
-ransomNote = "aa"
-magazine = "ab"
-
-Process:
-a → available (1 → 0)
-a → not available → fail
-
-Output:
-False
-```
 
 ## 0389 - Find the Difference
 
