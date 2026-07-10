@@ -1,6 +1,6 @@
 # neetcode-all
 
-This repository contains all the solutions to the problems on [neetcode.io](https://neetcode.io/). The solutions are organized by topic, and each solution is written in Python.
+This repository contains all the solutions to the problems on [neetcode.io](https://neetcode.io/) and some of the problems on [Leetcode](https://leetcode.com/). The solutions are organized by topic, and each solution is written in Python.
 
 ## Topics
 - [From Leetcode](python/l0_from_leetcode/README.md)

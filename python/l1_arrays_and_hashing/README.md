@@ -29,6 +29,7 @@
 - [1752 - Check if Array Is Sorted and Rotated](#1752---check-if-array-is-sorted-and-rotated)
 - [1800 - Maximum Ascending Subarray Sum](#1800---maximum-ascending-subarray-sum)
 - [2053 - Kth Distinct String in an Array](#2053---kth-distinct-string-in-an-array)
+- [2206 - Divide Array Into Equal Pairs](#2206---divide-array-into-equal-pairs)
 - [2678 - Number of Senior Citizens](#2678---number-of-senior-citizens)
 - [2965 - Find Missing and Repeated Values](#2965---find-missing-and-repeated-values)
 - [3105 - Longest Strictly Increasing or Strictly Decreasing Subarray](#3105---longest-strictly-increasing-or-strictly-decreasing-subarray)
@@ -1158,6 +1159,42 @@ Distinct strings in order:
 
 Output:
 "a"
+```
+
+## 2206 - Divide Array Into Equal Pairs
+
+- **Problem:** Determine whether the array can be divided into pairs such that both elements in each pair are equal.
+- **Pattern:** `Hash Set`
+- **Recognition:**
+  - Every value must appear an even number of times.
+  - Need to track whether an element has been seen an odd or even number of times.
+  - A hash set can represent the parity of occurrences.
+- **Key Insight:**
+  - Traverse the array once.
+  - For each number:
+    - If it is already in the set, remove it.
+    - Otherwise, add it to the set.
+  - After processing all elements:
+    - Numbers with even occurrences have been removed.
+    - Numbers with odd occurrences remain.
+  - The array can be divided into equal pairs only if the set is empty.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+nums = [3, 2, 3, 2, 2, 2]
+
+Set updates:
+{3} → {3,2} → {2} → {} → {2} → {}
+
+Set is empty.
+
+Output:
+True
 ```
 
 ## 2490 - Circular Sentence
