@@ -49,3 +49,46 @@ Sum:
 Output:
 6
 ```
+
+
+## 0078 - Subsets
+
+- **Problem:** Return all possible subsets (the power set) of a given array.
+- **Pattern:** `Backtracking` / `DFS`
+- **Recognition:**
+  - Each element has exactly two choices:
+    - Include it in the current subset.
+    - Exclude it from the current subset.
+  - Exploring both choices generates all possible subsets.
+- **Key Insight:**
+  - Use DFS starting from the first index.
+  - At each element:
+    - Recurse without including it.
+    - Include it in the current subset and recurse again.
+  - When all elements have been considered, add the current subset to the result.
+  - Since the subset is modified during recursion, use a copy when storing or passing the branch that should remain unchanged.
+
+- **Time Complexity:** `O(n · 2ⁿ)`
+  - There are `2ⁿ` subsets, each of size up to `n`.
+- **Space Complexity:** `O(n)`
+  - Due to the recursion stack (excluding the output).
+
+### Example
+
+```text
+Input:
+nums = [1, 2]
+
+Choices:
+1 -> Exclude / Include
+2 -> Exclude / Include
+
+Subsets:
+[]
+[2]
+[1]
+[1, 2]
+
+Output:
+[[], [2], [1], [1,2]]
+```
