@@ -50,6 +50,52 @@ Output:
 6
 ```
 
+<br><br>
+
+<h2 style="text-align: center;text-transform: uppercase;">
+  MEDIUM PROBLEMS
+</h2>
+
+## 0039 - Combination Sum
+
+- **Problem:** Find all unique combinations of candidate numbers that sum to a target. Each candidate may be used an unlimited number of times.
+- **Pattern:** `Backtracking` / `DFS`
+- **Recognition:**
+  - Need to generate all valid combinations.
+  - Each candidate has two choices:
+    - Skip it and move to the next candidate.
+    - Include it and remain at the same index (since reuse is allowed).
+  - The search stops when the target is reached or exceeded.
+- **Key Insight:**
+  - Use DFS with three pieces of state:
+    - Current candidate index.
+    - Current combination.
+    - Remaining target.
+  - At each step:
+    - **Skip** the current candidate and recurse to the next index.
+    - **Take** the current candidate, subtract its value from the remaining target, and recurse at the same index.
+  - If the remaining target becomes `0`, a valid combination has been found.
+  - If the remaining target becomes negative or all candidates have been considered, stop exploring that branch.
+
+- **Time Complexity:** `O(2^t)` _(output-dependent)_
+  - The number of valid combinations grows exponentially with the target and candidate values.
+- **Space Complexity:** `O(t)`
+  - `t` = maximum recursion depth (bounded by the target in the worst case, excluding the output).
+
+### Example
+
+```text
+Input:
+candidates = [2, 3, 6, 7]
+target = 7
+
+Choices:
+Take 2 -> [2,2,3]
+Take 7 -> [7]
+
+Output:
+[[2,2,3], [7]]
+```
 
 ## 0078 - Subsets
 
