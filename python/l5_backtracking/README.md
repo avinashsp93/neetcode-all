@@ -4,6 +4,11 @@
 
 - [1863 - Sum of All Subset XOR Totals](#1863---sum-of-all-subset-xor-totals)
 
+### Medium
+
+- [0039 - Combination Sum](#0039---combination-sum)
+- [0078 - Subsets](#0078---subsets)
+
 <br><br>
 
 <h2 style="text-align: center;text-transform: uppercase;">
