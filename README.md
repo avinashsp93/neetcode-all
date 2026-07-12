@@ -20,7 +20,6 @@ This repository contains all the solutions to the problems on [neetcode.io](http
 - [Level 7: Bit Manipulation](python/l7_bit_manipulation/README.md)
 
 <!-- STATS_START -->
-
 ## Progress
 
 - Total Problems Solved: 143
