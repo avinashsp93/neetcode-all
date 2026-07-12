@@ -1,7 +1,8 @@
 from typing import List
 
 class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        nums = sorted(nums)
         subsets = []
         def dfs(i, subset):
             if i == len(nums):
@@ -9,11 +10,14 @@ class Solution:
                 return
             
             # skip branch
-            dfs(i+1, subset.copy()) 
-            
+            j = i
+            while j+1 < len(nums) and nums[j] == nums[j+1]:
+                j+=1
+            dfs(j+1, subset.copy())
+
             # take branch
             subset.append(nums[i])
-            dfs(i+1, subset)
-
+            dfs(i+1, subset.copy())
+            
         dfs(0, [])
         return subsets

@@ -6,8 +6,10 @@
 
 ### Medium
 
-- [0039 - Combination Sum](#0039---combination-sum)
-- [0078 - Subsets](#0078---subsets)
+- [0039 - Combination Sum I](#0039---combination-sum-i)
+- [0040 - Combination Sum II](#0040---combination-sum-ii)
+- [0078 - Subsets I](#0078---subsets-i)
+- [0090 - Subsets II](#0090---subsets-ii)
 
 <br><br>
 
@@ -61,7 +63,7 @@ Output:
   MEDIUM PROBLEMS
 </h2>
 
-## 0039 - Combination Sum
+## 0039 - Combination Sum I
 
 - **Problem:** Find all unique combinations of candidate numbers that sum to a target. Each candidate may be used an unlimited number of times.
 - **Pattern:** `Backtracking` / `DFS`
@@ -102,25 +104,27 @@ Output:
 [[2,2,3], [7]]
 ```
 
-## 0078 - Subsets
+## 0040 - Combination Sum II
 
-- **Problem:** Return all possible subsets (the power set) of a given array.
+- **Problem:** Find all unique combinations of candidate numbers that sum to a target. Each candidate may be used **at most once**.
 - **Pattern:** `Backtracking` / `DFS`
 - **Recognition:**
-  - Each element has exactly two choices:
-    - Include it in the current subset.
-    - Exclude it from the current subset.
-  - Exploring both choices generates all possible subsets.
+  - Need to generate combinations while avoiding duplicates.
+  - Duplicate candidate values can produce identical combinations.
+  - Sorting groups duplicates together, making them easy to skip.
 - **Key Insight:**
-  - Use DFS starting from the first index.
-  - At each element:
-    - Recurse without including it.
-    - Include it in the current subset and recurse again.
-  - When all elements have been considered, add the current subset to the result.
-  - Since the subset is modified during recursion, use a copy when storing or passing the branch that should remain unchanged.
+  - Sort the candidates first.
+  - Use DFS with:
+    - Current index.
+    - Current combination.
+    - Remaining target.
+  - At each index:
+    - **Skip branch:** Skip all consecutive duplicate values before moving to the next distinct candidate.
+    - **Take branch:** Include the current candidate, reduce the remaining target, and recurse to the **next index** since each element can only be used once.
+  - If the remaining target becomes `0`, record the current combination.
+  - Stop exploring when the remaining target becomes negative or all candidates have been considered.
 
-- **Time Complexity:** `O(n · 2ⁿ)`
-  - There are `2ⁿ` subsets, each of size up to `n`.
+- **Time Complexity:** `O(2ⁿ)` _(output-dependent)_
 - **Space Complexity:** `O(n)`
   - Due to the recursion stack (excluding the output).
 
@@ -128,18 +132,98 @@ Output:
 
 ```text
 Input:
+candidates = [10,1,2,7,6,1,5]
+target = 8
+
+Sorted:
+[1,1,2,5,6,7,10]
+
+Output:
+[
+  [1,1,6],
+  [1,2,5],
+  [1,7],
+  [2,6]
+]
+```
+
+## 0078 - Subsets I
+
+- **Problem:** Return all possible subsets of a given array of unique integers.
+- **Pattern:** `Backtracking` / `DFS`
+- **Recognition:**
+  - Every element has two possible decisions:
+    - Include the element in the subset.
+    - Exclude the element from the subset.
+  - Exploring both decisions creates all possible combinations.
+- **Key Insight:**
+  - Use DFS with the current index and subset state.
+  - At each index:
+    - **Skip branch:** Move to the next element without adding the current value.
+    - **Take branch:** Add the current value and move to the next element.
+  - When all elements have been processed, add the current subset to the result.
+  - Use copies when branching to avoid modifying previous subsets.
+
+- **Time Complexity:** `O(n · 2ⁿ)`
+  - There are `2ⁿ` possible subsets, each requiring up to `O(n)` to store.
+- **Space Complexity:** `O(n)`
+  - Due to recursion depth (excluding output).
+
+### Example
+
+```text
+Input:
 nums = [1, 2]
 
-Choices:
-1 -> Exclude / Include
-2 -> Exclude / Include
+Decisions:
 
-Subsets:
-[]
-[2]
-[1]
-[1, 2]
+1 excluded, 2 excluded -> []
+1 excluded, 2 included -> [2]
+1 included, 2 excluded -> [1]
+1 included, 2 included -> [1,2]
 
 Output:
 [[], [2], [1], [1,2]]
+```
+
+## 0090 - Subsets II
+
+- **Problem:** Return all possible subsets of an array that may contain duplicates. The result must not contain duplicate subsets.
+- **Pattern:** `Backtracking` / `DFS`
+- **Recognition:**
+  - Similar to generating subsets, but duplicate values can create duplicate combinations.
+  - Need to avoid exploring identical decision branches.
+  - Sorting helps group duplicate values together.
+- **Key Insight:**
+  - Sort the array so duplicate values are adjacent.
+  - At each index:
+    - **Skip branch:** Skip all duplicate values together and move to the next unique value.
+    - **Take branch:** Include the current value and continue exploring.
+  - This ensures identical subsets are not generated multiple times.
+  - When all elements are processed, add the current subset to the result.
+
+- **Time Complexity:** `O(n · 2ⁿ)`
+  - In the worst case, all subsets may still need to be generated.
+- **Space Complexity:** `O(n)`
+  - Due to recursion depth (excluding output).
+
+### Example
+
+```text
+Input:
+nums = [1, 2, 2]
+
+Sorted:
+[1, 2, 2]
+
+Subsets:
+[]
+[1]
+[2]
+[1,2]
+[2,2]
+[1,2,2]
+
+Output:
+[[], [1], [2], [1,2], [2,2], [1,2,2]]
 ```
