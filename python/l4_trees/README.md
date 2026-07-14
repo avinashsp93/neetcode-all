@@ -2,13 +2,15 @@
 
 ### Easy
 
-- [094 - Binary Tree Inorder Traversal](#094---binary-tree-inorder-traversal)
-- [100 - Same Tree](#0100---same-tree)
-- [104 - Maximum Depth of Binary Tree](#0104---maximum-depth-of-binary-tree)
-- [110 - Balanced Binary Tree](#0110---balanced-binary-tree)
-- [144 - Binary Tree Preorder Traversal](#144---binary-tree-preorder-traversal)
-- [145 - Binary Tree Postorder Traversal](#145---binary-tree-postorder-traversal)
-- [543 - Diameter of Binary Tree](#0543---diameter-of-binary-tree)
+- [0094 - Binary Tree Inorder Traversal](#0094---binary-tree-inorder-traversal)
+- [0100 - Same Tree](#0100---same-tree)
+- [0104 - Maximum Depth of Binary Tree](#0104---maximum-depth-of-binary-tree)
+- [0108 - Convert Sorted Array to Binary Search Tree](#0108---convert-sorted-array-to-binary-search-tree)
+- [0110 - Balanced Binary Tree](#0110---balanced-binary-tree)
+- [0144 - Binary Tree Preorder Traversal](#0144---binary-tree-preorder-traversal)
+- [0145 - Binary Tree Postorder Traversal](#0145---binary-tree-postorder-traversal)
+- [0543 - Diameter of Binary Tree](#0543---diameter-of-binary-tree)
+- [2331 - Evaluate Boolean Binary Tree](#2331---evaluate-boolean-binary-tree)
 
 <br><br>
 
@@ -94,6 +96,44 @@ Depths:
 
 Output:
 3
+```
+
+## 0108 - Convert Sorted Array to Binary Search Tree
+
+- **Problem:** Convert a sorted array into a height-balanced Binary Search Tree (BST).
+- **Pattern:** `Binary Tree` / `Divide and Conquer`
+- **Recognition:**
+  - The input array is already sorted.
+  - The middle element naturally becomes the root of a balanced BST.
+  - The left and right halves recursively form the left and right subtrees.
+- **Key Insight:**
+  - Recursively build the tree:
+    - Choose the middle element as the root.
+    - Build the left subtree from the left half of the array.
+    - Build the right subtree from the right half of the array.
+  - Stop recursion when the subarray becomes empty.
+  - Choosing the middle element at every step keeps the BST height-balanced.
+
+- **Time Complexity:** `O(n)`
+  - Every element is used exactly once to create a tree node.
+- **Space Complexity:** `O(log n)`
+  - Due to the recursion stack for a balanced tree.
+
+### Example
+
+```text
+Input:
+nums = [-10, -3, 0, 5, 9]
+
+Choose middle:
+        0
+      /   \
+    -10    5
+      \     \
+      -3     9
+
+Output:
+Height-balanced BST
 ```
 
 ## 0110 - Balanced Binary Tree
@@ -234,6 +274,52 @@ SubRoot:
 Compare at each node:
 3 ✗
 4 ✓
+
+Output:
+True
+```
+
+## 2331 - Evaluate Boolean Binary Tree
+
+- **Problem:** Evaluate a boolean binary tree where:
+  - Leaf nodes contain `0` (False) or `1` (True).
+  - Internal nodes contain:
+    - `2` → OR
+    - `3` → AND
+- **Pattern:** `Binary Tree` / `Recursion`
+- **Recognition:**
+  - Each internal node's value depends on the results of its children.
+  - Leaf nodes represent the base cases.
+  - A post-order traversal naturally evaluates the tree.
+- **Key Insight:**
+  - If the node is a leaf:
+    - `0` → `False`
+    - `1` → `True`
+  - Otherwise:
+    - `2` → evaluate `left OR right`
+    - `3` → evaluate `left AND right`
+  - Recursively compute child values until the entire expression is evaluated.
+
+- **Time Complexity:** `O(n)`
+  - Every node is visited exactly once.
+- **Space Complexity:** `O(h)`
+  - `h` = height of the tree (recursion stack).
+
+### Example
+
+```text
+Input:
+
+      OR
+     /  \
+   True AND
+        / \
+    False True
+
+Evaluation:
+True OR (False AND True)
+= True OR False
+= True
 
 Output:
 True
