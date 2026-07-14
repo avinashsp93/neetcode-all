@@ -7,6 +7,7 @@
 - [0283 - Move Zeroes](#0283---move-zeroes)
 - [0344 - Reverse String](#0344---reverse-string)
 - [0680 - Valid Palindrome II](#0680---valid-palindrome-ii)
+- [0977 - Squares of a Sorted Array](#0977---squares-of-a-sorted-array)
 - [1768 - Merge Strings Alternately](#1768---merge-strings-alternately)
 
 <br><br>

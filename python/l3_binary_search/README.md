@@ -9,6 +9,10 @@
 - [0441 - Arranging Coins](#0441---arranging-coins)
 - [0704 - Binary Search](#0704---binary-search)
 
+### Medium
+
+- [0540 - Single Element in a Sorted Array](#0540---single-element-in-a-sorted-array)
+
 <br><br>
 
 <h2 style="text-align: center;text-transform: uppercase;">

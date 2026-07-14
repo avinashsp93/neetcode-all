@@ -5,6 +5,7 @@
 - [0021 - Merge Two Sorted Lists](#0021---merge-two-sorted-lists)
 - [0083 - Remove Duplicates from Sorted List](#0083---remove-duplicates-from-sorted-list)
 - [0141 - Linked List Cycle](#0141---linked-list-cycle)
+- [0160 - Intersection of Two Linked Lists](#0160---intersection-of-two-linked-lists)
 - [0203 - Remove Linked List Elements](#0203---remove-linked-list-elements)
 - [0206 - Reverse Linked List](#0206---reverse-linked-list)
 - [0234 - Palindrome Linked List](#0234---palindrome-linked-list)
@@ -128,6 +129,43 @@ Traversal loops back to node 2.
 
 Output:
 True
+```
+
+## 0160 - Intersection of Two Linked Lists
+
+- **Problem:** Find the node at which two singly linked lists intersect. If they do not intersect, return `None`.
+- **Pattern:** `Linked List` / `Hash Set`
+- **Recognition:**
+  - Nodes are shared by reference, not by value.
+  - Need an efficient way to determine whether a node from one list has already been seen.
+  - A hash set provides constant-time lookups.
+- **Key Insight:**
+  - Traverse the first linked list and store every node reference in a hash set.
+  - Traverse the second linked list.
+  - The first node that already exists in the set is the intersection node.
+  - If no node is found after traversing both lists, return `None`.
+
+- **Time Complexity:** `O(m + n)`
+  - `m` and `n` are the lengths of the two linked lists.
+- **Space Complexity:** `O(m)`
+  - Stores all nodes from the first linked list.
+
+### Example
+
+```text
+List A:
+4 → 1
+      \
+       8 → 4 → 5
+      /
+List B:
+   5 → 6 → 1
+
+First shared node:
+8
+
+Output:
+Node with value 8
 ```
 
 ## 0203 - Remove Linked List Elements

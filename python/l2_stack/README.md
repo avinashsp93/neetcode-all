@@ -6,6 +6,8 @@
 - [0682 - Baseball Game](#0682---baseball-game)
 - [1544 - Make The String Great](#1544---make-the-string-great)
 - [1598 - Crawler Log Folder](#1598---crawler-log-folder)
+- [2696 - Minimum String Length After Removing Substrings](#2696---minimum-string-length-after-removing-substrings)
+- [3174 - Clear Digits](#3174---clear-digits)
 
 <br><br>
 
