@@ -9,7 +9,10 @@
 - [0110 - Balanced Binary Tree](#0110---balanced-binary-tree)
 - [0144 - Binary Tree Preorder Traversal](#0144---binary-tree-preorder-traversal)
 - [0145 - Binary Tree Postorder Traversal](#0145---binary-tree-postorder-traversal)
+- [0226 - Invert Binary Tree](#0226---invert-binary-tree)
 - [0543 - Diameter of Binary Tree](#0543---diameter-of-binary-tree)
+- [0589 - N-ary Tree Preorder Traversal](#0589---n-ary-tree-preorder-traversal)
+- [0590 - N-ary Tree Postorder Traversal](#0590---n-ary-tree-postorder-traversal)
 - [2331 - Evaluate Boolean Binary Tree](#2331---evaluate-boolean-binary-tree)
 
 <br><br>
@@ -181,6 +184,48 @@ Output:
 True
 ```
 
+## 0226 - Invert Binary Tree
+
+- **Problem:** Invert a binary tree by swapping the left and right child of every node.
+- **Pattern:** `Binary Tree` / `Recursion`
+- **Recognition:**
+  - Every node is processed independently.
+  - The same operation (swap children) is applied recursively to each subtree.
+  - A depth-first traversal naturally visits every node.
+- **Key Insight:**
+  - If the current node is `None`, stop recursion.
+  - Swap the left and right children of the current node.
+  - Recursively invert the left and right subtrees.
+  - After every node has been processed, the entire tree is inverted.
+
+- **Time Complexity:** `O(n)`
+  - Every node is visited exactly once.
+- **Space Complexity:** `O(h)`
+  - `h` = height of the tree (recursion stack).
+
+### Example
+
+```text
+Input:
+
+      4
+     / \
+    2   7
+   / \ / \
+  1  3 6  9
+
+After inversion:
+
+      4
+     / \
+    7   2
+   / \ / \
+  9  6 3  1
+
+Output:
+Inverted binary tree
+```
+
 ## 0543 - Diameter of Binary Tree
 
 - **Problem:** Find the diameter of a binary tree, where the diameter is the number of edges on the longest path between any two nodes.
@@ -277,6 +322,82 @@ Compare at each node:
 
 Output:
 True
+```
+
+## 0589 - N-ary Tree Preorder Traversal
+
+- **Problem:** Return the preorder traversal of an N-ary tree.
+- **Pattern:** `Tree Traversal` / `Recursion`
+- **Recognition:**
+  - Each node can have any number of children.
+  - Preorder traversal always visits:
+    - Root
+    - Then each child from left to right.
+  - A recursive DFS naturally follows this order.
+- **Key Insight:**
+  - If the current node is `None`, stop recursion.
+  - Visit the current node by adding its value to the result.
+  - Recursively traverse each child in order.
+  - Continue until all nodes have been visited.
+
+- **Time Complexity:** `O(n)`
+  - Every node is visited exactly once.
+- **Space Complexity:** `O(h)`
+  - `h` = height of the tree (recursion stack).
+
+### Example
+
+```text
+Input:
+
+        1
+      / | \
+     3  2  4
+    / \
+   5   6
+
+Preorder:
+1 → 3 → 5 → 6 → 2 → 4
+
+Output:
+[1, 3, 5, 6, 2, 4]
+```
+
+## 0590 - N-ary Tree Postorder Traversal
+
+- **Problem:** Return the postorder traversal of an N-ary tree.
+- **Pattern:** `Tree Traversal` / `Recursion`
+- **Recognition:**
+  - Each node may have multiple children.
+  - Postorder traversal visits all children before the current node.
+  - A recursive DFS naturally processes nodes in this order.
+- **Key Insight:**
+  - If the current node is `None`, stop recursion.
+  - Recursively traverse each child from left to right.
+  - After all children have been visited, add the current node's value to the result.
+  - Continue until every node has been processed.
+
+- **Time Complexity:** `O(n)`
+  - Every node is visited exactly once.
+- **Space Complexity:** `O(h)`
+  - `h` = height of the tree (recursion stack).
+
+### Example
+
+```text
+Input:
+
+        1
+      / | \
+     3  2  4
+    / \
+   5   6
+
+Postorder:
+5 → 6 → 3 → 2 → 4 → 1
+
+Output:
+[5, 6, 3, 2, 4, 1]
 ```
 
 ## 2331 - Evaluate Boolean Binary Tree
