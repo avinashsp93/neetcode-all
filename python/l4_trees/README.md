@@ -7,12 +7,16 @@
 - [0104 - Maximum Depth of Binary Tree](#0104---maximum-depth-of-binary-tree)
 - [0108 - Convert Sorted Array to Binary Search Tree](#0108---convert-sorted-array-to-binary-search-tree)
 - [0110 - Balanced Binary Tree](#0110---balanced-binary-tree)
+- [0112 - Path Sum](#0112---path-sum)
 - [0144 - Binary Tree Preorder Traversal](#0144---binary-tree-preorder-traversal)
 - [0145 - Binary Tree Postorder Traversal](#0145---binary-tree-postorder-traversal)
 - [0226 - Invert Binary Tree](#0226---invert-binary-tree)
 - [0543 - Diameter of Binary Tree](#0543---diameter-of-binary-tree)
 - [0589 - N-ary Tree Preorder Traversal](#0589---n-ary-tree-preorder-traversal)
 - [0590 - N-ary Tree Postorder Traversal](#0590---n-ary-tree-postorder-traversal)
+- [0617 - Merge Two Binary Trees](#0617---merge-two-binary-trees)
+- [0872 - Leaf-Similar Trees](#0872---leaf-similar-trees)
+- [0938 - Range Sum of BST](#0938---range-sum-of-bst)
 - [2331 - Evaluate Boolean Binary Tree](#2331---evaluate-boolean-binary-tree)
 
 <br><br>
@@ -179,6 +183,52 @@ Right = 2
 
 Difference:
 |2 - 1| = 1
+
+Output:
+True
+```
+
+## 0112 - Path Sum
+
+- **Problem:** Determine whether a binary tree has a root-to-leaf path whose node values sum to a given target.
+- **Pattern:** `Binary Tree` / `DFS`
+- **Recognition:**
+  - Need to explore every root-to-leaf path.
+  - Each recursive call carries the running sum of the current path.
+  - The answer is determined only when a leaf node is reached.
+- **Key Insight:**
+  - Traverse the tree using DFS.
+  - At each node:
+    - Add its value to the running sum.
+    - If it is a leaf node, compare the running sum with the target.
+  - Otherwise, recursively search the left and right subtrees.
+  - Return `True` as soon as any root-to-leaf path matches the target sum.
+
+- **Time Complexity:** `O(n)`
+  - Every node is visited at most once.
+- **Space Complexity:** `O(h)`
+  - `h` = height of the tree (recursion stack).
+
+### Example
+
+```text
+Input:
+
+        5
+       / \
+      4   8
+     /   / \
+    11  13  4
+   /  \
+  7    2
+
+Target = 22
+
+Path:
+5 → 4 → 11 → 2
+
+Sum:
+22
 
 Output:
 True
@@ -398,6 +448,88 @@ Postorder:
 
 Output:
 [5, 6, 3, 2, 4, 1]
+```
+
+## 0617 - Merge Two Binary Trees
+
+- **Problem:** Merge two binary trees by summing overlapping nodes. If a node exists in only one tree, include it in the merged tree.
+- **Pattern:** `Binary Tree` / `Recursion`
+- **Recognition:**
+  - Both trees must be traversed simultaneously.
+  - Each pair of corresponding nodes determines the merged node.
+  - The merged left and right subtrees can be built recursively.
+- **Key Insight:**
+  - Recursively process corresponding nodes from both trees.
+  - Cases:
+    - Both nodes are `None` → return `None`.
+    - One node is `None` → create a copy of the other subtree.
+    - Both nodes exist → create a new node with value:
+      ```text
+      r1.val + r2.val
+      ```
+      and recursively merge their left and right children.
+  - The recursion constructs the merged tree from the leaves upward.
+
+- **Time Complexity:** `O(n)`
+  - Every node from both trees is visited at most once.
+- **Space Complexity:** `O(h)`
+  - `h` = maximum height of the two trees (recursion stack).
+
+### Example
+
+```text
+Input:
+
+Tree 1:       Tree 2:
+    1             2
+   / \           / \
+  3   2         1   3
+ /               \    \
+5                 4    7
+
+Merged:
+
+      3
+     / \
+    4   5
+   / \   \
+  5   4   7
+```
+
+## 0872 - Leaf-Similar Trees
+
+- **Problem:** Determine whether two binary trees have the same leaf value sequence from left to right.
+- **Pattern:** `Binary Tree` / `DFS`
+- **Recognition:**
+  - Only the leaf nodes matter.
+  - The order of leaf nodes must be preserved.
+  - A depth-first traversal naturally visits leaves from left to right.
+- **Key Insight:**
+  - Traverse each tree using DFS.
+  - Whenever a leaf node is encountered, append its value to a list.
+  - After traversing both trees, compare the two leaf sequences.
+  - If they are identical, the trees are leaf-similar.
+
+- **Time Complexity:** `O(n + m)`
+  - `n` and `m` are the number of nodes in the two trees.
+- **Space Complexity:** `O(n + m)`
+  - Due to the recursion stack and the lists storing leaf values.
+
+### Example
+
+```text
+Input:
+
+Tree 1 leaves:
+6, 7, 4, 9, 8
+
+Tree 2 leaves:
+6, 7, 4, 9, 8
+
+Leaf sequences match.
+
+Output:
+True
 ```
 
 ## 2331 - Evaluate Boolean Binary Tree
