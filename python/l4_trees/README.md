@@ -532,6 +532,53 @@ Output:
 True
 ```
 
+## 0938 - Range Sum of BST
+
+- **Problem:** Return the sum of all node values in a Binary Search Tree (BST) that lie within the inclusive range `[low, high]`.
+- **Pattern:** `Binary Search Tree` / `DFS`
+- **Recognition:**
+  - The BST property allows entire subtrees to be skipped.
+  - If a node's value is too small or too large, only one subtree needs to be explored.
+  - DFS efficiently traverses only the relevant nodes.
+- **Key Insight:**
+  - Traverse the BST recursively.
+  - For each node:
+    - If `node.val > high`, search only the left subtree.
+    - If `node.val < low`, search only the right subtree.
+    - Otherwise:
+      - Add the current node's value.
+      - Recursively search both left and right subtrees.
+  - Using the BST property avoids unnecessary traversal.
+
+- **Time Complexity:** `O(n)` *(worst case)*
+  - Fewer nodes may be visited due to BST pruning.
+- **Space Complexity:** `O(h)`
+  - `h` = height of the tree (recursion stack).
+
+### Example
+
+```text
+Input:
+
+        10
+       /  \
+      5    15
+     / \     \
+    3   7     18
+
+Range:
+[7, 15]
+
+Included values:
+7, 10, 15
+
+Sum:
+32
+
+Output:
+32
+```
+
 ## 2331 - Evaluate Boolean Binary Tree
 
 - **Problem:** Evaluate a boolean binary tree where:
