@@ -4,6 +4,7 @@
 
 - [0094 - Binary Tree Inorder Traversal](#0094---binary-tree-inorder-traversal)
 - [0100 - Same Tree](#0100---same-tree)
+- [0101 - Symmetric Tree](#0101---symmetric-tree)
 - [0104 - Maximum Depth of Binary Tree](#0104---maximum-depth-of-binary-tree)
 - [0108 - Convert Sorted Array to Binary Search Tree](#0108---convert-sorted-array-to-binary-search-tree)
 - [0110 - Balanced Binary Tree](#0110---balanced-binary-tree)
@@ -58,6 +59,49 @@ Compare:
 1 == 1 ✓
 2 == 2 ✓
 3 == 3 ✓
+
+Output:
+True
+```
+
+## 0101 - Symmetric Tree
+
+- **Problem:** Determine whether a binary tree is symmetric around its center.
+- **Pattern:** `Binary Tree` / `Recursion`
+- **Recognition:**
+  - Symmetry means the left subtree is a mirror image of the right subtree.
+  - Corresponding nodes must have equal values.
+  - Children are compared in opposite directions.
+- **Key Insight:**
+  - Define a recursive helper to compare two nodes as mirrors.
+  - For each pair of nodes:
+    - If both are `None`, they are symmetric.
+    - If only one is `None` or their values differ, the tree is not symmetric.
+    - Otherwise:
+      - Compare the left child of the first node with the right child of the second.
+      - Compare the right child of the first node with the left child of the second.
+  - The tree is symmetric only if all mirrored pairs match.
+
+- **Time Complexity:** `O(n)`
+  - Every node is visited once.
+- **Space Complexity:** `O(h)`
+  - `h` = height of the tree (recursion stack).
+
+### Example
+
+```text
+Input:
+
+        1
+      /   \
+     2     2
+    / \   / \
+   3   4 4   3
+
+Mirror comparisons:
+2 ↔ 2 ✓
+3 ↔ 3 ✓
+4 ↔ 4 ✓
 
 Output:
 True
