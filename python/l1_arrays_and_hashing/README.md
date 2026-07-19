@@ -21,6 +21,7 @@
 - [0724 - Find Pivot Index](#0724---find-pivot-index)
 - [0896 - Monotonic Array](#0896---monotonic-array)
 - [0929 - Unique Email Addresses](#0929---unique-email-addresses)
+- [1051 - Height Checker](#1051---height-checker)
 - [1002 - Find Common Characters](#1002---find-common-characters)
 - [1189 - Maximum Number of Balloons](#1189---maximum-number-of-balloons)
 - [1299 - Replace Elements with Greatest Element on Right Side](#1299---replace-elements-with-greatest-element-on-right-side)
@@ -407,6 +408,52 @@ Output:
 False
 ```
 
+## 0303 - Range Sum Query - Immutable
+
+- **Problem:** Design a data structure that returns the sum of elements between two indices efficiently.
+- **Pattern:** `Prefix Sum`
+- **Recognition:**
+  - Multiple range sum queries are performed on an immutable array.
+  - Recomputing the sum for every query would be inefficient.
+  - Prefix sums allow each query to be answered in constant time.
+- **Key Insight:**
+  - During initialization, build a prefix sum array where:
+    ```text
+    prefix[i] = nums[0] + nums[1] + ... + nums[i]
+    ```
+  - To answer a query:
+    - If `left == 0`, return `prefix[right]`.
+    - Otherwise:
+      ```text
+      prefix[right] - prefix[left - 1]
+      ```
+    - This subtracts the sum before the range, leaving only the desired interval.
+
+- **Time Complexity:**
+  - Initialization: `O(n)`
+  - `sumRange()`: `O(1)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+nums = [-2, 0, 3, -5, 2, -1]
+
+Prefix Sum:
+[-2, -2, 1, -4, -2, -3]
+
+Query:
+sumRange(2, 5)
+
+Result:
+prefix[5] - prefix[1]
+= -3 - (-2)
+= -1
+
+Output:
+-1
+```
 
 ## 0383 - Ransom Note
 
@@ -810,6 +857,48 @@ Common characters:
 
 Output:
 ["e", "l", "l"]
+```
+
+## 1051 - Height Checker
+
+- **Problem:** Count the number of students who are not standing in the positions they would occupy if the heights were sorted.
+- **Pattern:** `Sorting` / `Counting Sort`
+- **Recognition:**
+  - Need to compare the original order with the sorted order.
+  - Heights are constrained to the range `1–100`, making counting sort possible.
+  - The answer is the number of mismatched positions.
+- **Key Insight:**
+  - **Method 1 (Built-in Sort):**
+    - Create a sorted copy of the heights.
+    - Compare each position with the original array.
+    - Count the mismatches.
+  - **Method 2 (Bucket Sort):**
+    - Count the frequency of each height using a bucket array.
+    - Reconstruct the sorted array from the buckets.
+    - Compare it with the original array and count mismatches.
+
+- **Time Complexity:**
+  - Built-in Sort: `O(n log n)`
+  - Bucket Sort: `O(n)`
+- **Space Complexity:** `O(n)`
+  - For storing the reconstructed sorted array.
+
+### Example
+
+```text
+Input:
+heights = [1, 1, 4, 2, 1, 3]
+
+Sorted:
+[1, 1, 1, 2, 3, 4]
+
+Mismatches:
+Index 2: 4 ≠ 1
+Index 4: 1 ≠ 3
+Index 5: 3 ≠ 4
+
+Output:
+3
 ```
 
 ## 1189 - Maximum Number of Balloons
