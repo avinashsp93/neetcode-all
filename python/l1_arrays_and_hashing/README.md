@@ -23,6 +23,7 @@
 - [0929 - Unique Email Addresses](#0929---unique-email-addresses)
 - [1051 - Height Checker](#1051---height-checker)
 - [1002 - Find Common Characters](#1002---find-common-characters)
+- [1160 - Find Words That Can Be Formed by Characters](#1160---find-words-that-can-be-formed-by-characters)
 - [1189 - Maximum Number of Balloons](#1189---maximum-number-of-balloons)
 - [1299 - Replace Elements with Greatest Element on Right Side](#1299---replace-elements-with-greatest-element-on-right-side)
 - [1394 - Find Lucky Integer in an Array](#1394---find-lucky-integer-in-an-array)
@@ -899,6 +900,47 @@ Index 5: 3 ≠ 4
 
 Output:
 3
+```
+
+## 1160 - Find Words That Can Be Formed by Characters
+
+- **Problem:** Return the total length of all words that can be formed using the given characters, where each character can be used only as many times as it appears in `chars`.
+- **Pattern:** `Hash Map` / `Frequency Counting`
+- **Recognition:**
+  - Need to compare character frequencies rather than just character existence.
+  - Each word is checked independently against the available characters.
+  - A frequency map provides efficient lookups.
+- **Key Insight:**
+  - Build a frequency map for the characters in `chars`.
+  - For each word:
+    - Build its own frequency map.
+    - Compare each character's required frequency with the available frequency.
+    - If every character requirement is satisfied, add the word's length to the answer.
+  - Continue until all words have been checked.
+
+- **Time Complexity:** `O(n × m)`
+  - `n` = number of words, `m` = average word length.
+- **Space Complexity:** `O(k)`
+  - `k` = number of distinct characters in the frequency maps.
+
+### Example
+
+```text
+Input:
+words = ["cat", "bt", "hat", "tree"]
+chars = "atach"
+
+Can form:
+"cat" ✓
+"bt" ✗
+"hat" ✓
+"tree" ✗
+
+Total length:
+3 + 3 = 6
+
+Output:
+6
 ```
 
 ## 1189 - Maximum Number of Balloons
