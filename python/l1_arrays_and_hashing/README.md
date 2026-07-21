@@ -30,6 +30,7 @@
 - [1408 - String Matching in an Array](#1408---string-matching-in-an-array)
 - [1752 - Check if Array Is Sorted and Rotated](#1752---check-if-array-is-sorted-and-rotated)
 - [1800 - Maximum Ascending Subarray Sum](#1800---maximum-ascending-subarray-sum)
+- [1913 - Maximum Product Difference Between Two Pairs](#1913---maximum-product-difference-between-two-pairs)
 - [2053 - Kth Distinct String in an Array](#2053---kth-distinct-string-in-an-array)
 - [2206 - Divide Array Into Equal Pairs](#2206---divide-array-into-equal-pairs)
 - [2264 - Largest 3-Same-Digit Number in String](#2264---largest-3-same-digit-number-in-string)
@@ -1250,6 +1251,51 @@ Ascending Runs:
 
 Output:
 65
+```
+
+## 1913 - Maximum Product Difference Between Two Pairs
+
+- **Problem:** Find the maximum product difference between two pairs of numbers:
+  ```text
+  (largest × secondLargest) - (smallest × secondSmallest)
+  ```
+- **Pattern:** `Array Traversal`
+- **Recognition:**
+  - Only the two largest and two smallest values affect the answer.
+  - Sorting is unnecessary.
+  - All four values can be tracked in a single pass.
+- **Key Insight:**
+  - Traverse the array once while maintaining:
+    - The largest and second largest numbers.
+    - The smallest and second smallest numbers.
+  - Update these four values as each number is processed.
+  - Compute the final product difference using:
+    ```text
+    (largest × secondLargest) - (smallest × secondSmallest)
+    ```
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [5, 6, 2, 7, 4]
+
+Largest values:
+7, 6
+
+Smallest values:
+2, 4
+
+Product difference:
+7 × 6 - 2 × 4
+= 42 - 8
+= 34
+
+Output:
+34
 ```
 
 ## 2053 - Kth Distinct String in an Array
