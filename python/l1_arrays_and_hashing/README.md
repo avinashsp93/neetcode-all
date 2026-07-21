@@ -32,6 +32,8 @@
 - [1800 - Maximum Ascending Subarray Sum](#1800---maximum-ascending-subarray-sum)
 - [2053 - Kth Distinct String in an Array](#2053---kth-distinct-string-in-an-array)
 - [2206 - Divide Array Into Equal Pairs](#2206---divide-array-into-equal-pairs)
+- [2264 - Largest 3-Same-Digit Number in String](#2264---largest-3-same-digit-number-in-string)
+- [2490 - Circular Sentence](#2490---circular-sentence)
 - [2678 - Number of Senior Citizens](#2678---number-of-senior-citizens)
 - [2965 - Find Missing and Repeated Values](#2965---find-missing-and-repeated-values)
 - [3105 - Longest Strictly Increasing or Strictly Decreasing Subarray](#3105---longest-strictly-increasing-or-strictly-decreasing-subarray)
@@ -1326,6 +1328,40 @@ Set is empty.
 
 Output:
 True
+```
+
+## 2264 - Largest 3-Same-Digit Number in String
+
+- **Problem:** Find the largest substring of length `3` consisting of the same digit. Return an empty string if none exists.
+- **Pattern:** `String Traversal`
+- **Recognition:**
+  - Need to examine every substring of fixed length `3`.
+  - A valid substring has all three characters equal.
+  - Keep track of the largest valid substring encountered.
+- **Key Insight:**
+  - Slide a window of length `3` across the string.
+  - For each substring:
+    - Check if all three digits are identical.
+    - If valid, compare it with the current largest good integer.
+  - Return the largest valid substring, or an empty string if none exists.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+num = "6777133339"
+
+Good substrings:
+"777", "333"
+
+Largest:
+"777"
+
+Output:
+"777"
 ```
 
 ## 2490 - Circular Sentence
