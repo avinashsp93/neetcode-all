@@ -42,6 +42,10 @@
 - [3151 - Special Array I](#3151---special-array-i)
 - [3442 - Maximum Difference Between Even and Odd Frequency](#3442---maximum-difference-between-even-and-odd-frequency)
 
+
+### Medium
+
+- [2486 - Append Characters to String to Make Subsequence](#2486---append-characters-to-string-to-make-subsequence)
 <br><br>
 
 <h2 style="text-align: center;text-transform: uppercase;">
@@ -1710,4 +1714,57 @@ even_min = 2
 
 Output:
 3
+```
+
+
+<br><br>
+
+<h2 style="text-align: center;text-transform: uppercase;">
+  MEDIUM PROBLEMS
+</h2>
+
+<br><br>
+
+
+
+
+## 2486 - Append Characters to String to Make Subsequence
+
+- **Problem:** Return the minimum number of characters that must be appended to `s` so that `t` becomes a subsequence of `s`.
+- **Pattern:** `Two Pointers`
+- **Recognition:**
+  - Need to match characters of `t` in order within `s`.
+  - Characters cannot be rearranged.
+  - Two pointers efficiently track progress through both strings.
+- **Key Insight:**
+  - Use two pointers:
+    - `sp` traverses `s`.
+    - `tp` traverses `t`.
+  - Whenever `s[sp] == t[tp]`, advance `tp`.
+  - Continue until all of `s` has been processed.
+  - The unmatched suffix of `t` must be appended.
+  - The answer is:
+    ```text
+    len(t) - tp
+    ```
+
+- **Time Complexity:** `O(n)`
+  - `n` = length of `s`.
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+s = "coaching"
+t = "coding"
+
+Matched:
+c → o → i → n
+
+Unmatched:
+"d", "g"
+
+Output:
+2
 ```
