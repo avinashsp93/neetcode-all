@@ -45,7 +45,11 @@
 
 ### Medium
 
+- [0049 - Group Anagrams](#0049---group-anagrams)
 - [2486 - Append Characters to String to Make Subsequence](#2486---append-characters-to-string-to-make-subsequence)
+- [2559 - Count Vowel Strings in Ranges](#2559---count-vowel-strings-in-ranges)
+
+
 <br><br>
 
 <h2 style="text-align: center;text-transform: uppercase;">
@@ -1725,7 +1729,47 @@ Output:
 
 <br><br>
 
+## 0049 - Group Anagrams
 
+- **Problem:** Group strings that are anagrams of each other into separate lists.
+- **Pattern:** `Hash Map` / `Frequency Counting`
+- **Recognition:**
+  - Anagrams contain the same characters with the same frequencies.
+  - A unique representation of character frequencies can be used as a key.
+  - Strings with the same frequency signature belong to the same group.
+- **Key Insight:**
+  - For each string:
+    - Create a frequency array of size `26`.
+    - Count the occurrences of each character.
+    - Convert the frequency array into a tuple so it can be used as a hash map key.
+  - Store each string under its frequency signature.
+  - The values of the hash map contain the grouped anagrams.
+
+- **Time Complexity:** `O(n × k)`
+  - `n` = number of strings.
+  - `k` = average length of each string.
+- **Space Complexity:** `O(n)`
+  - Stores all grouped strings and frequency keys.
+
+### Example
+
+```text
+Input:
+strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+
+Frequency groups:
+
+["eat", "tea", "ate"]
+["tan", "nat"]
+["bat"]
+
+Output:
+[
+ ["eat","tea","ate"],
+ ["tan","nat"],
+ ["bat"]
+]
+```
 
 
 ## 2486 - Append Characters to String to Make Subsequence
@@ -1767,4 +1811,52 @@ Unmatched:
 
 Output:
 2
+```
+
+## 2559 - Count Vowel Strings in Ranges
+
+- **Problem:** For each query `[l, r]`, count the number of words that both start and end with a vowel within that range.
+- **Pattern:** `Prefix Sum`
+- **Recognition:**
+  - Multiple range queries are performed on a fixed array.
+  - Each word either qualifies (`1`) or does not (`0`).
+  - Prefix sums allow each query to be answered in constant time.
+- **Key Insight:**
+  - Convert the words into a binary array:
+    - `1` if the word starts and ends with a vowel.
+    - `0` otherwise.
+  - Build a prefix sum array over this binary array.
+  - For each query:
+    - If `l == 0`, the answer is `prefix[r]`.
+    - Otherwise, compute:
+      ```text
+      prefix[r] - prefix[l - 1]
+      ```
+    - This gives the number of qualifying words in the range.
+
+- **Time Complexity:** `O(n + q)`
+  - `n` = number of words.
+  - `q` = number of queries.
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+words = ["aba", "bcb", "ece", "aa", "e"]
+queries = [[0,2], [1,4], [1,1]]
+
+Binary array:
+[1, 0, 1, 1, 1]
+
+Prefix sum:
+[1, 1, 2, 3, 4]
+
+Answers:
+[0,2] → 2
+[1,4] → 3
+[1,1] → 0
+
+Output:
+[2, 3, 0]
 ```
