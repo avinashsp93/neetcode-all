@@ -46,6 +46,7 @@
 ### Medium
 
 - [0049 - Group Anagrams](#0049---group-anagrams)
+- [1701 - Average Waiting Time](#1701---average-waiting-time)
 - [2486 - Append Characters to String to Make Subsequence](#2486---append-characters-to-string-to-make-subsequence)
 - [2559 - Count Vowel Strings in Ranges](#2559---count-vowel-strings-in-ranges)
 
@@ -1769,6 +1770,65 @@ Output:
  ["tan","nat"],
  ["bat"]
 ]
+```
+
+## 1701 - Average Waiting Time
+
+- **Problem:** Given customers arriving in order, compute the average waiting time, where each customer's waiting time includes both any time spent waiting and their service time.
+- **Pattern:** `Simulation`
+- **Recognition:**
+  - Customers are processed sequentially by a single chef.
+  - The start time of each customer depends on when the previous customer finishes.
+  - Only the current finish time needs to be tracked.
+- **Key Insight:**
+  - Process customers in arrival order.
+  - For each customer:
+    - The chef starts at:
+      ```text
+      max(currentFinishTime, arrivalTime)
+      ```
+    - Compute the finish time:
+      ```text
+      finishTime = startTime + serviceTime
+      ```
+    - The customer's waiting time is:
+      ```text
+      finishTime - arrivalTime
+      ```
+    - Add it to the cumulative waiting time.
+  - Return:
+    ```text
+    totalWaitingTime / numberOfCustomers
+    ```
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+customers = [[1,2], [2,5], [4,3]]
+
+Customer 1:
+Finish = 3
+Wait = 2
+
+Customer 2:
+Start = 3
+Finish = 8
+Wait = 6
+
+Customer 3:
+Start = 8
+Finish = 11
+Wait = 7
+
+Average:
+(2 + 6 + 7) / 3 = 5.0
+
+Output:
+5.0
 ```
 
 
