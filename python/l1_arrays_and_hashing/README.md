@@ -46,6 +46,7 @@
 ### Medium
 
 - [0049 - Group Anagrams](#0049---group-anagrams)
+- [0912 - Sort an Array](#0912---sort-an-array)
 - [1701 - Average Waiting Time](#1701---average-waiting-time)
 - [2486 - Append Characters to String to Make Subsequence](#2486---append-characters-to-string-to-make-subsequence)
 - [2559 - Count Vowel Strings in Ranges](#2559---count-vowel-strings-in-ranges)
@@ -1771,6 +1772,47 @@ Output:
  ["bat"]
 ]
 ```
+
+## 0912 - Sort an Array
+
+- **Problem:** Sort an array of integers in ascending order.
+- **Pattern:** `Divide and Conquer` / `Merge Sort`
+- **Recognition:**
+  - Efficient sorting is required with guaranteed `O(n log n)` performance.
+  - Merge Sort recursively divides the array into smaller halves.
+  - Sorted halves are merged to produce the final sorted array.
+- **Key Insight:**
+  - Recursively split the array until each subarray contains a single element.
+  - Merge two sorted halves by repeatedly selecting the smaller front element.
+  - Copy any remaining elements after one half is exhausted.
+  - Continue merging until the entire array is sorted.
+
+- **Time Complexity:** `O(n log n)`
+  - Each level processes all `n` elements, and there are `log n` levels.
+- **Space Complexity:** `O(n)`
+  - Temporary arrays are created during the merge step.
+
+### Example
+
+```text
+Input:
+nums = [5, 2, 3, 1]
+
+Split:
+[5,2,3,1]
+→ [5,2] [3,1]
+→ [5] [2] [3] [1]
+
+Merge:
+[2,5]
+[1,3]
+→ [1,2,3,5]
+
+Output:
+[1,2,3,5]
+```
+
+
 
 ## 1701 - Average Waiting Time
 
