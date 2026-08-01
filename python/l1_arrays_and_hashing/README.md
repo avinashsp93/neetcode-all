@@ -46,6 +46,9 @@
 ### Medium
 
 - [0049 - Group Anagrams](#0049---group-anagrams)
+- [0075 - Sort Colors](#0075---sort-colors)
+- [0347 - Top K Frequent Elements](#0347---top-k-frequent-elements)
+- [0791 - Custom Sort String](#0791---custom-sort-string)
 - [0912 - Sort an Array](#0912---sort-an-array)
 - [1701 - Average Waiting Time](#1701---average-waiting-time)
 - [2486 - Append Characters to String to Make Subsequence](#2486---append-characters-to-string-to-make-subsequence)
@@ -1772,6 +1775,130 @@ Output:
  ["bat"]
 ]
 ```
+
+## 0075 - Sort Colors
+
+- **Problem:** Sort an array containing only `0`s, `1`s, and `2`s in-place.
+- **Pattern:** `Two Pointers` / `Dutch National Flag`
+- **Recognition:**
+  - Only three distinct values are present.
+  - The array must be sorted in one pass using constant extra space.
+  - Partitioning the array into three regions is ideal.
+- **Key Insight:**
+  - Maintain three pointers:
+    - `l`: next position for `0`.
+    - `r`: next position for `2`.
+    - `i`: current element being examined.
+  - While `i <= r`:
+    - If `nums[i] == 0`, swap with `nums[l]` and advance both `l` and `i`.
+    - If `nums[i] == 2`, swap with `nums[r]`, decrement `r`, and recheck the new value at `i`.
+    - If `nums[i] == 1`, simply advance `i`.
+  - Key is that, when nums[i] is 2, it should be swapped with nums[r] and r decremented, but i should not be incremented because the new nums[i] needs to be examined. It might be 0, so we need to check it again in the next iteration.
+  - After one traversal, all `0`s, `1`s, and `2`s are correctly partitioned.
+
+- **Time Complexity:** `O(n)`
+  - Each element is processed at most once.
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+nums = [2, 0, 2, 1, 1, 0]
+
+Process:
+[2,0,2,1,1,0]
+→ [0,0,2,1,1,2]
+→ [0,0,1,1,2,2]
+
+Output:
+[0,0,1,1,2,2]
+```
+
+
+## 0347 - Top K Frequent Elements
+
+- **Problem:** Return the `k` most frequent elements from an array.
+- **Pattern:** `Hash Map` / `Bucket Sort`
+- **Recognition:**
+  - Need the elements with the highest frequencies, not a fully sorted array.
+  - The maximum possible frequency is `n`, making bucket sort efficient.
+  - A frequency map followed by buckets avoids `O(n log n)` sorting.
+- **Key Insight:**
+  - Count the frequency of each element using a hash map.
+  - Create `n + 1` buckets, where bucket `i` stores all elements that appear `i` times.
+  - Place each element into its corresponding frequency bucket.
+  - Traverse the buckets from highest frequency to lowest, collecting elements until `k` have been gathered.
+
+- **Time Complexity:** `O(n)`
+  - Building the frequency map, filling buckets, and scanning them are all linear.
+- **Space Complexity:** `O(n)`
+  - For the frequency map and bucket array.
+
+### Example
+
+```text
+Input:
+nums = [1,1,1,2,2,3]
+k = 2
+
+Frequencies:
+1 → 3
+2 → 2
+3 → 1
+
+Buckets:
+1: [3]
+2: [2]
+3: [1]
+
+Traverse from highest frequency:
+[1] → [2]
+
+Output:
+[1, 2]
+```
+
+
+## 0791 - Custom Sort String
+
+- **Problem:** Rearrange the characters of `s` so that they appear in the order specified by `order`. Characters not present in `order` can appear at the end in any order.
+- **Pattern:** `Hash Map` / `Counting`
+- **Recognition:**
+  - The relative order of characters is determined by another string.
+  - Characters may appear multiple times.
+  - Counting character frequencies avoids repeatedly scanning the input.
+- **Key Insight:**
+  - Count the frequency of each character in `s`.
+  - Traverse `order`:
+    - For each character, append it to the result as many times as it appears in `s`.
+  - Finally, append any remaining characters that were not specified in `order`.
+  - The resulting string satisfies the custom ordering.
+
+- **Time Complexity:** `O(n + m)`
+  - `n` = length of `s`, `m` = length of `order`.
+- **Space Complexity:** `O(k)`
+  - `k` = number of distinct characters in `s`.
+
+### Example
+
+```text
+Input:
+order = "cba"
+s = "abcd"
+
+Character counts:
+a:1, b:1, c:1, d:1
+
+Build result:
+"c" → "cb" → "cba"
+Append remaining:
+"d"
+
+Output:
+"cbad"
+```
+
 
 ## 0912 - Sort an Array
 
