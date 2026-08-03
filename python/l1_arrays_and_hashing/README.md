@@ -47,6 +47,7 @@
 
 - [0049 - Group Anagrams](#0049---group-anagrams)
 - [0075 - Sort Colors](#0075---sort-colors)
+- [0304 - Range Sum Query 2D - Immutable](#0304---range-sum-query-2d---immutable)
 - [0347 - Top K Frequent Elements](#0347---top-k-frequent-elements)
 - [0791 - Custom Sort String](#0791---custom-sort-string)
 - [0912 - Sort an Array](#0912---sort-an-array)
@@ -1813,6 +1814,65 @@ Process:
 
 Output:
 [0,0,1,1,2,2]
+```
+
+## 0304 - Range Sum Query 2D - Immutable
+
+- **Problem:** Design a data structure that efficiently returns the sum of elements inside any rectangular submatrix.
+- **Pattern:** `2D Prefix Sum`
+- **Recognition:**
+  - Multiple range sum queries are performed on an immutable matrix.
+  - Computing each rectangle sum from scratch is inefficient.
+  - A 2D prefix sum enables constant-time queries after preprocessing.
+- **Key Insight:**
+  - Build a `(rows + 1) × (cols + 1)` prefix matrix where:
+    ```text
+    prefix[r+1][c+1]
+      = matrix[r][c]
+      + prefix[r][c+1]
+      + prefix[r+1][c]
+      - prefix[r][c]
+    ```
+  - To compute the sum of a rectangle from `(row1, col1)` to `(row2, col2)`, use inclusion-exclusion:
+    ```text
+    prefix[row2+1][col2+1]
+    - prefix[row1][col2+1]
+    - prefix[row2+1][col1]
+    + prefix[row1][col1]
+    ```
+  - This removes the regions above and to the left while adding back the overlapping area.
+
+- **Time Complexity:**
+  - Initialization: `O(rows × cols)`
+  - `sumRegion()`: `O(1)`
+- **Space Complexity:** `O(rows × cols)`
+
+### Example
+
+```text
+Input:
+
+Matrix:
+3 0 1 4 2
+5 6 3 2 1
+1 2 0 1 5
+4 1 0 1 7
+1 0 3 0 5
+
+Query:
+(row1, col1) = (2, 1)
+(row2, col2) = (4, 3)
+
+Rectangle:
+2 0 1
+1 0 1
+0 3 0
+
+Sum:
+8
+
+Output:
+8
 ```
 
 
