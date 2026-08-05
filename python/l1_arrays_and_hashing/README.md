@@ -52,6 +52,7 @@
 - [0791 - Custom Sort String](#0791---custom-sort-string)
 - [0912 - Sort an Array](#0912---sort-an-array)
 - [1701 - Average Waiting Time](#1701---average-waiting-time)
+- [1769 - Minimum Number of Operations to Move All Balls to Each Box](#1769---minimum-number-of-operations-to-move-all-balls-to-each-box)
 - [2486 - Append Characters to String to Make Subsequence](#2486---append-characters-to-string-to-make-subsequence)
 - [2559 - Count Vowel Strings in Ranges](#2559---count-vowel-strings-in-ranges)
 
@@ -2058,6 +2059,45 @@ Average:
 
 Output:
 5.0
+```
+
+## 1769 - Minimum Number of Operations to Move All Balls to Each Box
+
+- **Problem:** For each box, determine the minimum number of operations required to move all balls into that box.
+- **Pattern:** `Simulation`
+- **Recognition:**
+  - Each ball contributes its distance to every target box.
+  - The total operations for a box are the sum of distances from all ball positions.
+  - A straightforward approach computes these distances directly.
+- **Key Insight:**
+  - First, record the indices of all boxes containing a ball.
+  - For each target box:
+    - Compute the absolute distance to every ball.
+    - Sum these distances to obtain the required operations.
+  - Store the result for every box.
+
+- **Time Complexity:** `O(n × m)`
+  - `n` = number of boxes.
+  - `m` = number of balls (worst case `O(n²)`).
+- **Space Complexity:** `O(m)`
+  - Stores the positions of all balls.
+
+### Example
+
+```text
+Input:
+boxes = "110"
+
+Ball positions:
+0, 1
+
+Operations:
+Box 0: |0-0| + |1-0| = 1
+Box 1: |0-1| + |1-1| = 1
+Box 2: |0-2| + |1-2| = 3
+
+Output:
+[1, 1, 3]
 ```
 
 
