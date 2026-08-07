@@ -1,9 +1,7 @@
 class Solution:
     def minOperations(self, boxes: str) -> List[int]:
-        boxes = [int(box) for box in boxes.split('')]
-        boxLocations = []
-        for index, i in enumerate(boxes):
-            if i == 1:
+        for index, i in enumerate(list(boxes)):
+            if int(i) == 1:
                 boxLocations.append(index)
 
         result = []

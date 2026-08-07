@@ -47,6 +47,7 @@
 
 - [0049 - Group Anagrams](#0049---group-anagrams)
 - [0075 - Sort Colors](#0075---sort-colors)
+- [0128 - Longest Consecutive Sequence](#0128---longest-consecutive-sequence)
 - [0304 - Range Sum Query 2D - Immutable](#0304---range-sum-query-2d---immutable)
 - [0347 - Top K Frequent Elements](#0347---top-k-frequent-elements)
 - [0791 - Custom Sort String](#0791---custom-sort-string)
@@ -1817,6 +1818,48 @@ Output:
 [0,0,1,1,2,2]
 ```
 
+## 0128 - Longest Consecutive Sequence
+
+- **Problem:** Find the length of the longest sequence of consecutive integers in an unsorted array.
+- **Pattern:** `Hash Set`
+- **Recognition:**
+  - The array is unsorted, making sorting less desirable.
+  - Fast membership checks are needed to determine whether consecutive numbers exist.
+  - A sequence only needs to be counted from its starting element.
+- **Key Insight:**
+  - Insert all numbers into a hash set for `O(1)` average lookups.
+  - For each number:
+    - If `num - 1` exists, skip it because it is not the start of a sequence.
+    - Otherwise, repeatedly check for `num + 1`, `num + 2`, and so on.
+    - Count the length of the sequence and update the maximum.
+  - Since each number is visited at most once as part of a sequence, the algorithm remains linear.
+
+- **Time Complexity:** `O(n)`
+  - Each number is processed at most once.
+- **Space Complexity:** `O(n)`
+  - For the hash set.
+
+### Example
+
+```text
+Input:
+nums = [100, 4, 200, 1, 3, 2]
+
+Hash set:
+{100, 4, 200, 1, 3, 2}
+
+Sequence starts:
+100 → length 1
+200 → length 1
+1 → 2 → 3 → 4 → length 4
+
+Longest sequence:
+1 → 2 → 3 → 4
+
+Output:
+4
+```
+
 ## 0304 - Range Sum Query 2D - Immutable
 
 - **Problem:** Design a data structure that efficiently returns the sum of elements inside any rectangular submatrix.
@@ -1918,6 +1961,62 @@ Traverse from highest frequency:
 
 Output:
 [1, 2]
+```
+
+## 0554 - Brick Wall
+
+- **Problem:** Draw a vertical line through a brick wall such that it crosses the fewest bricks.
+- **Pattern:** `Hash Map` / `Prefix Sum`
+- **Recognition:**
+  - A line avoids crossing a brick if it passes through the edge between two bricks.
+  - Interior brick edges that align across many rows are the optimal places to draw the line.
+  - Counting the positions of these edges identifies the best location.
+- **Key Insight:**
+  - For each row:
+    - Compute the running (prefix) sum of brick widths.
+    - Record every interior edge position in a hash map.
+    - Ignore the final edge, since drawing along the wall's boundary is not allowed.
+  - The edge position with the highest frequency is crossed by the most rows.
+  - Therefore, the minimum number of bricks crossed is:
+    ```text
+    number of rows - maximum edge frequency
+    ```
+
+- **Time Complexity:** `O(n)`
+  - Every brick is processed once.
+- **Space Complexity:** `O(n)`
+  - Stores the frequencies of interior edge positions.
+
+### Example
+
+```text
+Input:
+
+[
+ [1,2,2,1],
+ [3,1,2],
+ [1,3,2],
+ [2,4],
+ [3,1,2],
+ [1,3,1,1]
+]
+
+Interior edge frequencies:
+1 → 3
+3 → 3
+4 → 4
+...
+
+Most common edge:
+4 (appears in 4 rows)
+
+Rows = 6
+
+Minimum bricks crossed:
+6 - 4 = 2
+
+Output:
+2
 ```
 
 
