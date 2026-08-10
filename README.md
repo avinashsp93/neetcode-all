@@ -22,9 +22,9 @@ This repository contains all the solutions to the problems on [neetcode.io](http
 <!-- STATS_START -->
 ## Progress
 
-- Total Problems Solved: 172
+- Total Problems Solved: 174
 - Easy: 140
-- Medium: 31
+- Medium: 33
 - Hard: 1
 
 <!-- STATS_END -->
