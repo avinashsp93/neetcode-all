@@ -1743,6 +1743,7 @@ Output:
 
 - **Problem:** Group strings that are anagrams of each other into separate lists.
 - **Pattern:** `Hash Map` / `Frequency Counting`
+- **Easy Prerequisite:** Problem 0242 - Valid Anagram
 - **Recognition:**
   - Anagrams contain the same characters with the same frequencies.
   - A unique representation of character frequencies can be used as a key.
@@ -1785,6 +1786,7 @@ Output:
 
 - **Problem:** Sort an array containing only `0`s, `1`s, and `2`s in-place.
 - **Pattern:** `Two Pointers` / `Dutch National Flag`
+- **Easy Prerequisite:** Problem 0283 - Move Zeroes
 - **Recognition:**
   - Only three distinct values are present.
   - The array must be sorted in one pass using constant extra space.
@@ -1824,6 +1826,7 @@ Output:
 
 - **Problem:** Maximize profit when you can buy and sell the stock multiple times, but can hold at most one stock at a time.
 - **Pattern:** `Greedy`
+- **Easy Prerequisite:** Problem 0121 - Best Time to Buy and Sell Stock I
 - **Recognition:**
   - There is no limit on the number of transactions.
   - Every increasing price transition can contribute to the maximum profit.
@@ -1868,6 +1871,7 @@ For example, `1 → 2 → 3 → 4` gives the same profit whether you make one tr
 
 - **Problem:** Find the length of the longest sequence of consecutive integers in an unsorted array.
 - **Pattern:** `Hash Set`
+- **Easy Prerequisite:** Problem 0217 - Contains Duplicate
 - **Recognition:**
   - The array is unsorted, making sorting less desirable.
   - Fast membership checks are needed to determine whether consecutive numbers exist.
@@ -1910,6 +1914,7 @@ Output:
 
 - **Problem:** Find all elements that appear more than `n/3` times in an array.
 - **Pattern:** `Boyer-Moore Voting Algorithm`
+- **Easy Prerequisite:** Problem 0169 - Majority Element I (Boyer-Moore Voting Algorithm)
 - **Key Observation:**
   - At most **2 elements** can appear more than `n/3` times.
   - This allows us to maintain only two candidates instead of a frequency map.
@@ -1967,10 +1972,13 @@ Output:
 
 **Best solution:** Your `majorityElement_candidateCountApproach` is the one to remember. It achieves the optimal **O(n) time and O(1) extra space**.
 
+
+
 ## 0304 - Range Sum Query 2D - Immutable
 
 - **Problem:** Design a data structure that efficiently returns the sum of elements inside any rectangular submatrix.
 - **Pattern:** `2D Prefix Sum`
+- **Easy Prerequisite:** Problem 0303 - Range Sum Query 1D - Immutable
 - **Recognition:**
   - Multiple range sum queries are performed on an immutable matrix.
   - Computing each rectangle sum from scratch is inefficient.
@@ -2031,6 +2039,7 @@ Output:
 
 - **Problem:** Return the `k` most frequent elements from an array.
 - **Pattern:** `Hash Map` / `Bucket Sort`
+- **Easy Prerequisite:** Problem 0217 - Contains Duplicate
 - **Recognition:**
   - Need the elements with the highest frequencies, not a fully sorted array.
   - The maximum possible frequency is `n`, making bucket sort efficient.
@@ -2131,6 +2140,7 @@ Output:
 
 - **Problem:** Rearrange the characters of `s` so that they appear in the order specified by `order`. Characters not present in `order` can appear at the end in any order.
 - **Pattern:** `Hash Map` / `Counting`
+- **Easy Prerequisite:** Problem 0242 - Valid Anagram
 - **Recognition:**
   - The relative order of characters is determined by another string.
   - Characters may appear multiple times.
@@ -2171,6 +2181,7 @@ Output:
 
 - **Problem:** Sort an array of integers in ascending order.
 - **Pattern:** `Divide and Conquer` / `Merge Sort`
+- **Easy Prerequisite:** Problem 0088 - Merge Sorted Array
 - **Recognition:**
   - Efficient sorting is required with guaranteed `O(n log n)` performance.
   - Merge Sort recursively divides the array into smaller halves.
@@ -2212,6 +2223,7 @@ Output:
 
 - **Problem:** Given customers arriving in order, compute the average waiting time, where each customer's waiting time includes both any time spent waiting and their service time.
 - **Pattern:** `Simulation`
+- **Easy Prerequisite:** Problem 2073 - Time Needed to Buy Tickets
 - **Recognition:**
   - Customers are processed sequentially by a single chef.
   - The start time of each customer depends on when the previous customer finishes.
@@ -2271,6 +2283,7 @@ Output:
 
 - **Problem:** For each box, determine the minimum number of operations required to move all balls into that box.
 - **Pattern:** `Simulation`
+- **Easy Prerequisite:** Problem 0724 - Find Pivot Index
 - **Recognition:**
   - Each ball contributes its distance to every target box.
   - The total operations for a box are the sum of distances from all ball positions.
@@ -2311,6 +2324,7 @@ Output:
 
 - **Problem:** Return the minimum number of characters that must be appended to `s` so that `t` becomes a subsequence of `s`.
 - **Pattern:** `Two Pointers`
+- **Easy Prerequisite:** Problem 0392 - Is Subsequence
 - **Recognition:**
   - Need to match characters of `t` in order within `s`.
   - Characters cannot be rearranged.
@@ -2352,6 +2366,7 @@ Output:
 
 - **Problem:** For each query `[l, r]`, count the number of words that both start and end with a vowel within that range.
 - **Pattern:** `Prefix Sum`
+- **Easy Prerequisite:** Problem 1480 - Running Sum
 - **Recognition:**
   - Multiple range queries are performed on a fixed array.
   - Each word either qualifies (`1`) or does not (`0`).
