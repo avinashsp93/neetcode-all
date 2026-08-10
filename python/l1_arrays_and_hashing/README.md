@@ -47,7 +47,9 @@
 
 - [0049 - Group Anagrams](#0049---group-anagrams)
 - [0075 - Sort Colors](#0075---sort-colors)
+- [0122 - Best Time to Buy and Sell Stock II](#0122---best-time-to-buy-and-sell-stock-ii)
 - [0128 - Longest Consecutive Sequence](#0128---longest-consecutive-sequence)
+- [0229 - Majority Element II](#0229---majority-element-ii)
 - [0304 - Range Sum Query 2D - Immutable](#0304---range-sum-query-2d---immutable)
 - [0347 - Top K Frequent Elements](#0347---top-k-frequent-elements)
 - [0791 - Custom Sort String](#0791---custom-sort-string)
@@ -1818,6 +1820,50 @@ Output:
 [0,0,1,1,2,2]
 ```
 
+## 0122 - Best Time to Buy and Sell Stock II
+
+- **Problem:** Maximize profit when you can buy and sell the stock multiple times, but can hold at most one stock at a time.
+- **Pattern:** `Greedy`
+- **Recognition:**
+  - There is no limit on the number of transactions.
+  - Every increasing price transition can contribute to the maximum profit.
+  - We don't need to explicitly determine where each transaction starts and ends.
+- **Key Insight:**
+  - Whenever tomorrow's price is greater than today's, take the profit from that increase:
+    ```text
+    prices[i+1] - prices[i]
+    ```
+  - Summing every positive difference is equivalent to buying at the beginning of every increasing run and selling at its end.
+  - Decreasing transitions contribute nothing.
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+prices = [7, 1, 5, 3, 6, 4]
+
+Positive differences:
+1 → 5 = +4
+3 → 6 = +3
+
+Total:
+4 + 3 = 7
+
+Output:
+7
+```
+
+Your solution is the clean greedy solution for this problem. The important intuition is:
+
+> **Capture every upward movement.**
+
+For example, `1 → 2 → 3 → 4` gives the same profit whether you make one transaction (`buy at 1, sell at 4`) or three transactions (`1→2`, `2→3`, `3→4`), so simply summing positive differences is sufficient.
+
+
+
 ## 0128 - Longest Consecutive Sequence
 
 - **Problem:** Find the length of the longest sequence of consecutive integers in an unsorted array.
@@ -1859,6 +1905,67 @@ Longest sequence:
 Output:
 4
 ```
+
+## 0229 - Majority Element II
+
+- **Problem:** Find all elements that appear more than `n/3` times in an array.
+- **Pattern:** `Boyer-Moore Voting Algorithm`
+- **Key Observation:**
+  - At most **2 elements** can appear more than `n/3` times.
+  - This allows us to maintain only two candidates instead of a frequency map.
+
+### 1. Brute Force / Hash Map
+
+- Count the frequency of every number using a dictionary.
+- Return numbers whose frequency is greater than `n // 3`.
+
+**Time:** `O(n)`  
+**Space:** `O(n)`
+
+### 2. Boyer-Moore — Candidate Count Approach
+
+- Maintain two candidates and their counts.
+- During the first pass:
+  - Match the current number with an existing candidate → increment its count.
+  - If a candidate has count `0`, replace it.
+  - Otherwise, decrement both counts.
+- This effectively cancels out groups of three different elements.
+- A second pass is required because the remaining candidates are only **potential** majority elements.
+- Count their actual frequencies and verify that they exceed `n / 3`.
+
+**Time:** `O(n)`  
+**Space:** `O(1)`
+
+### 3. One-Pass Dictionary Cancellation
+
+- Maintain frequencies of potential candidates.
+- Once more than two candidates exist, decrement every candidate's count, effectively cancelling one occurrence of three different values.
+- Remove candidates whose counts reach zero.
+- Finally, verify the remaining candidates using their actual frequencies.
+
+**Time:** `O(n)` in typical cases, but the repeated dictionary operations make it less clean/efficient than Boyer-Moore.  
+**Space:** `O(1)` effectively, since at most two candidates remain after cancellation.
+
+### Example
+
+```text
+Input:
+nums = [3,2,3]
+
+n = 3
+n/3 = 1
+
+Frequencies:
+3 → 2
+2 → 1
+
+Only 3 appears more than n/3.
+
+Output:
+[3]
+```
+
+**Best solution:** Your `majorityElement_candidateCountApproach` is the one to remember. It achieves the optimal **O(n) time and O(1) extra space**.
 
 ## 0304 - Range Sum Query 2D - Immutable
 
