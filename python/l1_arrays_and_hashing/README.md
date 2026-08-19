@@ -28,6 +28,7 @@
 - [1299 - Replace Elements with Greatest Element on Right Side](#1299---replace-elements-with-greatest-element-on-right-side)
 - [1394 - Find Lucky Integer in an Array](#1394---find-lucky-integer-in-an-array)
 - [1408 - String Matching in an Array](#1408---string-matching-in-an-array)
+- [1422 - Maximum Score After Splitting a String](#1422---maximum-score-after-splitting-a-string)
 - [1752 - Check if Array Is Sorted and Rotated](#1752---check-if-array-is-sorted-and-rotated)
 - [1800 - Maximum Ascending Subarray Sum](#1800---maximum-ascending-subarray-sum)
 - [1913 - Maximum Product Difference Between Two Pairs](#1913---maximum-product-difference-between-two-pairs)
@@ -52,12 +53,14 @@
 - [0229 - Majority Element II](#0229---majority-element-ii)
 - [0304 - Range Sum Query 2D - Immutable](#0304---range-sum-query-2d---immutable)
 - [0347 - Top K Frequent Elements](#0347---top-k-frequent-elements)
+- [0560 - Subarray Sum Equals K](#0560---subarray-sum-equals-k)
 - [0791 - Custom Sort String](#0791---custom-sort-string)
 - [0912 - Sort an Array](#0912---sort-an-array)
 - [1701 - Average Waiting Time](#1701---average-waiting-time)
 - [1769 - Minimum Number of Operations to Move All Balls to Each Box](#1769---minimum-number-of-operations-to-move-all-balls-to-each-box)
 - [2486 - Append Characters to String to Make Subsequence](#2486---append-characters-to-string-to-make-subsequence)
 - [2559 - Count Vowel Strings in Ranges](#2559---count-vowel-strings-in-ranges)
+- [2780 - Minimum Index of a Valid Split](#2780---minimum-index-of-a-valid-split)
 
 
 <br><br>
@@ -1133,6 +1136,73 @@ Output:
 
 ---
 
+## 1422 - Maximum Score After Splitting a String
+
+- **Problem:** Split a binary string into two non-empty parts and maximize:
+  - number of `0`s in the left part
+  - plus number of `1`s in the right part
+- **Pattern:** `Prefix Sum / Running Score`
+- **Recognition:**
+  - Need to evaluate every possible split
+  - Each split requires counting `0`s on the left and `1`s on the right
+  - Recounting for every split would be `O(n²)`
+  - Can maintain the score incrementally as the split moves
+- **Key Insight:**
+  - Start with the first character on the left and the remaining characters on the right
+  - When moving the split one position to the right:
+    - If `s[i] == '0'`, it moves into the left part → `leftScore += 1`
+    - If `s[i] == '1'`, it leaves the right part → `rightScore -= 1`
+  - Update the current score and keep track of the maximum
+- **Time Complexity:** `O(n)`
+  - Initial `count()` operations are `O(n)`
+  - One pass through the string is `O(n)`
+- **Space Complexity:** `O(1)`
+
+---
+
+### Example
+
+```text
+Input:
+s = "011101"
+
+Initial:
+Left  = "0"
+Right = "11101"
+
+leftScore = 1
+rightScore = 4
+
+currentTotal = 5
+maxTotal = 5
+
+Move split:
+
+"01" | "1101"
+s[1] = '1'
+rightScore -= 1
+score = 4
+
+"011" | "101"
+s[2] = '1'
+rightScore -= 1
+score = 3
+
+"0111" | "01"
+s[3] = '1'
+rightScore -= 1
+score = 2
+
+"01110" | "1"
+s[4] = '0'
+leftScore += 1
+score = 3
+
+Output:
+5
+```
+
+
 ## 1436 - Destination City
 
 - **Problem:** Given a list of directed paths, find the destination city that has no outgoing path.
@@ -2135,6 +2205,123 @@ Output:
 2
 ```
 
+## 0560 - Subarray Sum Equals K
+
+- **Problem:** Count the number of contiguous subarrays whose sum equals `k`.
+- **Pattern:** `Prefix Sum` / `Hash Map`
+- **Easy Prerequisite:** Problem 0303 - Range Sum Query 1D - Immutable
+- **Recognition:**
+  - We need to find sums of **contiguous** portions of the array.
+  - Negative numbers may exist, so a sliding window does not work reliably.
+  - Prefix sums let us convert a subarray-sum problem into a lookup problem.
+- **Key Insight:**
+  - Maintain `prefixSum`, the sum of everything seen so far.
+  - Suppose the current prefix sum is `S`.
+  - We want a previous prefix sum `P` such that:
+    ```text
+    S - P = k
+    ```
+    Therefore:
+    ```text
+    P = S - k
+    ```
+  - `prefixDict` stores how many times each prefix sum has occurred.
+  - If `S - k` has occurred `x` times, then there are `x` subarrays ending at the current position whose sum is `k`.
+  - `{0: 1}` represents the prefix sum before the array starts.
+
+### Example: `[5, 2, 1, 3]`, `k = 3`
+
+Let's walk through it:
+
+| Index | Num | Prefix Sum | Need (`prefixSum - k`) | Found Before? | Result |
+|---:|---:|---:|---:|---:|---:|
+| - | - | `0` | - | - | `0` |
+| 0 | `5` | `5` | `2` | No | `0` |
+| 1 | `2` | `7` | `4` | No | `0` |
+| 2 | `1` | `8` | `5` | **Yes** | `1` |
+| 3 | `3` | `11` | `8` | **Yes** | `2` |
+
+The two matching subarrays are:
+
+```text
+[5, 2, 1, 3]
+     └─────┘
+      2+1 = 3
+
+[5, 2, 1, 3]
+       └───┘
+        1+3 = 4  ❌
+```
+
+More carefully, the first match at index `2` corresponds to:
+
+```text
+prefixSum[2] - prefixSum before index 1
+= 8 - 5
+= 3
+
+→ [2, 1]
+```
+
+The second match at index `3`:
+
+```text
+11 - 8 = 3
+
+→ [3]
+```
+
+So the actual valid subarrays are:
+
+```text
+[2, 1]
+[3]
+```
+
+Therefore:
+
+```text
+Output = 2
+```
+
+### Why `{0: 1}`?
+
+This is the important part to visualize.
+
+Before processing anything:
+
+```text
+prefixSum = 0
+prefixDict = {0: 1}
+```
+
+If the first few elements themselves sum to `k`, we need to be able to find that initial `0`.
+
+For example:
+
+```text
+nums = [1, 2]
+k = 3
+
+prefixSum = 3
+
+prefixSum - k = 3 - 3 = 0
+
+prefixDict contains 0 → found!
+```
+
+That represents the subarray:
+
+```text
+[1, 2]
+```
+
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+Your implementation is the clean version of the prefix-sum approach. The key mental model to remember is:
+
+> **"I have a current prefix sum `S`. Have I previously seen `S - k`? If yes, those previous positions give me subarrays summing to `k`."**
 
 ## 0791 - Custom Sort String
 
@@ -2409,4 +2596,106 @@ Answers:
 
 Output:
 [2, 3, 0]
+```
+
+## 2780 - Minimum Index of a Valid Split
+
+- **Problem:** Find the smallest index where the array can be split into two non-empty parts such that:
+  - the same value is the **dominant element** in both parts
+  - a dominant element appears **more than half** of the elements in that part
+- **Pattern:** `Boyer-Moore Majority Vote + Prefix Counting`
+- **Easy Prerequisite:** Problem 0169 - Majority Element I
+- **Recognition:**
+  - Need to find an element that appears more than `n / 2` times in the entire array
+  - Once the dominant element is known, we can scan from left to right and maintain:
+    - count of the dominant element in the left part
+    - count of the dominant element remaining in the right part
+  - Need to find the **minimum valid split**, so return immediately when the first valid split is found
+- **Key Insight:**
+  - First find the majority candidate using **Boyer-Moore Majority Vote**
+  - Then count its actual frequency in the array
+  - While moving the split:
+    - If `nums[i] == candidate`, increment `leftMajor`
+    - Decrement `rightMajor` because the element moved from right to left
+  - A split is valid when the candidate is dominant in both parts:
+    ```python
+    leftMajor / (i + 1) > 0.5
+    rightMajor / (numsLength - i - 1) > 0.5
+    ```
+  - Since we scan from left to right, the first valid split is automatically the minimum index
+- **Time Complexity:** `O(n)`
+  - Boyer-Moore majority vote: `O(n)`
+  - `nums.count(candidate)`: `O(n)`
+  - Scan for the valid split: `O(n)`
+  - Overall: `O(n)`
+- **Space Complexity:** `O(1)`
+
+---
+
+### Example
+
+```text
+Input:
+nums = [1,2,2,2]
+
+Majority candidate:
+candidate = 2
+
+Count of candidate:
+count = 3
+
+Initial:
+leftMajor = 0
+rightMajor = 3
+
+Index 0:
+nums[0] = 1
+
+Left:
+[1]
+leftMajor = 0
+
+Right:
+[2,2,2]
+rightMajor = 3
+
+Left is not dominant
+→ Continue
+
+Index 1:
+nums[1] = 2
+
+leftMajor = 1
+rightMajor = 2
+
+Left:
+[1,2]
+1 occurrence of 2 out of 2
+→ Not dominant
+
+Right:
+[2,2]
+2 occurrences of 2 out of 2
+→ Dominant
+
+→ Continue
+
+Index 2:
+nums[2] = 2
+
+leftMajor = 2
+rightMajor = 1
+
+Left:
+[1,2,2]
+2 occurrences of 2 out of 3
+→ Dominant
+
+Right:
+[2]
+1 occurrence of 2 out of 1
+→ Dominant
+
+Output:
+2
 ```
