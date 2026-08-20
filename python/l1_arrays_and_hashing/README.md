@@ -29,6 +29,8 @@
 - [1394 - Find Lucky Integer in an Array](#1394---find-lucky-integer-in-an-array)
 - [1408 - String Matching in an Array](#1408---string-matching-in-an-array)
 - [1422 - Maximum Score After Splitting a String](#1422---maximum-score-after-splitting-a-string)
+- [1496 - Path Crossing](#1496---path-crossing)
+- [1684 - Count the Number of Consistent Strings](#1684---count-the-number-of-consistent-strings)
 - [1752 - Check if Array Is Sorted and Rotated](#1752---check-if-array-is-sorted-and-rotated)
 - [1800 - Maximum Ascending Subarray Sum](#1800---maximum-ascending-subarray-sum)
 - [1913 - Maximum Product Difference Between Two Pairs](#1913---maximum-product-difference-between-two-pairs)
@@ -56,6 +58,7 @@
 - [0560 - Subarray Sum Equals K](#0560---subarray-sum-equals-k)
 - [0791 - Custom Sort String](#0791---custom-sort-string)
 - [0912 - Sort an Array](#0912---sort-an-array)
+- [0974 - Subarray Sums Divisible by K](#0974---subarray-sums-divisible-by-k)
 - [1701 - Average Waiting Time](#1701---average-waiting-time)
 - [1769 - Minimum Number of Operations to Move All Balls to Each Box](#1769---minimum-number-of-operations-to-move-all-balls-to-each-box)
 - [2486 - Append Characters to String to Make Subsequence](#2486---append-characters-to-string-to-make-subsequence)
@@ -1238,6 +1241,44 @@ Output:
 "D"
 ```
 
+## 1496 - Path Crossing
+
+- **Problem:** Given a path represented by directions (`N`, `S`, `E`, `W`), determine whether the path visits the same coordinate more than once.
+- **Pattern:** `Hash Set + Coordinate Tracking`
+- **Recognition:**
+  - Need to detect whether we visit a location that was already visited.
+  - Each position can be represented as an `(x, y)` coordinate.
+  - A `set` provides `O(1)` average-time lookup to check whether a coordinate has been visited.
+- **Key Insight:**
+  - Start at `(0, 0)` and add it to the `visited` set.
+  - For every direction, calculate the next coordinate:
+    - `N` → `y + 1`
+    - `S` → `y - 1`
+    - `E` → `x + 1`
+    - `W` → `x - 1`
+  - If the new coordinate already exists in `visited`, the path has crossed itself.
+  - Otherwise, add the new coordinate to `visited` and continue.
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(n)`
+
+### Example
+
+```text
+Input:
+path = "NES"
+
+Start:
+(0, 0)
+
+N → (0, 1)
+S → (0, 0)
+
+(0, 0) was already visited
+
+Output:
+True
+```
+
 ## 1684 - Count the Number of Consistent Strings
 
 - **Problem:** Count how many strings consist only of characters from the given `allowed` string.
@@ -2404,7 +2445,86 @@ Output:
 [1,2,3,5]
 ```
 
+## 0974 - Subarray Sums Divisible By K
 
+- **Problem:** Count the number of subarrays whose sum is divisible by `k`.
+- **Pattern:** `Prefix Sum + Hash Map + Modulo`
+- **Easy Prerequisite:** Problem 0560 - Subarray Sum Equals K - (Medium)
+- **Recognition:**
+  - Need to count subarrays with a specific property on their sum.
+  - Brute force would calculate the sum of every possible subarray → `O(n²)`.
+  - A subarray sum can be represented using two prefix sums:
+    - `subarraySum = prefixSum[j] - prefixSum[i]`
+  - For the difference to be divisible by `k`, the two prefix sums must have the **same remainder when divided by `k`**.
+- **Key Insight:**
+  - Maintain a running `prefixSum`.
+  - Store how many times each remainder has appeared in `prefixDict`.
+  - If the current prefix sum has remainder `r`:
+    - Every previous prefix sum with the same remainder forms a subarray divisible by `k`.
+    - Therefore, add `prefixDict[r]` to the result.
+  - Initialize:
+    ```python
+    prefixDict = {0: 1}
+    ```
+    - This represents an empty prefix with sum `0`.
+    - It allows us to count subarrays starting from index `0`.
+- **Time Complexity:** `O(n)`
+  - Traverse the array once.
+  - Hash map operations are `O(1)` on average.
+- **Space Complexity:** `O(k)`
+  - There are at most `k` possible remainders: `0` through `k - 1`.
+
+---
+
+### Example
+
+```text
+Input:
+nums = [4,5,0,-2,-3,1]
+k = 5
+
+prefixDict = {0: 1}
+
+num = 4
+prefixSum = 4
+remainder = 4
+
+prefixDict:
+{0:1, 4:1}
+
+result = 0
+
+
+num = 5
+prefixSum = 9
+remainder = 4
+
+remainder 4 already appeared once
+→ One subarray has a sum divisible by 5
+
+result = 1
+
+prefixDict:
+{0:1, 4:2}
+
+
+num = 0
+prefixSum = 9
+remainder = 4
+
+remainder 4 appeared twice
+→ Add 2
+
+result = 3
+
+prefixDict:
+{0:1, 4:3}
+
+Continue the same process...
+
+Output:
+7
+```
 
 ## 1701 - Average Waiting Time
 
