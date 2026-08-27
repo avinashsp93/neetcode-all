@@ -32,6 +32,7 @@
 - [1496 - Path Crossing](#1496---path-crossing)
 - [1684 - Count the Number of Consistent Strings](#1684---count-the-number-of-consistent-strings)
 - [1752 - Check if Array Is Sorted and Rotated](#1752---check-if-array-is-sorted-and-rotated)
+- [1758 - Minimum Changes To Make Alternating Binary String](#1758---minimum-changes-to-make-alternating-binary-string)
 - [1800 - Maximum Ascending Subarray Sum](#1800---maximum-ascending-subarray-sum)
 - [1913 - Maximum Product Difference Between Two Pairs](#1913---maximum-product-difference-between-two-pairs)
 - [2053 - Kth Distinct String in an Array](#2053---kth-distinct-string-in-an-array)
@@ -1349,6 +1350,68 @@ Output:
 True
 ```
 
+## 1758 - Minimum Changes To Make Alternating Binary String
+
+- **Problem:** Find the minimum number of character changes needed to make a binary string alternating.
+- **Pattern:** `Greedy + Pattern Matching`
+- **Recognition:**
+  - There are only **two possible alternating patterns**:
+    - `"010101..."`
+    - `"101010..."`
+  - Compare the input string against one pattern and count the mismatches.
+  - The number of mismatches for the opposite pattern is simply `len(s) - misMatchCount`.
+- **Key Insight:**
+  - For the pattern `"010101..."`, the expected character at index `i` is:
+    - `'0'` when `i` is even
+    - `'1'` when `i` is odd
+  - Since `int('0') = 0` and `int('1') = 1`, we can check:
+    ```python
+    if i % 2 == int(s[i]):
+    ```
+    - If they are equal, the character does **not** match the `"0101..."` pattern.
+  - `misMatchCount` = changes needed to create `"0101..."`
+  - `len(s) - misMatchCount` = changes needed to create `"1010..."`
+  - Take the minimum of the two.
+- **Time Complexity:** `O(n)`
+- **Space Complexity:** `O(1)`
+
+### Example
+
+```text
+Input:
+s = "1111"
+
+Compare against:
+"0101"
+
+Index 0:
+expected = 0
+actual   = 1
+mismatch → 1
+
+Index 1:
+expected = 1
+actual   = 1
+match
+
+Index 2:
+expected = 0
+actual   = 1
+mismatch → 2
+
+Index 3:
+expected = 1
+actual   = 1
+match
+
+misMatchCount = 2
+
+Changes for "0101" = 2
+Changes for "1010" = 4 - 2 = 2
+
+Output:
+2
+```
 
 ## 1800 - Maximum Ascending Subarray Sum
 
