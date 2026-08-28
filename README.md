@@ -22,8 +22,8 @@ This repository contains all the solutions to the problems on [neetcode.io](http
 <!-- STATS_START -->
 ## Progress
 
-- Total Problems Solved: 179
-- Easy: 142
+- Total Problems Solved: 180
+- Easy: 143
 - Medium: 36
 - Hard: 1
 
