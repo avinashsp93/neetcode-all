@@ -34,6 +34,7 @@
 - [1752 - Check if Array Is Sorted and Rotated](#1752---check-if-array-is-sorted-and-rotated)
 - [1758 - Minimum Changes To Make Alternating Binary String](#1758---minimum-changes-to-make-alternating-binary-string)
 - [1800 - Maximum Ascending Subarray Sum](#1800---maximum-ascending-subarray-sum)
+- [1897 - Redistribute Characters to Make All Strings Equal](#1897---redistribute-characters-to-make-all-strings-equal)
 - [1913 - Maximum Product Difference Between Two Pairs](#1913---maximum-product-difference-between-two-pairs)
 - [2053 - Kth Distinct String in an Array](#2053---kth-distinct-string-in-an-array)
 - [2206 - Divide Array Into Equal Pairs](#2206---divide-array-into-equal-pairs)
@@ -62,6 +63,7 @@
 - [0974 - Subarray Sums Divisible by K](#0974---subarray-sums-divisible-by-k)
 - [1701 - Average Waiting Time](#1701---average-waiting-time)
 - [1769 - Minimum Number of Operations to Move All Balls to Each Box](#1769---minimum-number-of-operations-to-move-all-balls-to-each-box)
+- [1930 - Unique Length-3 Palindromic Subsequences](#1930---unique-length-3-palindromic-subsequences)
 - [2486 - Append Characters to String to Make Subsequence](#2486---append-characters-to-string-to-make-subsequence)
 - [2559 - Count Vowel Strings in Ranges](#2559---count-vowel-strings-in-ranges)
 - [2780 - Minimum Index of a Valid Split](#2780---minimum-index-of-a-valid-split)
@@ -1445,6 +1447,50 @@ Output:
 65
 ```
 
+## 1897 - Redistribute Characters to Make All Strings Equal
+
+- **Problem:** Determine whether characters can be redistributed among the strings so that every string becomes exactly the same.
+- **Pattern:** `Hash Map + Frequency Counting`
+- **Recognition:**
+  - Characters can be moved between strings, but the total number of each character remains unchanged.
+  - If all strings must become equal, every character must be distributed evenly across all strings.
+  - Therefore, the total frequency of every character must be divisible by the number of strings.
+- **Key Insight:**
+  - Count the total occurrences of every character across all strings.
+  - For each character:
+    - If `count % len(words) != 0`, that character cannot be distributed equally.
+    - Otherwise, it can be evenly distributed among all strings.
+  - We don't need to actually perform the redistribution.
+  - Only the total frequency of each character matters.
+- **Time Complexity:** `O(n)`
+  - `n` = total number of characters across all strings.
+- **Space Complexity:** `O(1)`
+  - There are only `26` possible lowercase English letters.
+
+### Example
+
+```text
+Input:
+words = ["abc", "aabc", "bc"]
+
+Character counts:
+
+a → 3
+b → 3
+c → 3
+
+Number of words = 3
+
+a: 3 % 3 = 0
+b: 3 % 3 = 0
+c: 3 % 3 = 0
+
+All characters can be evenly distributed.
+
+Output:
+True
+```
+
 ## 1913 - Maximum Product Difference Between Two Pairs
 
 - **Problem:** Find the maximum product difference between two pairs of numbers:
@@ -2687,6 +2733,58 @@ Box 2: |0-2| + |1-2| = 3
 
 Output:
 [1, 1, 3]
+```
+
+## 1930 - Unique Length-3 Palindromic Subsequences
+
+- **Problem:** Count the number of unique palindromic subsequences of length `3`.
+- **Pattern:** `Set + Two Pointers + Subsequence`
+- **Recognition:**
+  - A length-3 palindrome has the form `x y x`.
+  - The first and last characters must be the same.
+  - Only the unique characters appearing between the matching outer characters matter.
+  - Need to avoid counting duplicate palindromes, so a `set` is useful.
+- **Key Insight:**
+  - For every possible left character, search for a matching character from the right.
+  - Once matching outer characters are found:
+    - The middle character can be any character between them.
+    - Use a `set` to make sure each middle character is counted only once.
+  - Store the complete palindrome in `uniqueThreeLengthPalindrome` to guarantee uniqueness.
+  - The important structure is:
+    ```text
+    left == right
+        ↓
+    choose unique middle characters
+        ↓
+    create x y x
+        ↓
+    store in Set
+    ```
+- **Time Complexity:** `O(n³)` in the worst case
+  - Two nested loops search for matching outer characters.
+  - A third loop checks the characters between them.
+- **Space Complexity:** `O(n)`
+  - Sets store visited characters and unique palindromic subsequences.
+
+### Example
+
+```text
+Input:
+s = "aabca"
+
+Matching outer characters:
+a ... a
+
+Characters between them:
+a, b, c
+
+Possible palindromes:
+"aaa"
+"aba"
+"aca"
+
+Output:
+3
 ```
 
 
