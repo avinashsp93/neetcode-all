@@ -14,6 +14,7 @@
 - [0290 - Word Pattern](#0290---word-pattern)
 - [0383 - Ransom Note](#0383---ransom-note)
 - [0392 - Is Subsequence](#0392---is-subsequence)
+- [0409 - Longest Palindrome](#0409---longest-palindrome)
 - [0448 - Find All Numbers Disappeared in an Array](#0448---find-all-numbers-disappeared-in-an-array)
 - [0485 - Max Consecutive Ones](#0485---max-consecutive-ones)
 - [0496 - Next Greater Element I](#0496---next-greater-element-i)
@@ -556,6 +557,60 @@ c → not matched
 
 Output:
 False
+```
+
+## 0409 - Longest Palindrome
+
+- **Problem:** Given a string, return the length of the longest palindrome that can be built using its characters.
+- **Pattern:** `Hash Map + Frequency Counting + Greedy`
+- **Recognition:**
+  - Need to construct the longest palindrome using the available characters.
+  - A palindrome reads the same forward and backward.
+  - Characters in a palindrome must appear in pairs, except for at most one character that can occupy the middle.
+  - Frequency counting helps determine how many characters can be used.
+- **Key Insight:**
+  - Count the frequency of each character using a hash map.
+  - For every character:
+    - If its frequency is even, use all occurrences.
+    - If its frequency is odd, use `frequency - 1` occurrences to form pairs.
+  - If at least one character has an odd frequency, add `1` to the result to use one character in the middle.
+  - Only one odd-frequency character can contribute its extra occurrence to the center.
+- **Time Complexity:** `O(n)`
+  - Traverse the string once to count character frequencies.
+  - Traverse the frequency map once to calculate the result.
+- **Space Complexity:** `O(k)`
+  - `k` = number of distinct characters in the string.
+
+### Example
+
+```text
+Input:
+s = "abccccdd"
+
+Character frequencies:
+
+a → 1 (odd)
+b → 1 (odd)
+c → 4 (even)
+d → 2 (even)
+
+Calculations:
+
+a → 1 - 1 = 0
+b → 1 - 1 = 0
+c → 4
+d → 2
+
+count = 6
+
+At least one odd frequency exists.
+Add 1 for the middle character.
+
+Output:
+7
+
+Possible palindrome:
+"dccaccd"
 ```
 
 ## 0448 - Find All Numbers Disappeared in an Array
