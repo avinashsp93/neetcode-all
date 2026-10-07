@@ -9,6 +9,10 @@
 - [2696 - Minimum String Length After Removing Substrings](#2696---minimum-string-length-after-removing-substrings)
 - [3174 - Clear Digits](#3174---clear-digits)
 
+### Medium
+
+- [2390 - Removing Stars From a String](#2390---removing-removing-stars-from-a-string)
+
 <br><br>
 
 <h2 style="text-align: center;text-transform: uppercase;">
@@ -244,4 +248,58 @@ ab
 
 Output:
 "ab"
+```
+
+<br><br>
+
+<h2 style="text-align: center;text-transform: uppercase;">
+  MEDIUM PROBLEMS
+</h2>
+
+<br><br>
+
+## 2390 - Removing Stars From a String
+
+- **Problem:** Given a string containing lowercase letters and `*`, remove each `*` along with the closest non-`*` character to its left.
+- **Pattern:** `Stack`
+- **Recognition:**
+  - Each `*` removes the most recently added character.
+  - This is a **Last In, First Out (LIFO)** behavior.
+  - A stack is ideal because the most recently added character is always at the top.
+- **Key Insight:**
+  - Traverse the string from left to right.
+  - If the character is not `*`, add it to the stack.
+  - If the character is `*`, remove the most recent character using `pop()`.
+  - At the end, join the remaining characters in the stack to form the result.
+- **Time Complexity:** `O(n)`
+  - Each character is added to or removed from the stack at most once.
+- **Space Complexity:** `O(n)`
+  - In the worst case, all characters are stored in the stack.
+
+### Example
+
+```text
+Input:
+s = "leet**cod*e"
+
+Process:
+
+l → [l]
+e → [l,e]
+e → [l,e,e]
+t → [l,e,e,t]
+
+* → remove t
+* → remove e
+
+c → [l,e,c]
+o → [l,e,c,o]
+d → [l,e,c,o,d]
+
+* → remove d
+
+e → [l,e,c,o,e]
+
+Output:
+"lecoe"
 ```
