@@ -258,6 +258,71 @@ Output:
 
 <br><br>
 
+## 0946 - Validate Stack Sequences
+
+- **Problem:** Given two sequences `pushed` and `popped`, determine whether `popped` could be a valid pop order for a stack where elements are pushed in the order given by `pushed`.
+- **Pattern:** `Stack + Simulation`
+- **Recognition:**
+  - The elements must be pushed in a fixed order.
+  - At any point, we can only pop the element currently at the top of the stack.
+  - Need to simulate the push/pop operations and check whether the required `popped` sequence can be produced.
+  - Whenever the stack top matches the next element in `popped`, we should immediately pop it.
+- **Key Insight:**
+  - Push each element from `pushed` onto the stack.
+  - After every push, check whether the top of the stack matches `popped[i]`.
+  - If it matches, pop it and move `i` to the next element in `popped`.
+  - Keep popping while the stack top matches the next required value.
+  - At the end, if the stack is empty, the sequence is valid.
+- **Time Complexity:** `O(n)`
+  - Every element is pushed once and popped at most once.
+- **Space Complexity:** `O(n)`
+  - The stack can contain up to `n` elements.
+
+### Example
+
+```text
+Input:
+pushed = [1,2,3,4,5]
+popped = [4,5,3,2,1]
+
+Process:
+
+Push 1:
+stack = [1]
+
+Push 2:
+stack = [1,2]
+
+Push 3:
+stack = [1,2,3]
+
+Push 4:
+stack = [1,2,3,4]
+top = 4 → matches popped[0]
+pop 4
+
+stack = [1,2,3]
+
+Push 5:
+stack = [1,2,3,5]
+top = 5 → matches popped[1]
+pop 5
+
+top = 3 → matches popped[2]
+pop 3
+
+top = 2 → matches popped[3]
+pop 2
+
+top = 1 → matches popped[4]
+pop 1
+
+stack = []
+
+Output:
+True
+```
+
 ## 2390 - Removing Stars From a String
 
 - **Problem:** Given a string containing lowercase letters and `*`, remove each `*` along with the closest non-`*` character to its left.
