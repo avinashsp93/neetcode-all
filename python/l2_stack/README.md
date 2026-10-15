@@ -11,6 +11,8 @@
 
 ### Medium
 
+- [0735 - Asteroid Collision](#0735---asteroid-collision)
+- [0946 - Validate Stack Sequences](#0946---validate-stack-sequences)
 - [2390 - Removing Stars From a String](#2390---removing-removing-stars-from-a-string)
 
 <br><br>
@@ -257,6 +259,59 @@ Output:
 </h2>
 
 <br><br>
+
+## 0735 - Asteroid Collision
+
+- **Problem:** Given an array of asteroids moving in the same direction along a line, determine which asteroids survive after all collisions.
+  - Positive values move to the right.
+  - Negative values move to the left.
+  - When two asteroids collide, the smaller one explodes.
+  - If both have the same size, both explode.
+- **Pattern:** `Stack + Simulation`
+- **Recognition:**
+  - Collisions depend on the order of elements and their directions.
+  - A new asteroid can collide with multiple previously encountered asteroids.
+  - A stack helps track surviving asteroids and efficiently resolve collisions.
+  - A collision occurs only when a positive asteroid moving right meets a negative asteroid moving left.
+- **Key Insight:**
+  - Traverse the asteroids from left to right.
+  - Push positive asteroids onto the stack because they may collide with future negative asteroids.
+  - For a negative asteroid, keep resolving collisions while:
+    - The stack is not empty.
+    - The stack's top asteroid is positive.
+    - The incoming asteroid is larger than the stack's top asteroid.
+  - After resolving collisions:
+    - If the stack is empty, the negative asteroid survives.
+    - If the stack's top is negative, no collision occurs because both asteroids move left.
+    - If the stack's top is positive and both asteroids have equal sizes, both explode.
+    - If the stack's top positive asteroid is larger, the incoming negative asteroid explodes.
+  - Return the stack containing the surviving asteroids.
+- **Time Complexity:** `O(n)`
+  - Each asteroid is pushed onto and popped from the stack at most once.
+- **Space Complexity:** `O(n)`
+  - In the worst case, all asteroids survive and are stored in the stack.
+
+### Example
+
+```text
+Input:
+asteroids = [5, 10, -5]
+
+Process:
+
+5  → stack = [5]
+10 → stack = [5, 10]
+
+-5 arrives:
+10 > abs(-5)
+→ -5 explodes
+
+Final stack:
+[5, 10]
+
+Output:
+[5, 10]
+```
 
 ## 0946 - Validate Stack Sequences
 
