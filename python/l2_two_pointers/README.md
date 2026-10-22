@@ -6,9 +6,11 @@
 - [0125 - Valid Palindrome I](#0125---valid-palindrome-i)
 - [0283 - Move Zeroes](#0283---move-zeroes)
 - [0344 - Reverse String](#0344---reverse-string)
+- [0455 - Assign Cookies](#0455---assign-cookies)
 - [0680 - Valid Palindrome II](#0680---valid-palindrome-ii)
 - [0977 - Squares of a Sorted Array](#0977---squares-of-a-sorted-array)
 - [1768 - Merge Strings Alternately](#1768---merge-strings-alternately)
+- [2570 - Merge Two 2D Arrays by Summing Values](#2570---merge-two-2d-arrays-by-summing-values)
 
 <br><br>
 
@@ -235,6 +237,68 @@ Result:
 ["o","l","l","e","h"]
 ```
 
+## 0455 - Assign Cookies
+
+- **Problem:** Given an array `g` representing children's greed factors and an array `s` representing cookie sizes, maximize the number of content children.
+  - Each child needs a cookie whose size is at least their greed factor.
+  - Each child can receive at most one cookie.
+  - Each cookie can be assigned to at most one child.
+- **Pattern:** `Greedy + Two Pointers`
+- **Recognition:**
+  - Need to maximize the number of successful assignments.
+  - Each child has a minimum requirement, and each cookie has a size.
+  - Sorting both arrays allows us to assign the smallest suitable cookie first.
+  - Greedy assignment avoids wasting larger cookies on children who could accept smaller ones.
+- **Key Insight:**
+  - Sort both `g` and `s` in ascending order.
+  - Use two pointers:
+    - `i` points to the current child.
+    - `j` points to the current cookie.
+  - If `g[i] <= s[j]`:
+    - The cookie satisfies the child's greed factor.
+    - Increment `maxCount` and move to the next child.
+  - Always move `j` to the next cookie:
+    - If the cookie satisfies the child, it has been used.
+    - Otherwise, it is too small for the current child, so try the next larger cookie.
+  - Stop when either all children or all cookies have been considered.
+- **Time Complexity:** `O(n log n + m log m)`
+  - `n` = number of children
+  - `m` = number of cookies
+  - Sorting dominates the overall time complexity.
+- **Space Complexity:** `O(n + m)`
+  - Python's `sorted()` creates new sorted lists.
+
+### Example
+
+```text
+Input:
+g = [1,2,3]
+s = [1,1]
+
+Sort both arrays:
+g = [1,2,3]
+s = [1,1]
+
+i = 0, j = 0:
+Child greed = 1
+Cookie size = 1
+1 <= 1 → Assign cookie
+maxCount = 1
+i = 1, j = 1
+
+i = 1, j = 1:
+Child greed = 2
+Cookie size = 1
+2 > 1 → Cookie is too small
+j = 2
+
+No more cookies available.
+
+Output:
+1
+```
+
+
 ## 0680 - Valid Palindrome II
 
 - **Problem:** Given a string, determine if it can become a palindrome after deleting at most one character.
@@ -385,4 +449,65 @@ cd
 
 Output:
 "apbqcd"
+```
+
+## 2570 - Merge Two 2D Arrays by Summing Values
+
+- **Problem:** Given two 2D arrays sorted by ID, merge them into one array:
+  - If an ID exists in both arrays, sum their values.
+  - If an ID exists in only one array, keep its original value.
+  - Return the result sorted by ID.
+- **Pattern:** `Two Pointers + Merge Sorted Arrays`
+- **Recognition:**
+  - Both arrays are already sorted by ID.
+  - Need to combine two sorted arrays while handling matching IDs.
+  - Two pointers allow us to compare IDs and process each element without repeatedly searching the arrays.
+  - This is similar to the merge step of Merge Sort.
+- **Key Insight:**
+  - Initialize two pointers, `i` and `j`, at the beginning of the arrays.
+  - Compare the IDs at `nums1[i][0]` and `nums2[j][0]`:
+    - If the IDs are equal, add their values and advance both pointers.
+    - If the first ID is smaller, append that element from `nums1` and advance `i`.
+    - Otherwise, append that element from `nums2` and advance `j`.
+  - After one array is exhausted, append all remaining elements from the other array.
+  - Because both arrays are sorted, the result remains sorted without an additional sorting step.
+- **Time Complexity:** `O(n + m)`
+  - `n` = length of `nums1`
+  - `m` = length of `nums2`
+  - Each element is processed at most once.
+- **Space Complexity:** `O(n + m)`
+  - The result can contain up to `n + m` elements.
+
+### Example
+
+```text
+Input:
+nums1 = [[1,2],[2,3],[4,5]]
+nums2 = [[1,4],[3,2],[4,1]]
+
+Initial:
+i = 0, j = 0
+
+Compare ID 1 and ID 1:
+IDs match
+→ Add values: 2 + 4 = 6
+result = [[1,6]]
+
+Compare ID 2 and ID 3:
+ID 2 is smaller
+→ Append [2,3]
+result = [[1,6],[2,3]]
+
+Compare ID 4 and ID 3:
+ID 3 is smaller
+→ Append [3,2]
+result = [[1,6],[2,3],[3,2]]
+
+Compare ID 4 and ID 4:
+IDs match
+→ Add values: 5 + 1 = 6
+result = [[1,6],[2,3],[3,2],[4,6]]
+
+Output:
+[[1,6],[2,3],[3,2],[4,6]]
 ```
